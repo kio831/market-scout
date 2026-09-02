@@ -1,0 +1,43 @@
+# Secrets & credentials — never commit these
+.env
+*.env
+*.env.*
+.env.local
+*.key
+*.pem
+*.p12
+*.pfx
+*credentials*
+*token*
+*.secret
+secrets.json
+config.local.json
+
+# Local / OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+*.swp
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Local publish worktree artifacts
+.git/
+*.zip
+*.skill
