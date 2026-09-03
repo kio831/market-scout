@@ -1,0 +1,47 @@
+# Opportunity Report 机会报告模板（v2.0，V2 流水线最终输出）
+
+串联 Find 到 Validate 到 Evaluate 到 Blueprint 到 Monetize 五阶段让用户快速判断一个机会是否值得投入第一步做什么。各阶段细节分别来自五张阶段卡；本报告是结论先行的汇总层不替代阶段卡也不重新打分。排版双语移动端规范见 references/pipeline-and-runtime.md；交付前对照其验收清单自检。
+
+# Opportunity Report 机会报告
+
+FIND 已完成到 VALIDATE 已完成到 EVALUATE 已完成到 BLUEPRINT 已完成到 MONETIZE 已完成。
+
+Opportunity ID：MS-### 日期：YYYY-MM-DD。Opportunity State（真实交付状态）：HYPOTHESIS/DEMAND_CONFIRMED 证据等级：A/B/C。取证方式：实时搜索浏览器用户材料假设分析失败与降级记录：。
+
+黄 建议验证后再做 VALIDATE_FIRST | 综合机会评分 NN/100 | 需求强度 N/10 | Opportunity MS-###。一句话结论：（三档：绿值得做 GO 黄建议验证后再做 VALIDATE_FIRST 红不建议做 NO_GO）。
+
+目录：0 一页结论 1 FIND 发现 2 VALIDATE 需求验证 3 EVALUATE 项目评估 4 BLUEPRINT 转项目 5 MONETIZE 商业化 6 风险与反证 7 行动路线 8 最终判定。
+
+## 0. 一页结论（Executive Summary，10 秒读完）
+项 结论。机会一句话。需求强度 Demand Strength（N/10 继承 VALIDATE）。综合机会评分 Opportunity Score（NN/100 继承 EVALUATE 附计算式位置）。最终结论 Verdict（绿值得做 GO 黄建议验证后再做 VALIDATE_FIRST 红不建议做 NO_GO）。卖给谁付费方。卖什么（Offer 主力款）。怎么收费主力价（定价锚）。第一版（MVP 一句话）。主获客渠道（不超过 2）。第一笔钱怎么拿期限。今天本周第一步（只做一件）。
+
+最终结论阐述（3-5 条每条绑定证据）。
+
+## 1. FIND — 发现（摘要）
+问题与场景（来自 Problem Card）：。三类搜索证据：Problem Solution Payment。商业验证基础：三类是否齐备只有 Problem 无 Payment 不得判强机会。关键证据表（链接原文类型置信度详见 Evidence Card）：证据 来源 类型 置信度 证明什么 不能证明什么。
+
+## 2. VALIDATE — 需求验证（摘要详见 demand-validation-card）
+需求结论加需求强度（6 信号均分）：。核心用户扩展非用户：。替代成本（定价锚）：。付费理由链通到第几环是否有付费权红旗：。
+
+## 3. EVALUATE — 项目评估（摘要详见 project-evaluation-card）
+维度 分 权重。需求强度 20%。市场潜力 20%。竞争与差异化 15%。AI 可实现度 15%。开发难度（易等于高）10%。个人适配 15%。风险可控 5%。加权计算式（可复算）：算式等于 NN/100。最强两项最弱两项：。竞争格局加差异化切入点：。致命红旗检查结果：。三档结论与依据（总分加门槛加红旗）：。
+
+## 4. BLUEPRINT — 机会转项目（摘要详见 project-blueprint-card）
+推荐产品形态 Level 加升级证据：。核心用户与第一版不服务谁：。Must-have（不超过 3）：。MVP：做什么不做什么验证什么继续条件放弃条件：。技术方向（或当前不需要开发）：。最小验证实验：。
+
+## 5. MONETIZE — 商业化与获客（摘要详见 monetization-gtm-card）
+付费方 ICP：。Offer 三档（引流主力增值）：。商业模式加理由（加备选与切换条件）：。定价（价值锚市场锚底线首单价正价提价路径）：。首批 10 客户怎么来加今天动作：。主渠道（不超过 2）与 GTM 三阶段：。不开发产品的验证方式：。第一笔钱十步计划：。
+
+## 6. 风险与反证（主动找反例）
+风险 证据 影响 应对验证动作。
+
+## 7. 行动路线（Action Plan）
+
+下一步行动（今天只做一件事）：动词开头可量化能启动验证或获客。
+
+今天（1 件事）：。本周（验证动作加成功失败标准）：。2-4 周（拿到第一笔钱的路径与状态推进）：。触发回退停止的信号：。
+
+## 8. 最终判定（Final Verdict）
+绿值得做 GO 黄建议验证后再做 VALIDATE_FIRST 红不建议做 NO_GO。一句话结论：。最关键的一个假设与验证它的最小实验：。若黄：转绿转红的量化标准。若红：停止原因加导致停止的证据加重启条件。
+
+附：Opportunity Card 速览版。需要一屏速览时用 templates/opportunity-card.md（v2 已含五阶段指针与综合结论）；本报告用于完整演示与存档。
