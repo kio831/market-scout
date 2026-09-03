@@ -1,107 +1,327 @@
+<div align="center">
+
 # Market Scout
 
-> **Turn Real Problems into the First Payment.**
-> 从真实问题出发，验证需求，找到第一笔钱。
+**An AI-powered tool for discovering, validating, evaluating, and commercializing project opportunities.**
 
-Market Scout 是一个 **AI Agent Skill**（市场侦察与商业验证工作流），帮你把「一个真实问题」推进到「第一笔真实收入」。
+Turn a vague idea into a clear verdict (worth doing or not), an executable project, and a path to first revenue.
 
-**它不是"AI 赚钱项目生成器"。** 它不先问"AI 能做什么赚钱"，而是先问：
+[![Version](https://img.shields.io/badge/version-v2.0.0-blue)](https://github.com/kio831/market-scout/releases)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Skill Type](https://img.shields.io/badge/type-Agent%20Skill-orange)]()
+[![Platform](https://img.shields.io/badge/platform-Any%20Markdown%20Agent-lightgrey)]()
 
-> **谁遇到了什么问题？为什么愿意付钱解决？**
+**Find to Validate to Evaluate to Monetize**
 
-然后判断：**AI 能否让我更低成本、更快地解决它？**
+```
++----------+    +----------+    +----------+    +----------+
+|   FIND   | -> | VALIDATE | -> | EVALUATE | -> | MONETIZE |
+| Discover |    |  Demand  |    | Project  |    |    & GTM  |
++----------+    +----------+    +----------+    +----------+
+```
+
+</div>
 
 ---
 
-## 这是什么 / 解决什么问题
+## What is Market Scout?
 
-- **这是什么**：一个可被其他 Agent 调用的 Skill（技能包），覆盖「发现问题 → 搜集证据 → 验证需求 → 验证付费 → 分析竞争 → 用 AI 低成本解决 → 拿第一笔钱」的完整流程。
-- **解决什么问题**：很多人想做副业 / 创业，但习惯"先想产品再找用户"，或"先开发再验证"。Market Scout 强制你先验证、再收费、再产品化，避免在没人付费的假设上浪费时间。
-- **核心原则**：先验证，再开发。**研究不是终点，拿到第一笔钱才是。**
+Market Scout is an **AI Agent Skill** — a pure Markdown methodology package that, once installed into a Skill-compatible AI client, gives the agent a complete workflow for market opportunity reconnaissance and commercial validation.
 
-## 核心工作流
+It is not an "AI money-making project generator." It does not invent projects. Its core question sequence is:
 
-```mermaid
-flowchart TD
-    A[Real Problem<br/>真实问题] --> B[Evidence<br/>搜集证据]
-    B --> C[Demand<br/>判断需求]
-    C --> D[Payment<br/>判断付费]
-    D --> E[Competition<br/>分析竞争]
-    E --> F[AI Leverage<br/>AI 杠杆]
-    F --> G[MVP<br/>最小方案]
-    G --> H[First Payment<br/>第一笔钱]
-    H --> I[Productize<br/>产品化]
+> **Who has what problem? Why would they pay to solve it? Can AI let me solve it cheaper and faster? Is it worth doing, what should it be, how do I charge, and where do the first customers come from?**
+
+Not just for discovering new market opportunities — you can also feed in an existing project idea and validate, evaluate, and commercialize it.
+
+### What problem it solves
+
+People starting a side project or business typically get stuck at: having a vague idea but not knowing if it's real demand; sensing demand but not knowing if users will pay; not knowing whether the project is worth the time; deciding to build but not knowing what the MVP should be; and not knowing how to price or where to find customers. Market Scout structures each step with evidence-bound analysis.
+
+### Who it's for
+
+- Solo developers and indie makers validating side project ideas
+- Content creators and operators looking for monetizable niche opportunities
+- Students and first-time founders who need a structured, low-cost validation path
+- Anyone who wants to turn "I think there's a market" into "here's the evidence, the score, and the first action"
+
+### Why you need it
+
+- **Evidence over intuition** — every conclusion is bound to real search evidence; "the market is huge" without evidence is explicitly forbidden
+- **Reproducible scoring** — the 7-dimension weighted score (0-100) can be recalculated by hand
+- **Validate before building** — default to Level 1 (human + AI, sell the result first); 7 no-build validation methods
+- **From idea to first payment** — not just a market report, but "what to do today" and "how to collect the first payment"
+
+---
+
+## Core Features
+
+### 1. Discover Opportunity
+
+Find opportunities from markets, communities, and real user discussions.
+
+- Three search types: Problem / Solution / Payment
+- Evidence Chain (raw evidence to observation to inference to hypothesis to validation)
+- Problem Card and Evidence Card with 8-dimension rough scoring
+- Video / comment / post reverse analysis
+
+### 2. Validate Demand
+
+Verify whether user pain points are real.
+
+- Pain point analysis + three-layer target users (core / extended / non-users)
+- Demand Strength 1-10 score from 6 signals, each bound to evidence
+- Current solutions and substitution cost (pricing anchor)
+- Payment reason chain (JTBD): Job to Cost to Trigger to Reason to Authority
+- Demand evidence credibility matrix
+
+### 3. Evaluate Project
+
+Analyze market, competition, development difficulty, differentiation, and project value.
+
+- 7-dimension weighted scoring: Demand 20% / Market 20% / Competition and Differentiation 15% / AI Feasibility 15% / Development Difficulty 10% / Solo Fit 15% / Risk 5%
+- Composite Opportunity Score 0-100, formula must be hand-recalculable
+- 7 fatal red flags (one-vote veto)
+- Three-tier verdict: **GO** (worth doing) / **VALIDATE_FIRST** (validate before committing) / **NO_GO** (not recommended)
+
+### 4. Opportunity to Project
+
+Turn a market opportunity into a concrete, executable MVP.
+
+- Recommended product form (aligned with Level 1-5, default L1: sell the result first)
+- MoSCoW feature prioritization (Must-have at most 3)
+- MVP five items: what to build / what not to build / what to validate / continue condition / abandon condition
+- Recommended tech direction + minimal validation experiment + differentiation entry point
+
+### 5. Monetization and GTM
+
+Analyze target customers, business model, pricing, and first-customer acquisition.
+
+- Target Customer (distinguishes user from payer)
+- Offer three-tier ladder (lead / main / value-add)
+- Business Model library with selection rules
+- Explainable Pricing: value anchor / market anchor / cost floor / first-payment price / regular price / price increase path
+- First 10 customers acquisition method + channel matrix (main channels at most 2) + GTM three phases
+- 7 no-build validation methods (Concierge / landing page smoke test / Fake Door / pre-sale / crowdfunding / paid diagnosis / sample for testimonial)
+- Modular data contract (MonetizationInput / MonetizationPlan) — designed to become a standalone product in the future
+
+---
+
+## What's New in V2
+
+V1 focused on **market opportunity discovery**. V2 completes the full loop: **validate demand, evaluate project, generate project plan, monetization and GTM analysis**.
+
+| V1 | V2 |
+|---|---|
+| Market Discovery | Market Discovery |
+| Basic Analysis | Demand Validation |
+| — | Project Evaluation |
+| — | Opportunity to Project |
+| — | Monetization and GTM |
+| — | Modular data contracts |
+| — | Runtime robustness (timeout / retry / fallback / resume) |
+| — | UI rendering spec and unified stage cards |
+| — | Final Opportunity Report (conclusion-first) |
+
+All V1 capabilities are preserved — this is an incremental, backward-compatible upgrade.
+
+---
+
+## How It Works
+
+```
+Market / Idea (market phenomenon or existing idea)
+        |
+        v
+   Discover
+   Three search types + Evidence Chain + Problem/Evidence Card
+        |
+        v
+   Validate
+   Demand strength 6 signals + payment reason chain -> is demand real and strong?
+        |  (fake/weak demand circuit breaks here)
+        v
+   Evaluate
+   7-dimension weighted score 0-100 + red flag check -> GO / VALIDATE_FIRST / NO_GO
+        |  (NO_GO circuit breaks here)
+        v
+   Build MVP
+   Product form + MoSCoW + MVP five items + minimal validation experiment
+        |
+        v
+   Monetize
+   Pricing + business model + acquisition channels + first 10 customers
+        |
+        v
+   Go To Market
+   First payment plan + action roadmap (today / this week / 2-4 weeks)
+        |
+        v
+   Opportunity Report (final)
+   Conclusion-first: what is being analyzed -> what was found -> what to do next
 ```
 
-一句话：**真实问题 → 证据 → 需求 → 付费 → 竞争 → AI 杠杆 → MVP → 第一笔钱 → 产品化。**
-每一步都用**证据**推动；没有证据就停下来补证据（Search First），而不是硬造机会。
+---
 
-## Quick Start（快速使用）
+## Demo / Screenshots
 
-装好后，直接对你的 AI 说下面任意一句话就能触发（中英文均可）：
+> Screenshots pending. Market Scout's "UI" is the Markdown report rendered by the AI Agent — it looks different across agent platforms. Real usage screenshots will be added here.
 
-| 你想做什么 | 你可以这样说 |
+Expected screenshot sequence (by user flow):
+
+1. Home / input
+2. Opportunity Discovery (Problem Card / Evidence Card)
+3. Demand Validation (demand strength score + payment reason chain)
+4. Project Evaluation (7-dimension score table + verdict)
+5. Monetization and GTM (pricing + first 10 customers)
+6. Final Opportunity Report (conclusion-first summary)
+
+No fabricated screenshots or fake data are used.
+
+---
+
+## Quick Start
+
+### Requirements
+
+- **Python 3.8+** — only needed to run the self-check script (tools/validate_skill.py); no third-party dependencies
+- **A Markdown-Skill-compatible AI Agent platform** — e.g. Doubao, Claude Desktop, Cursor, or any agent that reads SKILL.md from a skills directory
+
+### Installation
+
+**Method 1: Drag-and-drop (recommended)**
+
+1. Download market-scout.skill (or .zip) from the [Releases](https://github.com/kio831/market-scout/releases) page
+2. Drag it into your AI client's "Skill / one-click install" entry point
+3. Verify: open SKILL.md and search for `Monetization & GTM` and `GO` — both present means v2.0.0 is installed
+
+**Method 2: Manual install**
+
+1. Unzip market-scout.zip — you get a market-scout/ folder
+2. Place it in your AI client's skills directory (usually .user_skills/ or skills/)
+3. Ensure the path is skills-directory/market-scout/SKILL.md
+4. Restart or refresh the client
+
+### Environment Variables
+
+None required. Market Scout relies on the agent platform's already-configured search and browser capabilities.
+
+### Run Development Server
+
+**Not applicable.** Market Scout is a pure Markdown documentation Skill — there is no frontend dev server, no backend, and no database. The "UI" is the Markdown report rendered by the AI Agent at runtime.
+
+### Build for Production
+
+**Not applicable.** There is no build chain. A "release" is simply packaging the market-scout/ directory into .zip and .skill files:
+
+```bash
+# On Windows (PowerShell)
+Compress-Archive -Path ./market-scout -DestinationPath ./market-scout.zip -Force
+Copy-Item ./market-scout.zip ./market-scout.skill
+
+# Run self-check before release
+python ./market-scout/tools/validate_skill.py
+```
+
+---
+
+## Tech Stack
+
+Only technologies actually used by the project are listed.
+
+| Category | Technology |
 |---|---|
-| 找一个值得验证的真实需求 | "帮我找一个值得验证的真实需求" |
-| 分析视频有没有商机 | "分析这个视频有没有商业机会" |
-| 分析评论区有没有需求 | "分析这个评论区有没有真实需求" |
-| 判断一个想法能不能赚钱 | "我发现一个问题，这个能不能赚钱？" |
-| 验证需求并找第一位客户 | "帮我验证这个需求，并尝试找到第一位客户" |
-| 准备开干 / 拿第一单 | "帮我拿第一单" / "我准备做了" |
+| Core format | Markdown + YAML frontmatter |
+| Data contracts | YAML / JSON Schema (MonetizationInput, MonetizationPlan) |
+| Tooling | Python 3 (tools/validate_skill.py, zero third-party dependencies) |
+| Runtime | Agent-native capabilities (general search / browser / file read) |
+| Frontend | None — no frontend framework |
+| Backend | None — no server |
+| Database | None — no persistence layer |
+| Deployment | GitHub Pages for website/index.html (optional) |
 
-更多触发词（中文）：`帮我找市场` · `继续深挖` · `寻找竞争对手` · `寻找类似需求` · `这个能不能用 AI`。完整触发表见 `SKILL.md`。
+---
 
-## Why Market Scout?
-
-| 传统 AI Idea Generator | **Market Scout** |
-|---|---|
-| AI 能做什么 → 从"能力"出发 | **用户有什么真实问题** → 从"问题"出发 |
-| 先想产品 | **先验证问题** |
-| 先开发 | **先找用户** |
-| 假设市场 | **搜索真实证据** |
-| 输出项目清单 | **推进第一笔钱** |
-| 尽量给机会 | **允许明确判断"不建议继续"** |
-
-## 核心机制（Skill 逻辑，保持不变的）
-
-- **Search First（三类搜索）**：Problem Search（有人遇到这问题？）→ Solution Search（现在怎么解决？）→ Payment Search（有人为此付钱吗？）
-- **Evidence Chain（证据链）**：原始证据 → 观察 → 推断 → 假设 → 验证，禁止"一条评论直接得出强商业结论"
-- **Evidence Level**：A 已验证需求 / B 潜在需求 / C 假设需求
-- **Opportunity Lifecycle**：`HYPOTHESIS → DEMAND_CONFIRMED → MARKET_CONFIRMED → PAYMENT_VALIDATION → CUSTOMER_FOUND → FIRST_PAYMENT → REPEATED_DELIVERY → STANDARDIZED → AUTOMATED → PRODUCTIZED`
-- **三种工作模式**：Quick（快速判断） / Research（完整 Market Scan） / Execution（直接拿第一单）
-- **CUSTOMER_FOUND ≠ FIRST_PAYMENT**：愿意付钱只是验证信号，**FIRST_PAYMENT 必须实际收到真实付款**
-- **Stop Conditions**：证据不足、无付费行为、AI 无优势时，允许明确说【不建议继续】
-- **Sell Result First, Productize Later**：先"人工 + AI"卖结果，再谈自动化与产品化
-
-## 安装与使用
-
-- **方式一（拖拽安装）**：把 `market-scout.skill` 或 `market-scout.zip` 拖进 AI 客户端的技能安装入口。
-- **方式二（手动）**：解压后放入技能目录，保证存在 `market-scout/SKILL.md`。
-- **验证版本**：打开 `SKILL.md`，搜索 `CUSTOMER_FOUND` 和 `FIRST_PAYMENT`，两个都在即 v1.1 最新版。
-- **完整中文使用说明**：见 `USER_GUIDE.md`。
-
-## 文件结构
+## Project Structure
 
 ```
 market-scout/
-├── SKILL.md                        # 核心：工作流、模式、规则、决策树
-├── README.md                       # 本说明
-├── USER_GUIDE.md                   # 用户使用说明（中文）
-├── LICENSE                         # MIT
-├── .gitignore
-├── references/                     # 6 个方法论文档（证据链/三类搜索/状态机等）
-├── templates/                      # 5 个可填写模板（问题卡片/证据卡片/报告等）
-└── examples/                       # 3 个流程示例（含完整从问题到第一笔钱的案例）
+├── SKILL.md                 # Core entry: rules, pipeline, mode routing, UI spec
+├── README.md                # This file
+├── USER_GUIDE.md            # End-user installation and usage guide
+├── CHANGELOG.md             # Version history
+├── LICENSE                  # MIT
+├── CONTRIBUTING.md          # Contribution guide
+├── references/              # Methodology documents (12 files)
+│   ├── problem-framework.md # [v1] Problem Card, evidence grades, 8-dim scoring
+│   ├── market-research.md   # [v1] Three search types, video/comment analysis
+│   ├── payment-validation.md# [v1] Payment signals, first-payment checklist, stop mechanism
+│   ├── ai-solution-patterns.md # [v1] Level 1-5, MVP, degradation rules
+│   ├── evidence-chain.md    # [v1] Evidence chain, anti-jump rules
+│   ├── opportunity-state-machine.md # [v1] Delivery state machine
+│   ├── demand-validation.md # [v2] Demand validation (VALIDATE)
+│   ├── project-evaluation.md# [v2] Project evaluation and scoring (EVALUATE)
+│   ├── project-blueprint.md # [v2] Opportunity to Project (BLUEPRINT)
+│   ├── monetization-gtm.md  # [v2] Monetization and GTM (MONETIZE, modular contract)
+│   ├── pipeline-and-runtime.md # [v2] Pipeline orchestration, runtime robustness
+│   └── ui-rendering-spec.md # [v2.0.0] Output rendering and visual spec (Design System)
+├── templates/               # Fill-in templates (10 files)
+│   ├── problem-card.md / evidence-card.md / quick-scan.md / market-report.md  # [v1]
+│   ├── opportunity-card.md  # [v2 upgraded] compatible with v1 fields
+│   ├── demand-validation-card.md / project-evaluation-card.md
+│   ├── project-blueprint-card.md / monetization-gtm-card.md
+│   └── opportunity-report.md # [v2] Final five-stage report
+├── examples/                # Workflow examples (4 files)
+│   ├── video-analysis.md / comment-analysis.md / real-world-problem.md  # [v1]
+│   └── full-pipeline-v2.md  # [v2] Complete five-stage example with reproducible score
+├── tools/
+│   └── validate_skill.py    # Self-check script (161 checks)
+└── website/
+    └── index.html           # Product landing page (GitHub Pages ready)
 ```
 
-## 示例（演示方法，数据为示意）
+---
 
-- `examples/real-world-problem.md` — **完整 v1.1 运行示例**：Quick → Research（三类搜索+证据链）→ Execution（第一笔钱）+ 状态机推进
-- `examples/video-analysis.md` — 视频反向市场分析
-- `examples/comment-analysis.md` — 评论区需求挖掘
+## Roadmap
 
-> 注：`examples/` 中的数据均为**演示用示意数据**，只展示方法，不代表真实市场结论。
+- [x] Market Opportunity Discovery (v1.x)
+- [x] Evidence Chain and three search types (v1.x)
+- [x] Quick / Research / Execution three modes (v1.x)
+- [x] Demand Validation (v2.0.0)
+- [x] Project Evaluation with 7-dimension scoring (v2.0.0)
+- [x] Opportunity to Project (v2.0.0)
+- [x] Monetization and GTM with modular data contract (v2.0.0)
+- [x] UI rendering spec and unified stage cards (v2.0.0)
+- [x] Final Opportunity Report (v2.0.0)
+- [x] Open-source release assets: README, CHANGELOG, LICENSE, CONTRIBUTING, landing page (v2.0.0)
+- [ ] More data source integrations (job boards, SaaS review sites, e-commerce reviews)
+- [ ] Better opportunity scoring with real market data
+- [ ] Interactive HTML report generator
+- [ ] Multi-opportunity comparison dashboard
+- [ ] Monetization module as standalone callable API
+- [ ] Real pricing / market data API integration
+- [ ] Web application version
+
+---
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for the process.
+
+- Bug reports and feature suggestions: open an Issue
+- New features: open an Issue to discuss first, then a PR
+- Documentation improvements: PR directly
 
 ## License
 
-[MIT](LICENSE) © 2026 kio831
+[MIT](LICENSE) (c) Market Scout Contributors
+
+Free to use, modify, and distribute — including for personal side-project exploration and commercial projects.
+
+---
+
+<div align="center">
+
+If this tool helps you collect your first payment, come back and share your story.
+
+</div>
