@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Scout — AI-powered opportunity discovery, validation & commercialization</title>
+<meta name="description" content="把一个模糊想法，跑成是否值得做的结论加可执行项目加第一笔收入路径。Find 到 Validate 到 Evaluate 到 Monetize.">
+<style>
+  :root {
+    --bg: #0f1115; --bg-soft: #151820; --card: #1a1d26; --card-hover: #212530;
+    --border: #2a2e3a; --text: #e8eaf0; --text-dim: #9ca3af; --text-faint: #6b7280;
+    --accent: #f59e0b; --accent-soft: rgba(245,158,11,0.12);
+    --green: #10b981; --green-soft: rgba(16,185,129,0.12);
+    --blue: #3b82f6; --blue-soft: rgba(59,130,246,0.12);
+    --cyan: #06b6d4; --cyan-soft: rgba(6,182,212,0.12);
+    --red: #ef4444; --red-soft: rgba(239,68,68,0.12);
+    --radius: 14px; --radius-sm: 8px; --maxw: 1120px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .container { max-width: var(--maxw); margin:0 auto; padding:0 24px; }
+  nav { position: sticky; top:0; z-index:100; background: rgba(15,17,21,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .logo { display:flex; align-items:center; gap:10px; font-weight:700; font-size:17px; color:var(--text); }
+  .logo-dot { width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px var(--accent); }
+  .nav-links { display:flex; gap:24px; font-size:14px; }
+  .nav-links a { color:var(--text-dim); }
+  .nav-links a:hover { color:var(--text); text-decoration:none; }
+  @media(max-width:720px){ .nav-links{ display:none; } }
+  .hero { padding:80px 0 60px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:""; position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:700px; height:400px; background:radial-gradient(ellipse, rgba(245,158,11,0.10), transparent 70%); pointer-events:none; }
+  .badge-row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:24px; }
+  .badge { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; font-size:12px; font-weight:600; border:1px solid var(--border); background:var(--card); color:var(--text-dim); }
+  .badge .dot { width:7px; height:7px; border-radius:50%; }
+  h1 { font-size:clamp(32px,5vw,52px); font-weight:800; line-height:1.15; letter-spacing:-0.02em; margin-bottom:18px; }
+  h1 .accent { color:var(--accent); }
+  .hero-sub { font-size:clamp(16px,2vw,20px); color:var(--text-dim); max-width:640px; margin:0 auto 36px; }
+  .cta-row { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:56px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; border:1px solid transparent; cursor:pointer; transition:all .2s; }
+  .btn-primary { background:var(--accent); color:#1a1200; }
+  .btn-primary:hover { background:#fbbf24; text-decoration:none; transform:translateY(-1px); }
+  .btn-ghost { background:transparent; color:var(--text); border-color:var(--border); }
+  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+  .pipeline { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; max-width:900px; margin:0 auto; position:relative; }
+  @media(max-width:820px){ .pipeline{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:480px){ .pipeline{ grid-template-columns:1fr; } }
+  .stage { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:20px 18px; text-align:left; position:relative; transition:all .2s; }
+  .stage:hover { border-color:var(--border); background:var(--card-hover); transform:translateY(-2px); }
+  .stage-num { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+  .stage-title { font-size:17px; font-weight:700; margin-bottom:6px; }
+  .stage-desc { font-size:13px; color:var(--text-dim); line-height:1.5; }
+  .stage.s1 { border-top:3px solid var(--blue); } .stage.s1 .stage-num { color:var(--blue); }
+  .stage.s2 { border-top:3px solid var(--cyan); } .stage.s2 .stage-num { color:var(--cyan); }
+  .stage.s3 { border-top:3px solid var(--accent); } .stage.s3 .stage-num { color:var(--accent); }
+  .stage.s4 { border-top:3px solid var(--green); } .stage.s4 .stage-num { color:var(--green); }
+  .arrow { position:absolute; right:-10px; top:50%; transform:translateY(-50%); color:var(--text-faint); font-size:18px; z-index:2; }
+  @media(max-width:820px){ .arrow{ display:none; } }
+  section { padding:72px 0; }
+  .section-label { font-size:12px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+  h2 { font-size:clamp(24px,3.5vw,34px); font-weight:700; margin-bottom:14px; letter-spacing:-0.01em; }
+  .section-sub { color:var(--text-dim); max-width:640px; margin-bottom:44px; font-size:16px; }
+  .problem-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  @media(max-width:720px){ .problem-grid{ grid-template-columns:1fr; } }
+  .problem-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:22px; display:flex; gap:16px; align-items:flex-start; }
+  .problem-icon { flex-shrink:0; width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; }
+  .problem-card h4 { font-size:15px; font-weight:600; margin-bottom:6px; }
+  .problem-card p { font-size:13.5px; color:var(--text-dim); line-height:1.6; }
+  .feature-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  @media(max-width:720px){ .feature-grid{ grid-template-columns:1fr; } }
+  .feature-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:26px; transition:all .2s; }
+  .feature-card:hover { background:var(--card-hover); border-color:var(--border); }
+  .feature-tag { display:inline-block; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:14px; }
+  .feature-card h3 { font-size:18px; font-weight:700; margin-bottom:10px; }
+  .feature-card ul { list-style:none; }
+  .feature-card li { font-size:13.5px; color:var(--text-dim); padding:4px 0; padding-left:18px; position:relative; }
+  .feature-card li::before { content:"到"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+  .verdict-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:720px){ .verdict-grid{ grid-template-columns:1fr; } }
+  .verdict-card { border-radius:var(--radius); padding:24px; border:1px solid; }
+  .verdict-card.go { background:var(--green-soft); border-color:rgba(16,185,129,0.3); }
+  .verdict-card.wait { background:var(--accent-soft); border-color:rgba(245,158,11,0.3); }
+  .verdict-card.no { background:var(--red-soft); border-color:rgba(239,68,68,0.3); }
+  .verdict-signal { font-size:28px; margin-bottom:8px; }
+  .verdict-card h4 { font-size:16px; font-weight:700; margin-bottom:8px; }
+  .verdict-card p { font-size:13px; color:var(--text-dim); line-height:1.6; }
+  .workflow { position:relative; padding-left:32px; }
+  .workflow::before { content:""; position:absolute; left:11px; top:8px; bottom:8px; width:2px; background:var(--border); }
+  .wf-step { position:relative; margin-bottom:28px; }
+  .wf-step:last-child { margin-bottom:0; }
+  .wf-dot { position:absolute; left:-32px; top:4px; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; border:2px solid var(--bg); }
+  .wf-step h4 { font-size:16px; font-weight:700; margin-bottom:6px; }
+  .wf-step p { font-size:14px; color:var(--text-dim); line-height:1.6; }
+  .wf-step .wf-tag { font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-right:8px; }
+  .usage-table { width:100%; border-collapse:collapse; font-size:14px; }
+  .usage-table th, .usage-table td { padding:12px 16px; text-align:left; border-bottom:1px solid var(--border); }
+  .usage-table th { color:var(--text-dim); font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+  .usage-table td:first-child { font-weight:600; white-space:nowrap; }
+  .usage-table td:last-child { color:var(--text-dim); font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:13px; }
+  .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius); background:var(--card); }
+  .tech-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media(max-width:720px){ .tech-grid{ grid-template-columns:1fr; } }
+  .tech-item { background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); padding:16px 18px; }
+  .tech-item .tech-label { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:6px; }
+  .tech-item .tech-val { font-size:14px; font-weight:600; }
+  .roadmap { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:720px){ .roadmap{ grid-template-columns:1fr; } }
+  .road-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:22px; }
+  .road-card.current { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent-soft); }
+  .road-ver { font-size:13px; font-weight:700; margin-bottom:6px; }
+  .road-status { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px; }
+  .road-card ul { list-style:none; }
+  .road-card li { font-size:13px; color:var(--text-dim); padding:3px 0; padding-left:16px; position:relative; }
+  .road-card li::before { content:"·"; position:absolute; left:4px; color:var(--accent); font-weight:700; }
+  footer { border-top:1px solid var(--border); padding:40px 0; text-align:center; color:var(--text-faint); font-size:13px; }
+  footer a { color:var(--text-dim); }
+  .score-demo { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px; margin-top:24px; }
+  .score-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; font-size:13px; }
+  .score-row:last-child { margin-bottom:0; }
+  .score-label { width:110px; flex-shrink:0; color:var(--text-dim); }
+  .score-bar { flex:1; height:8px; background:var(--bg-soft); border-radius:4px; overflow:hidden; }
+  .score-fill { height:100%; border-radius:4px; }
+  .score-val { width:36px; text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo"><span class="logo-dot"></span>Market Scout</div>
+    <div class="nav-links">
+      <a href="#problem">解决什么</a>
+      <a href="#features">四大能力</a>
+      <a href="#workflow">工作流</a>
+      <a href="#usage">使用方法</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="badge-row">
+      <span class="badge"><span class="dot" style="background:var(--green)"></span>v2.0.0 已发布</span>
+      <span class="badge"><span class="dot" style="background:var(--accent)"></span>MIT License</span>
+      <span class="badge"><span class="dot" style="background:var(--blue)"></span>Agent Skill</span>
+      <span class="badge"><span class="dot" style="background:var(--cyan)"></span>纯 Markdown</span>
+    </div>
+    <h1>把一个模糊想法，<br>跑成<span class="accent">第一笔收入</span>的路径</h1>
+    <p class="hero-sub">AI-powered opportunity discovery, validation and commercialization analysis.<br>不是 AI 赚钱项目生成器，而是用真实证据回答值不值得做、做成什么、怎么收钱。</p>
+    <div class="cta-row">
+      <a href="#usage" class="btn btn-primary">快速开始 到</a>
+      <a href="#workflow" class="btn btn-ghost">查看工作流</a>
+    </div>
+    <div class="pipeline">
+      <div class="stage s1">
+        <div class="stage-num">Stage 01 · FIND</div>
+        <div class="stage-title">发现机会</div>
+        <div class="stage-desc">三类搜索（问题方案付费）加证据链，用真实证据代替直觉</div>
+        <span class="arrow">到</span>
+      </div>
+      <div class="stage s2">
+        <div class="stage-num">Stage 02 · VALIDATE</div>
+        <div class="stage-title">需求验证</div>
+        <div class="stage-desc">需求强度 6 信号打分加付费理由链 JTBD，判断需求真不真、强不强</div>
+        <span class="arrow">到</span>
+      </div>
+      <div class="stage s3">
+        <div class="stage-num">Stage 03 · EVALUATE</div>
+        <div class="stage-title">项目评估</div>
+        <div class="stage-desc">7 维加权综合评分 0-100，明确给出 值得做 验证后再做 不建议做</div>
+        <span class="arrow">到</span>
+      </div>
+      <div class="stage s4">
+        <div class="stage-num">Stage 04 · MONETIZE</div>
+        <div class="stage-title">商业化获客</div>
+        <div class="stage-desc">定价、商业模式、获客渠道、第一批 10 客户获取法，直达第一笔钱</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="container">
+    <div class="section-label">Why Market Scout</div>
+    <h2>普通人做副业，最常卡在哪几步？</h2>
+    <p class="section-sub">Market Scout 针对每个卡点给出结构化解法，而不是给你编一个看起来不错的项目。</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon" style="background:var(--blue-soft);color:var(--blue)">?</div>
+        <div><h4>只有模糊想法，不知道是不是真需求</h4><p>三类搜索加证据链，用真实搜索证据说话，禁止我觉得市场很大。</p></div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:var(--cyan-soft);color:var(--cyan)">!</div>
+        <div><h4>感觉有需求，但不知道强不强、会不会付钱</h4><p>需求强度 6 信号合成 1-10 分加付费理由链 JTBD 5 环，逐层验证。</p></div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:var(--accent-soft);color:var(--accent)">⚖</div>
+        <div><h4>不知道这个项目值不值得投入时间</h4><p>7 维加权综合评分 0-100，计算式可手工复算，三档结论有明确阈值。</p></div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:var(--green-soft);color:var(--green)">¥</div>
+        <div><h4>决定做了，但不知道怎么定价、去哪找客户</h4><p>可解释定价（价值锚市场锚成本底线）加首批 10 客户获取法加 GTM 三阶段。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-label">v2.0.0 Core Capabilities</div>
+    <h2>四大新增能力，串成完整闭环</h2>
+    <p class="section-sub">v1.x 的发现与初步验证能力全部保留，v2.0.0 在其后串接需求验证、项目评估、机会转项目、商业化获客。</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-tag" style="background:var(--cyan-soft);color:var(--cyan)">Demand Validation</span>
+        <h3>需求验证</h3>
+        <ul>
+          <li>用户痛点加三层目标用户（核心扩展非用户）</li>
+          <li>需求强度 6 信号合成 1-10 分，每分绑定证据</li>
+          <li>当前解决方案与替代成本（定价锚）</li>
+          <li>付费理由链 JTBD：Job 到 Cost 到 Trigger 到 Reason 到 Authority</li>
+          <li>需求证据可信度矩阵</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="feature-tag" style="background:var(--accent-soft);color:var(--accent)">Project Evaluation</span>
+        <h3>项目评估</h3>
+        <ul>
+          <li>7 维加权：需求20% 市场20% 竞争差异15% AI可实现15% 开发难度10% 个人适配15% 风险5%</li>
+          <li>综合机会评分 0-100，计算式必须可手工复算</li>
+          <li>7 条致命红旗一票否决</li>
+          <li>三档结论：绿值得做 黄验证后再做 红不建议做</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="feature-tag" style="background:var(--blue-soft);color:var(--blue)">Opportunity 到 Project</span>
+        <h3>机会转项目</h3>
+        <ul>
+          <li>推荐产品形态（对齐 Level 1-5，默认 L1 先卖结果）</li>
+          <li>MoSCoW 核心功能优先级（Must-have 不超过 3）</li>
+          <li>MVP 五项：做什么不做什么验证什么继续条件放弃条件</li>
+          <li>推荐技术方向加最小验证实验加差异化切入点</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="feature-tag" style="background:var(--green-soft);color:var(--green)">Monetization & GTM</span>
+        <h3>商业化与获客</h3>
+        <ul>
+          <li>Target Customer（区分使用者与付费方）</li>
+          <li>Offer 三档阶梯（引流主力增值）加商业模式库</li>
+          <li>可解释 Pricing：价值锚市场锚成本底线首单价提价路径</li>
+          <li>首批 10 客户获取法加渠道矩阵（主渠道不超过2）加 GTM 三阶段</li>
+          <li>7 种不开发产品的验证方式（Concierge 落地页 预售 Fake Door）</li>
+          <li>模块化数据契约，未来可独立成产品</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:48px">
+      <h3 style="font-size:20px;margin-bottom:6px">三档结论，明确不模糊</h3>
+      <p style="color:var(--text-dim);font-size:14px;margin-bottom:20px">不是看起来不错，而是有阈值、有红旗、有下一步的明确判断。</p>
+      <div class="verdict-grid">
+        <div class="verdict-card go"><div class="verdict-signal">🟢</div><h4>值得做 GO</h4><p>综合分不低于75 加需求强度不低于7 加明确付费证据 加无致命红旗。可以投入，按报告行动。</p></div>
+        <div class="verdict-card wait"><div class="verdict-signal">🟡</div><h4>建议验证后再做</h4><p>分数够但关键假设（通常是付费意愿）未证实。先做最小实验，达标转绿，不达标转红。</p></div>
+        <div class="verdict-card no"><div class="verdict-signal">🔴</div><h4>不建议做 NO_GO</h4><p>综合分低于50 或触发致命红旗。给出停止原因、导致停止的证据、以及什么新证据可重启。</p></div>
+      </div>
+    </div>
+    <div class="score-demo">
+      <div style="font-size:13px;color:var(--text-dim);margin-bottom:14px">示例：7 维加权评分（每分绑定证据，综合分可手工复算）</div>
+      <div class="score-row"><span class="score-label">需求强度</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--cyan)"></div></div><span class="score-val">7.0</span></div>
+      <div class="score-row"><span class="score-label">市场潜力</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--blue)"></div></div><span class="score-val">7.0</span></div>
+      <div class="score-row"><span class="score-label">竞争差异</span><div class="score-bar"><div class="score-fill" style="width:60%;background:var(--accent)"></div></div><span class="score-val">6.0</span></div>
+      <div class="score-row"><span class="score-label">AI 可实现</span><div class="score-bar"><div class="score-fill" style="width:80%;background:var(--green)"></div></div><span class="score-val">8.0</span></div>
+      <div class="score-row"><span class="score-label">开发难度</span><div class="score-bar"><div class="score-fill" style="width:90%;background:var(--green)"></div></div><span class="score-val">9.0</span></div>
+      <div class="score-row"><span class="score-label">个人适配</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--blue)"></div></div><span class="score-val">7.0</span></div>
+      <div class="score-row"><span class="score-label">风险可控</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--accent)"></div></div><span class="score-val">7.0</span></div>
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:13px;color:var(--text-dim)">加权综合分（计算式可复算）</span>
+        <span style="font-size:22px;font-weight:800;color:var(--accent)">74 / 100</span>
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-faint);font-family:ui-monospace,monospace">Score = (7乘.20加7乘.20加6乘.15加8乘.15加9乘.10加8乘.15加7乘.05)乘10 = 74 到 黄 VALIDATE_FIRST</div>
+    </div>
+  </div>
+</section>
+
+<section id="workflow">
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2>从想法到第一笔钱的完整工作流</h2>
+    <p class="section-sub">五个顺序阶段，每阶段产出结构化卡片，支持断点续跑。伪需求和 NO_GO 会在对应阶段熔断，不硬造机会。</p>
+    <div class="workflow">
+      <div class="wf-step"><div class="wf-dot" style="background:var(--blue);color:#fff">1</div><h4><span class="wf-tag" style="color:var(--blue)">FIND</span>发现机会</h4><p>用户输入一个想法现象视频评论区 到 三类搜索（Problem Solution Payment）到 证据链五段式 到 Problem/Evidence Card 到 8 维粗评分。只有 Problem 无 Payment 时不得判为强商业机会。</p></div>
+      <div class="wf-step"><div class="wf-dot" style="background:var(--cyan);color:#fff">2</div><h4><span class="wf-tag" style="color:var(--cyan)">VALIDATE</span>需求验证</h4><p>痛点 到 三层用户 到 需求强度 6 信号 到 替代成本 到 付费理由链 JTBD 5 环。结论三选一：真实需求已验证 需求存在但付费未验证 伪弱需求。伪弱需求在此熔断。</p></div>
+      <div class="wf-step"><div class="wf-dot" style="background:var(--accent);color:#1a1200">3</div><h4><span class="wf-tag" style="color:var(--accent)">EVALUATE</span>项目评估</h4><p>7 维加权打分（需求强度直接继承，不重打）到 综合分 0-100（计算式可复算）到 7 条红旗检查 到 三档结论 绿黄红。NO_GO 在此熔断，给出停止原因与重启条件。</p></div>
+      <div class="wf-step"><div class="wf-dot" style="background:var(--blue);color:#fff">4</div><h4><span class="wf-tag" style="color:var(--blue)">BLUEPRINT</span>机会转项目</h4><p>推荐产品形态（默认 L1 人工加 AI 先卖结果）到 MoSCoW 核心功能（M不超过3）到 MVP 五项 到 技术方向 到 最小验证实验 到 差异化切入点落地。没有真实付费用户前不跳到 L4/L5。</p></div>
+      <div class="wf-step"><div class="wf-dot" style="background:var(--green);color:#fff">5</div><h4><span class="wf-tag" style="color:var(--green)">MONETIZE</span>商业化与获客</h4><p>付费方 ICP 到 Offer 三档 到 商业模式 到 可解释定价 到 首批 10 客户获取 到 主渠道（不超过2）到 GTM 三阶段 到 第一笔钱计划。当前不实现支付订阅会员，只产出方案与验证动作。</p></div>
+      <div class="wf-step"><div class="wf-dot" style="background:var(--text-dim);color:#fff">📄</div><h4><span class="wf-tag" style="color:var(--text-dim)">REPORT</span>机会报告</h4><p>五阶段汇总为最终 Opportunity Report，结论先行：10 秒看懂在分析什么 到 得到了什么 到 下一步做什么。含目录、每阶段小结、行动路线（今天本周2-4周）、最终判定。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="usage" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-label">Quick Start</div>
+    <h2>安装后，直接说一句话就能用</h2>
+    <p class="section-sub">把 market-scout.skill 拖入支持 Skill 的 AI 客户端，或手动放入技能目录。验证：打开 SKILL.md 能搜到 Monetization & GTM 和 值得做 GO 即为 v2.0.0。</p>
+    <div class="table-wrap">
+      <table class="usage-table">
+        <thead><tr><th>你想做什么</th><th>示例触发词</th></tr></thead>
+        <tbody>
+          <tr><td>快速判断一个想法</td><td>学校打印店总有人让老板改 PDF，有没有机会？</td></tr>
+          <tr><td>验证需求真假</td><td>这个需求是真的吗？用户真的愿意要吗？</td></tr>
+          <tr><td>评估值不值得做</td><td>评估一下这个项目值不值得做，打个分</td></tr>
+          <tr><td>机会转成项目</td><td>帮我把这个想法做成 MVP，第一版做什么？</td></tr>
+          <tr><td>设计怎么赚钱</td><td>怎么收费？定什么价？商业模式怎么设计？</td></tr>
+          <tr><td>找第一批客户</td><td>第一批用户客户从哪来？怎么获客？</td></tr>
+          <tr><td>完整分析</td><td>从发现到商业化帮我完整分析一遍，出一份机会报告</td></tr>
+          <tr><td>准备开干</td><td>帮我拿第一单 我准备做了</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Tech Stack</div>
+    <h2>技术栈</h2>
+    <p class="section-sub">纯 Markdown 文档型 Agent Skill，无前端代码、构建链或数据库。UI 即 Agent 输出的 Markdown 报告排版。</p>
+    <div class="tech-grid">
+      <div class="tech-item"><div class="tech-label">核心格式</div><div class="tech-val">Markdown 加 YAML frontmatter</div></div>
+      <div class="tech-item"><div class="tech-label">数据契约</div><div class="tech-val">YAML / JSON Schema</div></div>
+      <div class="tech-item"><div class="tech-label">自检工具</div><div class="tech-val">Python 3（无第三方依赖）</div></div>
+      <div class="tech-item"><div class="tech-label">运行依赖</div><div class="tech-val">Agent 自身能力（搜索浏览器）</div></div>
+      <div class="tech-item"><div class="tech-label">环境变量</div><div class="tech-val">无硬性要求</div></div>
+      <div class="tech-item"><div class="tech-label">兼容平台</div><div class="tech-val">任意支持 Markdown Skill 的 Agent</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap" style="background:var(--bg-soft)">
+  <div class="container">
+    <div class="section-label">Roadmap</div>
+    <h2>后续规划</h2>
+    <p class="section-sub"></p>
+    <div class="roadmap">
+      <div class="road-card">
+        <div class="road-ver">v1.x</div>
+        <span class="road-status" style="background:var(--green-soft);color:var(--green)">已发布</span>
+        <ul><li>Market Scan、Problem Card</li><li>三类搜索、Evidence Chain</li><li>三模式、Opportunity 状态机</li><li>评分绑定证据、停止机制</li></ul>
+      </div>
+      <div class="road-card current">
+        <div class="road-ver">v2.0.0</div>
+        <span class="road-status" style="background:var(--accent-soft);color:var(--accent)">当前版本</span>
+        <ul><li>四大阶段闭环（Validate Evaluate Blueprint Monetize）</li><li>7 维加权综合评分加三档结论</li><li>Monetization 模块化数据契约</li><li>运行时健壮性（超时重试降级）</li><li>统一 UI 渲染规范加产品落地页</li></ul>
+      </div>
+      <div class="road-card">
+        <div class="road-ver">v2.1+</div>
+        <span class="road-status" style="background:var(--blue-soft);color:var(--blue)">规划中</span>
+        <ul><li>交互式 HTML 报告生成器</li><li>多机会对比看板</li><li>评分历史追踪</li><li>Monetization 模块独立为可调用 API</li><li>真实定价市场数据 API 接入</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px"><strong>Market Scout</strong> · AI-powered opportunity discovery, validation & commercialization</p>
+    <p>MIT License · 可自由使用、修改、分发 · <a href="https://github.com/" style="color:var(--text-dim)">GitHub</a> · <a href="../CHANGELOG.md" style="color:var(--text-dim)">Changelog</a> · <a href="../CONTRIBUTING.md" style="color:var(--text-dim)">Contributing</a></p>
+    <p style="margin-top:12px;font-size:12px">如果这个工具帮你拿到了第一笔钱，欢迎回来分享你的故事 💪</p>
+  </div>
+</footer>
+
+</body>
+</html>
