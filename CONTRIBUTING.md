@@ -1,6 +1,6 @@
 # Contributing to Market Scout
 
-First off, thanks for taking the time to contribute!
+First off, thanks for taking the time to contribute! 🎉
 
 Market Scout is a pure Markdown Agent Skill. Contributions can be as simple as
 fixing a typo, as useful as adding a new research method, or as big as proposing
@@ -8,17 +8,17 @@ a new pipeline stage.
 
 ## How Can I Contribute?
 
-### Reporting Bugs
+### 🐛 Reporting Bugs
 
 Open an issue with:
 
 - **Skill version** (e.g. v2.0.0 — check `SKILL.md` heading)
-- **Agent platform** (Doubao / Claude Desktop / Cursor / other)
+- **Agent platform** (豆包 / Claude Desktop / Cursor / other)
 - **What happened** (the output you got)
 - **What you expected**
 - **Steps to reproduce** (the prompt you used)
 
-### Suggesting Enhancements
+### 💡 Suggesting Enhancements
 
 Open an issue with:
 
@@ -27,7 +27,7 @@ Open an issue with:
 - Your proposed approach (if you have one)
 - Whether it fits the existing pipeline stages or needs a new one
 
-### Pull Requests
+### 📝 Pull Requests
 
 1. Fork the repo and create a branch from `main`.
 2. Make your changes.
@@ -47,7 +47,7 @@ Open an issue with:
 
 - Use ATX-style headings (`#`, `##`, `###`), one H1 per file.
 - Leave one blank line between paragraphs and before/after code blocks.
-- Use fenced code blocks with language tags.
+- Use fenced code blocks with language tags (```yaml, ```json, ```text, ```python).
 - Tables: max 6 columns for mobile readability; use key-value lists for narrow content.
 - Chinese as the primary language for method docs; key terms in English in parentheses.
 - Status codes and field names in English (`GO`, `Demand Strength`, `MS-101`).
@@ -69,7 +69,7 @@ Open an issue with:
 
 ## Project Structure
 
-See `README.md` → Project Structure for the full layout. Key directories:
+See `README.md` → 📁 Project Structure for the full layout. Key directories:
 
 - `references/` — methodology documents (one file per method/module)
 - `templates/` — fill-in templates for each stage card and the final report
@@ -91,4 +91,4 @@ Open an issue and tag it `question`. We'll get back to you.
 ---
 
 Thanks again for contributing — every improvement helps someone get closer to
-their first real payment.
+their first real payment. 💪

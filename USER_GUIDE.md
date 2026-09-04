@@ -1,133 +1,136 @@
-# Market Scout User Guide (v2.0.0)
+# Market Scout 用户使用说明（v2.0.0）
 
-> This guide is for anyone who has the installation package: read "How to Install" first, then "How to Use". Check the FAQ at the end for questions.
+> 本说明面向拿到安装包的人：先看完"怎么装"，再看"怎么用"。有问题翻最后的 FAQ。
 
-## 1. What is this
+## 1. 这是什么
 
-**Market Scout v2.0.0** is an AI Agent Skill, not an "AI money-making project generator."
-It walks you through a complete pipeline:
+**Market Scout（市场侦察兵）v2.0.0** 是一个 AI Agent 技能（Skill），不是"AI 赚钱项目生成器"。
+它帮你走完一整条链路：
 
 ```
-FIND: discover problems, collect evidence, validate demand/payment/competition/AI leverage
-  to VALIDATE: is the demand real, strong, why would users pay
-  to EVALUATE: composite scoring, clear verdict of worth doing / validate first / not recommended
-  to BLUEPRINT: product form, core features, MVP, tech direction, minimal validation, differentiation
-  to MONETIZE: who pays, what to sell, how to price, where to find customers, how first customers come
-  to output an Opportunity Report: worth doing plus first step today
-(after real launch) first payment to repeat purchase to standardization to automation to productization
+FIND 发现：发现问题 → 搜集证据 → 验证需求/付费/竞争/AI 杠杆
+  → VALIDATE 需求验证：需求真不真、强不强、用户为什么愿意付钱
+  → EVALUATE 项目评估：综合打分，明确告诉你 值得做 / 建议验证后再做 / 不建议做
+  → BLUEPRINT 机会转项目：产品形态、核心功能、MVP、技术方向、最小验证、差异化
+  → MONETIZE 商业化获客：谁付钱、卖什么、怎么定价、去哪找客户、第一批客户怎么来
+  → 输出一张 Opportunity Report 机会报告：是否值得做 + 今天第一步
+（真实开干后）第一笔钱 → 复购 → 标准化 → 自动化 → 产品化
 ```
 
-In one sentence: starting from a vague idea or phenomenon, use real evidence to judge "is it worth doing", then give you a complete answer of "what to build, how to charge, where customers come from".
+一句话：**从一个模糊想法/现象出发，用真实证据判断"值不值得做"，再给你"做成什么样、怎么收钱、客户从哪来"的完整答案。**
 
-## 2. What can you use it for
+## 2. 你能用它做什么
 
-- Throw out a phenomenon, quickly judge "worth researching" (Quick Mode)
-- Deep-dive a market / analyze videos / analyze comment sections, output complete market report (Research Mode)
-- Validate whether a demand is real, strong, whether users will pay (Demand Validation)
-- Give an opportunity a composite score (0-100), directly give verdict and reasoning (Project Evaluation)
-- Turn opportunity into project: what first version does, what not to do, what tech, how to validate with minimal cost (Opportunity to Project)
-- Design how to make money: what to sell, how to charge, what price, where to acquire customers, how first 10 customers come (Monetization and GTM)
-- Ready to launch: directly give "who to find, where to find, how to quote, how to get first order" (Execution Mode)
-- Long-term opportunity tracking (Opportunity ID + state machine), no repeated research
+- 随手抛一个现象，快速判断"值不值得研究"（Quick Mode）。
+- 深挖一个市场 / 分析视频 / 分析评论区，输出完整市场报告（Research Mode）。
+- **验证一个需求是不是真的、强不强、用户会不会付钱（需求验证）。**
+- **给一个机会综合打分（0-100），直接给出"值得做 / 建议验证后再做 / 不建议做"的结论和理由（项目评估）。**
+- **把机会落成项目：第一版做什么、不做什么、用什么技术、怎么用最小成本验证（机会转项目）。**
+- **设计怎么赚钱：卖什么、怎么收费、定什么价、去哪获客、第一批 10 个客户怎么来（商业化与获客）。**
+- 准备开干时，直接给出"找谁、去哪找、怎么报价、怎么拿第一单"（Execution Mode）。
+- 长期跟踪机会进度（Opportunity ID + 状态机），不重复研究、不停在原地。
 
-## 3. How to install
+## 3. 怎么安装
 
-You have two installation packages, identical content (same zip with different extension):
-- market-scout.zip - generic archive
-- market-scout.skill - skill package format
+你有两种安装包，内容完全一样（同一个压缩包换了扩展名）：
+- `market-scout.zip` — 通用压缩包
+- `market-scout.skill` — 技能包格式
 
-### Method 1: Drag-and-drop one-click install (recommended, fastest)
-1. Open your AI client / Agent platform's "Skills" or "one-click install" entry point.
-2. Drag market-scout.skill into it (if format not supported, drag market-scout.zip).
-3. After success, go to section 4 to verify.
+### 方式一：拖拽一键安装（推荐，最快）
+1. 打开你的 AI 客户端 / Agent 平台的"技能"或"一键安装"入口。
+2. 把 `market-scout.skill` 拖进去（提示格式不支持就拖 `market-scout.zip`）。
+3. 提示成功后进入第 4 节验证。
 
-### Method 2: Manual place in skills directory
-1. Unzip market-scout.zip, you get a market-scout folder.
-2. Find your AI client's skills directory (commonly called .user_skills or skills).
-3. Place the entire market-scout folder in it, ensuring path is:
-   skills-directory/market-scout/SKILL.md (SKILL.md at folder root).
-4. Restart / refresh client, then go to section 4 to verify.
+### 方式二：手动放入技能目录
+1. 把 `market-scout.zip` 解压，得到一个 `market-scout` 文件夹。
+2. 找到你 AI 客户端的技能目录（常见叫 `.user_skills` 或 `skills`）。
+3. 把整个 `market-scout` 文件夹放进去，保证路径是：
+   `<技能目录>\market-scout\SKILL.md`（SKILL.md 就在文件夹根下）。
+4. 重启/刷新客户端后进入第 4 节验证。
 
-> If you previously installed v1.1/v1.0: v2.0.0 is incremental and backward-compatible, but some platforms do not overwrite same-name folders. Recommend deleting old market-scout folder before installing new version.
+> 若之前装过 v1.1/v1.0：v2.0.0 为增量升级、向下兼容，但部分平台同名不覆盖，建议先删除旧 `market-scout` 文件夹再装新版。
 
-## 4. How to confirm installation succeeded (important)
+## 4. 怎么确认装成功了（很重要）
 
-1. Open market-scout/SKILL.md after installation.
-2. Search for two keywords: Monetization & GTM and GO (worth doing).
-3. Both present = v2.0.0 latest installed; only FIRST_PAYMENT but not above two = still v1.1; neither found = old version, uninstall and reinstall.
+1. 打开安装后的 `market-scout\SKILL.md`。
+2. 搜索两个词：`Monetization & GTM` 和 `值得做 GO`。
+3. **两个词都在 = 已装成 v2.0.0 最新版**；只搜到 `FIRST_PAYMENT` 却搜不到上面两个词 = 还是 v1.1；都搜不到 = 旧版，先卸载重装。
 
-## 5. How to start using
+另外可以核对文件数：`references/` 应有 11 个、`templates/` 应有 10 个、`examples/` 应有 4 个，根目录 3 个说明文档，另有 `tools/` 里 1 个自检脚本（共 28 个 Markdown + 1 个脚本）。
 
-After installation, directly say any of the following to the AI:
+## 5. 怎么开始使用
 
-| What you want to do | You can say |
+装好后，直接对 AI 说下面任意一句话即可触发：
+
+| 你想做什么 | 你可以这样说 |
 |---|---|
-| Quickly judge an idea | "School print shop always has people asking boss to edit PDF, any opportunity?" |
-| Find market / direction | "Help me find a market" / "I want to do side hustle but no direction" |
-| Analyze video / comments | "Analyze this video/comments, see if it can be a business" |
-| Validate demand reality | "Is this demand real? Do users really want it?" |
-| Evaluate worth doing | "Evaluate if this project is worth doing, give a score" |
-| Turn opportunity into project | "Help me turn this idea into an MVP, what should first version do?" |
-| Design how to make money | "How to charge? What price? How to design business model?" |
-| Find first customers | "Where do first users/customers come from? How to acquire?" |
-| Complete analysis end to end | "Help me complete analysis from discovery to monetization, output an opportunity report" |
-| Ready to launch | "Help me get first order" / "I'm ready to do this" |
+| 快速判断一个想法 | "学校打印店总有人让老板帮忙改 PDF，有没有机会？" |
+| 找市场/找方向 | "帮我找市场" / "我想做副业但没方向" |
+| 分析视频/评论区 | "分析这个视频/评论区，看能不能做成生意" |
+| 验证需求真假 | "这个需求是真的吗？用户真的愿意要吗？" |
+| 评估值不值得做 | "评估一下这个项目值不值得做，打个分" |
+| 机会转成项目 | "帮我把这个想法做成 MVP，第一版做什么？" |
+| 设计怎么赚钱 | "怎么收费？定什么价？商业模式怎么设计？" |
+| 找第一批客户 | "第一批用户/客户从哪来？怎么获客？" |
+| 从头到尾完整分析 | "从发现到商业化帮我完整分析一遍，出一份机会报告" |
+| 准备开干 | "帮我拿第一单" / "我准备做了" |
+| 继续深挖 | "继续深挖" / "寻找类似需求" / "有没有竞争对手" |
 
-## 6. Relationship between five stages and three modes
+## 6. 五个阶段与三种模式是什么关系
 
-- Five-stage pipeline (v2.0.0 main line): FIND to VALIDATE to EVALUATE to BLUEPRINT to MONETIZE, finally consolidated into one opportunity report. You can run from start, or enter directly from a stage (e.g. "I've validated demand, evaluate directly").
-- Three work modes (v1.1 preserved):
-  - Quick Mode: casual judgment, quick answer "worth continuing research".
-  - Research Mode: output complete report when deep dive requested.
-  - Execution Mode: when say "ready to do / get first order", stop research, directly give execution checklist.
+- **五阶段流水线（v2.0.0 主线）**：FIND 发现 → VALIDATE 需求验证 → EVALUATE 项目评估 → BLUEPRINT 转项目 → MONETIZE 商业化，最后汇总成一张机会报告。你可以让它从头跑，也可以直接从某一步切入（如"需求我验证过了，直接评估"）。
+- **三种工作模式（v1.1 保留）**：
+  - Quick Mode：随手判断，快速回答"值不值得继续研究"。
+  - Research Mode：要求深挖时输出完整报告。
+  - Execution Mode：说"我准备做/拿第一单"时，停止研究、直接给执行清单。
 
-## 7. How to read evaluation verdict (three tiers)
+## 7. 评估结论怎么看（三档）
 
-- GO (worth doing): high composite score, strong demand, clear payment evidence, no fatal risk - can invest, follow report actions.
-- VALIDATE_FIRST (recommend validate before doing): looks good but key assumption (usually "will they pay") not yet proven - first do the minimal cheapest experiment in the report, if达标 go full, if not stop.
-- NO_GO (not recommended): low composite score or triggered fatal red flag (no real demand / nobody will pay / AI no advantage / cannot reach customers / giant crushes etc.) - report also tells you why stopped, what new evidence can restart.
+- 🟢 **值得做 GO**：综合分高、需求强、有明确付费证据、无致命风险——可以投入，按报告行动。
+- 🟡 **建议验证后再做 VALIDATE FIRST**：看起来不错但关键假设（通常是"会不会付钱"）还没被证实——先做报告里给的那个最小、最便宜的实验，达标再全力做。
+- 🔴 **不建议做 NO-GO**：综合分低或触发致命红旗（没有真实需求/没人会付钱/AI 没优势/触达不到客户/巨头碾压等）——报告同时告诉你为什么停、出现什么新证据可以重启。
 
-> Note: it will not force "worth doing" to make you happy. How score is calculated will be written clearly, you can verify yourself.
+> 注意：它不会为了哄你开心而硬给"值得做"。分数怎么算出来的会写清楚，你可以自己复核。
 
-## 8. Three rules before use (must read)
+## 8. 使用前必读的三条规则
 
-1. Real-time search first: prioritize online search for real info (problems / existing solutions / payment behavior). When offline, will clearly mark "below is hypothetical analysis", will not pretend to have searched.
-2. No fabrication: no made-up users, prices, transactions; conclusions without evidence only marked "hypothetical / to be validated".
-3. Validate before building: default recommend "human + AI" deliver first, charge first, will not tell you to develop App/SaaS from start; v2.0.0 also does NOT include any payment, subscription, membership systems, only gives monetization plans.
+1. **实时搜索优先**：优先联网搜真实信息（问题/现有方案/付费行为）。无法联网时会明确标注"以下属于假设分析"，不会假装搜过。
+2. **不虚构**：不编造用户、价格、成交；没证据的结论只标"假设/待验证"。
+3. **先验证再开发**：默认建议"人工 + AI"先交付、先收费，不会一上来就让你开发 App/SaaS；v2.0.0 也**不包含**任何支付、订阅、会员系统，只给你商业化方案。
 
-## 9. File structure overview
+## 9. 文件结构一览
 
 ```
 market-scout/
-├── SKILL.md                # Core: five-stage pipeline, modes, rules, decision tree
-├── README.md               # Developer-facing documentation
-├── USER_GUIDE.md           # This user guide
-├── references/  (12)       # Methodology documents (discovery/evidence chain/demand validation/evaluation/blueprint/monetization etc.)
-├── templates/   (10)       # Fill-in templates (stage cards + final opportunity report)
-├── examples/    (4)        # Workflow examples (includes v2.0.0 complete five-stage case)
-└── tools/                  # Package self-check script (can ignore for normal use)
+├── SKILL.md                # 核心：五阶段流水线、模式、规则、决策树
+├── README.md               # 开发者视角说明
+├── USER_GUIDE.md           # 本使用说明
+├── references/  (11)       # 方法论文档（发现/证据链/需求验证/评估/转项目/商业化等）
+├── templates/   (10)       # 可填写模板（各阶段卡片 + 最终机会报告）
+├── examples/    (4)        # 流程示例（含 v2.0.0 完整五阶段案例）
+└── tools/                  # 安装包自检脚本（普通使用可忽略）
 ```
 
-## 10. FAQ
+## 10. 常见问题（FAQ）
 
-Q1: Installation says "format not supported"?
-Try the other package (.skill to .zip or vice versa); if still fails, use Method 2 manual placement.
+**Q1：装完提示"格式不支持"？**
+换另一个安装包（`.skill` 换 `.zip` 或反过来）再试；仍不行用"方式二"手动放入技能目录。
 
-Q2: Previously installed v1.1, will it conflict? Are v1.1 capabilities still there?
-v2.0.0 is incremental upgrade, all v1.1 methods, templates, examples preserved. Some platforms do not overwrite same-name, recommend delete old folder first.
+**Q2：之前装过 v1.1，会冲突吗？v1.1 的能力还在吗？**
+v2.0.0 是增量升级，v1.1 的方法、模板、示例全部保留。部分平台同名不覆盖，建议先删旧文件夹再装新版。
 
-Q3: Are users and prices in examples real?
-No. examples/ are all demonstration illustrative data, only show methodology. Real use will online search real-time evidence.
+**Q3：示例里的用户、价格是真的吗？**
+不是。`examples/` 全部是**演示示意数据**，只展示方法。真实使用会联网搜实时证据。
 
-Q4: Must be online?
-Recommended online (evidence real). Offline can also give hypothesis-based analysis, but all conclusions marked "hypothetical", cannot be treated as market facts.
+**Q4：一定要联网吗？**
+推荐联网（证据真实）。不联网也能给基于假设的分析，但所有结论都会标"假设"，不能当市场事实。
 
-Q5: Will it help me build payment/membership systems?
-No. v2.0.0 explicitly does not develop payment, subscription, membership, only outputs "how to price, how to charge, how to acquire" plans and validation actions. Monetization module designed to potentially become standalone product in future, but current version has no transaction system.
+**Q5：它会帮我做收款/会员系统吗？**
+不会。v2.0.0 明确不开发支付、订阅、会员，只输出"怎么定价、怎么收费、怎么获客"的方案与验证动作。商业化模块被设计成可未来独立成产品，但当前版本不含任何交易系统。
 
-Q6: Can I modify this skill?
-Yes, all are plain Markdown text (plus one optional Python self-check script), directly edit; after editing, place back in skills directory per Method 2 to take effect.
+**Q6：我能改这个技能吗？**
+可以，全部是普通 Markdown 文本（另有一个可选 Python 自检脚本），直接编辑即可；改完按"方式二"放回技能目录生效。
 
-## 11. Copyright and usage
+## 11. 版权与使用说明
 
-This skill can be freely used, forwarded, uploaded to GitHub for personal learning and side-hustle exploration. Content is original methodology documentation, no third-party commercial assets. Do not use to generate or spread false marketing information.
+本技能可自由使用、转发、上传 GitHub 用于个人学习与副业探索，内容为原创方法论文档，无第三方商业素材。请勿用于生成、传播虚假营销信息。

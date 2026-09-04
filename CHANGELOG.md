@@ -7,67 +7,90 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2026-09-03
 
-### Added — Four new pipeline stages (Find to Validate to Evaluate to Monetize)
+### Added — Four new pipeline stages (Find → Validate → Evaluate → Monetize)
 
-- Demand Validation: demand strength 6-signal synthesis (1-10), three-layer target users, substitution cost and pricing anchor, payment reason chain (JTBD 5 rings), demand evidence credibility matrix
-- Project Evaluation: 7-dimension weighted scoring (Demand 20% / Market 20% / Competition and Differentiation 15% / AI Feasibility 15% / Development Difficulty 10% / Solo Fit 15% / Risk 5%), composite Opportunity Score 0-100 (hand-recalculable formula), 7 fatal red flags (one-vote veto), three-tier verdict GO / VALIDATE_FIRST / NO_GO
-- Opportunity to Project: product form (aligned with Level 1-5), MoSCoW feature prioritization, MVP five items, recommended tech direction, minimal validation experiment, differentiation entry point
-- Monetization and GTM: Target Customer (distinguishes user from payer), Offer three-tier ladder, Business Model library, explainable Pricing, first 10 customers acquisition, channel matrix, GTM three phases, 7 no-build validation methods
-- Modular data contract: MonetizationInput / MonetizationPlan defined for future standalone product without major refactoring
+- **Demand Validation（需求验证）**
+  - `references/demand-validation.md`：需求强度 6 信号合成 1-10 分、三层目标用户、替代成本与定价锚、付费理由链 JTBD 5 环、需求证据可信度矩阵
+  - `templates/demand-validation-card.md`：需求验证卡
+- **Project Evaluation（项目评估）**
+  - `references/project-evaluation.md`：7 维加权评分（需求20%/市场20%/竞争差异15%/AI可实现15%/开发难度10%/个人适配15%/风险5%）、综合机会评分 0-100（计算式可复算）、7 条致命红旗一票否决、三档结论 GO / VALIDATE_FIRST / NO_GO
+  - `templates/project-evaluation-card.md`：项目评估卡（评分表/计算式/红旗检查）
+- **Opportunity → Project（机会转项目）**
+  - `references/project-blueprint.md`：产品形态（对齐 Level 1-5）、MoSCoW 核心功能、MVP 五项、技术方向、最小验证实验、差异化切入点
+  - `templates/project-blueprint-card.md`：机会转项目卡
+- **Monetization & GTM（商业化与获客）**
+  - `references/monetization-gtm.md`：Target Customer（区分使用者/付费方）、Offer 三档、Business Model 模式库、可解释 Pricing、首批 10 客户获取、渠道矩阵、GTM 三阶段、7 种不开发产品的验证方式
+  - `templates/monetization-gtm-card.md`：商业化获客卡
+  - **模块化数据契约**：定义 `MonetizationInput` / `MonetizationPlan`，未来可独立成产品、独立收费，无需大规模重构
 
-### Added — Pipeline and Runtime
+### Added — Pipeline & Runtime
 
-- Five-stage pipeline orchestration, three independent code systems (evidence grade A/B/C / delivery state machine / pipeline stage), stage circuit breaker and fallback, resume from breakpoint
-- Runtime robustness spec: unified timeout for external search/API/sub-agent calls, bounded retry with exponential backoff for transient errors, graded failure fallback (switch source to use user material to mark insufficient evidence), no retry for deterministic errors
+- `references/pipeline-and-runtime.md`：五阶段流水线编排、三套代码（证据等级 A/B/C / 交付状态机 / Pipeline 阶段）正交区分、阶段熔断与回退、断点续跑
+- **运行时健壮性规范**：外部搜索/API/子 Agent 调用统一超时、瞬时错误有限重试（指数退避）、分级失败降级（换来源→用用户材料→标【证据不足】）、确定性错误不重试
 
-### Added — UI and UX
+### Added — UI / UX
 
-- Unified output rendering spec (Design System): verdict banner, stage progress bar, 10-cell score bar, action buttons, Loading/Empty/Error/Success four state templates, mobile-first (tables max 6 columns, narrow-screen key-value lists), desktop information density, long report table of contents and per-stage summary, bilingual spec, code block format, output self-check checklist
-- All v2 stage cards and report templates unified with top verdict banner, stage progress bar, and bottom action buttons
+- `references/ui-rendering-spec.md`：统一输出渲染规范（Design System）
+  - 结论带 Banner、阶段进度条、10 格分数条、行动按钮
+  - Loading / Empty / Error / Success 四种状态模板
+  - 移动端优先（表格≤6列、窄屏键值列表）、桌面端信息密度
+  - 长报告目录与每阶段小结、双语规范、代码区格式、输出自检清单
+- 所有 v2 阶段卡与报告模板统一顶部结论带、阶段进度条、底部行动按钮
 
-### Added — Final Report and Full Example
+### Added — Final Report
 
-- Final opportunity report: five-stage consolidated report, conclusion-first, understandable in 10 seconds
-- Complete five-stage example (local tutoring studio customer acquisition content service), with reproducible score (74/100), demonstrating high score can still be VALIDATE_FIRST, pricing and first-customer acquisition
+- `templates/opportunity-report.md`：五阶段汇总的最终机会报告，结论先行，10 秒看懂"在分析什么→得到了什么→下一步做什么"
+
+### Added — Full Example
+
+- `examples/full-pipeline-v2.md`：完整五阶段示例（本地教培工作室获客内容代做），含可复算评分（74/100）、演示"高分也可能是 VALIDATE_FIRST"、定价与首批客户获取
 
 ### Added — Open Source Release Assets
 
-- README rewritten as open-source product landing page
-- CHANGELOG, LICENSE (MIT), CONTRIBUTING, .gitignore
-- website/index.html product landing page (GitHub Pages ready)
+- `README.md`：重写为开源产品主页（Hero、四阶段流程图、Features、工作流、安装、使用、技术栈、项目结构、Roadmap、License）
+- `CHANGELOG.md`：本文件
+- `LICENSE`：MIT
+- `CONTRIBUTING.md`：贡献指南
+- `.gitignore`：Git 忽略规则
+- `website/index.html`：产品落地页（可挂 GitHub Pages）
 
 ### Changed
 
-- SKILL.md version upgraded to v2.0.0, added V2 main pipeline, four capability summaries, monetization module independence, three code systems distinction, output and UI spec, v2 trigger words
-- opportunity-card.md incrementally upgraded to v2, compatible with all v1.1 fields, added Pipeline Stage, composite score, three-tier verdict, five-stage navigation
-- USER_GUIDE.md updated to v2.0.0
+- `SKILL.md`：版本升为 v2.0.0；新增 V2 主链路章节、四阶段能力要点、商业化模块独立化边界、三套代码区分、输出与 UI 规范、模式路由新增 v2 触发词、标准工作流新增第 10 步 V2 衔接
+- `templates/opportunity-card.md`：增量升级到 v2，兼容全部 v1.1 字段，新增 Pipeline Stage、综合机会评分、三档结论、五阶段导航
+- `USER_GUIDE.md`：更新为 v2.0.0，新增五阶段说明、版本验证词、触发词、FAQ
+
+### Security / Quality
+
+- `tools/validate_skill.py`：扩展自检（文件清单、交叉引用、frontmatter、必备字段、权重合计、版本一致性、UI 规范锚点），116+ 项检查全通过
 
 ### Notes
 
-- All v1.x capabilities preserved (three search types, evidence chain, three modes, 8-dimension scoring, Level 1-5, delivery state machine, stop mechanism, first-payment checklist)
-- Currently does not implement payment, subscription, membership, or billing systems
-- This is a pure Markdown documentation Agent Skill, no frontend code, build chain, or database
+- **v1.x 全部能力保留**：三类搜索、证据链、三模式、8 维评分、Level 1-5、交付状态机、停止机制、第一笔钱清单、原有模板与示例均未删除或破坏
+- **当前不实现**支付、订阅、会员、计费系统（只产出商业化方案与验证动作）
+- 这是纯 Markdown 文档型 Agent Skill，无前端代码/构建链/数据库
 
 ---
 
 ## [1.1.0] - 2026 (previous)
 
 ### Added
-- Evidence Chain mechanism
-- Problem / Solution / Payment three search types
-- Quick / Research / Execution three work modes
-- Opportunity delivery state machine
-- Evidence-bound scoring
-- Stop research mechanism with restart conditions
-- evidence-card.md, quick-scan.md templates
-- evidence-chain.md, opportunity-state-machine.md references
-- real-world-problem.md complete workflow example
+- Evidence Chain 证据链机制（原始证据→观察→推断→假设→验证）
+- Problem / Solution / Payment 三类搜索
+- Quick / Research / Execution 三种工作模式
+- Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）
+- 评分绑定证据（含 Payment 分档）
+- 停止研究机制与重启条件
+- `templates/evidence-card.md`、`templates/quick-scan.md`
+- `references/evidence-chain.md`、`references/opportunity-state-machine.md`
+- `examples/real-world-problem.md` 完整运行示例
 
 ## [1.0.0] - 2026 (initial)
 
 ### Added
-- Market Scan, Problem Card, 8-dimension scoring
-- Level 1-5 solution grading
-- 7-day / 30-day validation modes
-- Three-pool maintenance
-- Video / comment reverse market analysis
+- Market Scan 市场侦察
+- Problem Card、8 维评分
+- Level 1-5 解决方案分级
+- 7 天/30 天验证模式
+- 三池维护（Result/Demand/Payment）
+- 视频/评论反向市场分析

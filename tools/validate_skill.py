@@ -9,7 +9,7 @@ Usage:
 Checks:
   1. File manifest completeness (all expected files exist, incl. release assets).
   2. SKILL.md YAML frontmatter (name / description).
-  3. Cross references: every references|templates|examples/<file>.md
+  3. Cross references: every `references|templates|examples/<file>.md`
      cited in any markdown actually exists.
   4. Required sections/fields inside v2 cards/templates.
   5. Version consistency on top-level docs (v2.0.0).

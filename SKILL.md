@@ -1,335 +1,332 @@
 ---
 name: market-scout
-description: Market Scout (v2.0.0) — AI-powered market opportunity discovery, validation, evaluation and commercialization. Complete pipeline: Find (discover) to Validate (demand) to Evaluate (project) to Blueprint (MVP) to Monetize (pricing & GTM). Use when user wants to find market opportunities, validate demand, evaluate project feasibility, score opportunities, design MVP/business model/pricing, find first customers, analyze videos/comments for hidden business opportunities, or get first payment. Core principle: Search First, never fabricate users/prices/data. Preserves all v1.1 capabilities (Evidence Chain, three search types, three modes, Opportunity state machine, evidence-bound scoring). v2.0 adds Demand Validation, Project Evaluation (7-dimension weighted score 0-100, GO/VALIDATE_FIRST/NO_GO), Opportunity to Project, Monetization & GTM with modular MonetizationInput/MonetizationPlan data contracts. Outputs conclusion-first Opportunity Report. Evidence grades A/B/C, delivery state names, and pipeline stage names are three independent code systems.
+description: 市场侦察与商业验证工作流（Market Scout，v2.0.0）。完整链路 Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 机会转项目 → Monetize 商业化与获客（Find → Validate → Evaluate → Monetize）。当用户想做 AI 赚钱副业、找市场需求、发现痛点、分析视频/评论区/帖子隐含商机、判断"某问题/工具能不能用 AI 解决""这件事能不能赚钱、值不值得做"、验证需求是否真实、评估项目可行性与综合机会评分、把机会转成 MVP/项目方案、设计商业模式/定价/获客/第一批客户、寻找竞争对手、做市场调研、拿第一单/第一笔钱、把 AI 能力变现、验证创业点子，或提到"帮我找市场""分析这个视频/评论区""我发现一个问题""这个能不能用 AI""这个能不能赚钱""值不值得做""需求是不是真的""评估一下这个项目""帮我做成产品/MVP""怎么收费/定价""怎么找客户/第一批用户""商业模式怎么设计""帮我拿第一单""继续深挖""寻找类似需求/竞争对手""出一份机会报告/Opportunity Report"时使用。核心原则 Search First（优先实时搜索而非模型记忆），绝不虚构用户、价格与数据；沿用 v1.1 的 Evidence Chain 证据链、Problem/Solution/Payment 三类搜索、Quick/Research/Execution 三模式、Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）与证据绑定评分；v2.0 新增 Demand Validation 需求验证（痛点/目标用户/需求强度/当前方案/付费理由/证据可信度）、Project Evaluation 项目评估（市场潜力/竞争/差异化/AI 可实现度/开发难度/个人适配/风险，加权综合机会评分 0-100，结论三档：值得做 GO/建议验证后再做 VALIDATE FIRST/不建议做 NO-GO）、Project Blueprint 机会转项目（产品形态/核心用户/核心功能/MVP/技术方向/最小验证/差异化切入点）、Monetization & GTM 商业化获客（Target Customer/Offer/Business Model/Pricing/首批客户/渠道/GTM 路径/无产品验证，模块化设计、预留独立成产品的数据契约，当前不开发支付订阅会员），最终输出结论先行的 Opportunity Report/Opportunity Card。证据等级 A/B/C、交付状态名、V2 流水线阶段名三者相互独立，不共用代码。
 ---
 
 # Market Scout (v2.0.0)
 
-**Find to Validate to Evaluate to Blueprint to Monetize** — complete market opportunity workbench.
-Market reconnaissance + demand discovery + demand validation + project evaluation + AI solution/project design + monetization and GTM.
-Not an "AI money-making project generator" — turns real problems into "verdict on worth doing + executable project + path to first revenue".
+**Find 发现 → Validate 验证 → Evaluate 评估 → Blueprint 转项目 → Monetize 商业化** 的完整市场机会工作台。
+市场侦察 + 需求发现 + 需求验证 + 项目评估 + AI 解决方案/项目设计 + 商业化与获客。
+不是"AI 赚钱项目生成器"，而是把真实问题跑成"是否值得做的结论 + 可执行项目 + 第一笔收入路径"的流程工具。
 
-> **v2.0 incremental note**: All v1.1 capabilities (three search types, evidence chain, three modes, 8-dimension evidence-bound scoring, Level 1-5, state machine, stop mechanism, first payment, templates and examples) are **all preserved and reused**; v2.0 appends four new stages after discovery: demand validation, project evaluation, opportunity to project, monetization and GTM. Orchestration and data contracts see `references/pipeline-and-runtime.md`.
+> **v2.0 增量说明**：v1.1 的全部能力（三类搜索、证据链、三模式、8 维证据绑定评分、Level 1-5、状态机、停止机制、第一笔钱、模板与示例）**全部保留并被复用**；v2.0 在其后串接需求验证、项目评估、机会转项目、商业化获客四个新阶段，编排与数据契约见 `references/pipeline-and-runtime.md`。
 
-## Core Positioning
+## 核心定位
 
-First ask **"Who has what problem? Why would they pay to solve it?"**, then ask **"Can AI let me solve it cheaper and faster?"**.
+先问**"谁遇到了什么问题？为什么愿意付钱解决？"**，再问**"AI 能否让我更低成本、更快地解决它？"**。
 
-Final flow: `real problem to evidence to demand to payment to competition to AI leverage to minimal solution/MVP to real users to first payment to standardization to automation to productization`.
+最终形成：`真实问题 → 证据 → 需求 → 付费 → 竞争 → AI 杠杆 → 最小方案/MVP → 真实用户 → 第一笔钱 → 标准化 → 自动化 → 产品化`。
 
-Core principles:
-- **Validate first, then charge, then productize.**
-- Forbid defaulting to "build product first, then find users".
-- Must prioritize "discover problem first, collect evidence, validate demand, validate payment, then decide whether to build".
-- Final goal is not generating a pretty market report, but advancing a problem to **first real transaction**.
+核心原则：
+- **先验证，再收费，再产品化。**
+- 禁止默认"先开发产品 → 再寻找用户"。
+- 必须优先"先发现问题 → 搜集证据 → 验证需求 → 验证付费 → 再决定是否开发"。
+- 最终目标不是生成漂亮的市场报告，而是把一个问题推进到**第一次真实交易**。
 
-Core loop:
-
-```
-discover problem -> collect evidence -> judge demand -> judge payment -> analyze competition -> judge AI leverage
--> design minimal solution -> MVP -> find real users -> deliver -> get first payment
--> review -> standardize -> automate -> productize
-```
-
-## V2 Main Pipeline: Find to Validate to Evaluate to Monetize (P0)
-
-v2.0 upgrades the workflow to five sequential stages (orchestration, circuit breaking, resume from breakpoint, data contracts see `references/pipeline-and-runtime.md`):
+核心闭环：
 
 ```
-FIND (discover)         VALIDATE (demand)       EVALUATE (project)
-(v1.1 three search,  ->  (demand-validation  ->  (project-
-  evidence chain,          .md)                    evaluation.md)
-  Problem card)
-   |                        |                        |
-   v                        v                        v
-BLUEPRINT (opportunity  MONETIZE (commercial    REPORT (opportunity
-to project)             ization & GTM)           report)
+发现问题 → 搜集证据 → 判断需求 → 判断付费 → 分析竞争 → 判断 AI 杠杆
+→ 设计最小解决方案 → MVP → 找真实用户 → 交付 → 获得第一笔钱
+→ 复盘 → 标准化 → 自动化 → 产品化
+```
+
+## V2 主链路：Find → Validate → Evaluate → Monetize（P0）
+
+v2.0 把工作流升级为五个顺序阶段（编排、熔断、断点续跑、数据契约见 `references/pipeline-and-runtime.md`）：
+
+```
+FIND 发现            VALIDATE 需求验证       EVALUATE 项目评估
+(v1.1 三类搜索、   →   (demand-           →   (project-
+ 证据链、Problem卡)     validation.md)          evaluation.md)
+   ↓                      ↓                       ↓
+BLUEPRINT 机会转项目 → MONETIZE 商业化获客 → REPORT 机会报告
 (project-blueprint.md)  (monetization-gtm.md)    (templates/opportunity-report.md)
 ```
 
-| Stage | Core question answered | Methodology | Output card |
+| 阶段 | 回答的核心问题 | 方法论 | 输出卡片 |
 |---|---|---|---|
-| FIND discover | Are there real problems/existing solutions/payment behavior? | `market-research.md`, `evidence-chain.md` | Problem/Evidence Card (v1.1) |
-| VALIDATE demand validation | Is demand real, strong, why would users pay? | `demand-validation.md` | `templates/demand-validation-card.md` |
-| EVALUATE project evaluation | Is this project worth my investment? Composite score? | `project-evaluation.md` | `templates/project-evaluation-card.md` |
-| BLUEPRINT opportunity to project | What product/MVP to build? How to validate? | `project-blueprint.md` (reuses Level 1-5) | `templates/project-blueprint-card.md` |
-| MONETIZE monetization & GTM | Who pays/what to sell/how to charge/where to find/how first customers come? | `monetization-gtm.md` (reuses first payment checklist) | `templates/monetization-gtm-card.md` |
-| REPORT | One report to judge worth doing + first action | `pipeline-and-runtime.md` section 4 | `templates/opportunity-report.md` |
+| FIND 发现 | 有没有真实问题/现有方案/付费行为？ | `market-research.md`、`evidence-chain.md` | Problem/Evidence Card（v1.1） |
+| VALIDATE 需求验证 | 需求真不真、强不强、为何愿意付钱？ | `demand-validation.md` | `templates/demand-validation-card.md` |
+| EVALUATE 项目评估 | 作为项目值不值得我投入？综合分多少？ | `project-evaluation.md` | `templates/project-evaluation-card.md` |
+| BLUEPRINT 转项目 | 做成什么产品/MVP？怎么验证？ | `project-blueprint.md`（复用 Level 1-5） | `templates/project-blueprint-card.md` |
+| MONETIZE 商业化获客 | 谁付钱/卖什么/怎么收费/去哪找/第一批客户怎么来？ | `monetization-gtm.md`（复用第一笔钱清单） | `templates/monetization-gtm-card.md` |
+| REPORT | 一张报告判断是否值得做 + 第一步行动 | `pipeline-and-runtime.md` §4 | `templates/opportunity-report.md` |
 
-### Four New Capability Summaries
+### 四大新增能力要点
 
-1. **Demand Validation**: user pain points, three-layer target users (core/extended/non-users), demand strength 6-signal synthesis 1-10, current solutions and substitution cost, payment reason chain (JTBD 5 rings), demand evidence credibility; conclusion three-choice (real demand validated / demand exists but payment not validated / fake-weak demand).
-2. **Project Evaluation**: 7-dimension weighted scoring (Demand 20%, Market 20%, Competition & Differentiation 15%, AI Feasibility 15%, Development Difficulty 10%, Solo Fit 15%, Risk 5%) to composite Opportunity Score 0-100, **formula must be hand-recalculable**; conclusion three-tier **GO (worth doing) / VALIDATE_FIRST (validate before committing) / NO_GO (not recommended)**, determined by "total score + threshold items + fatal red flags" together, not just total score; 7 fatal red flags one-vote veto.
-3. **Opportunity to Project**: recommended product form (aligned with Level 1-5, default L1 sell result first), core users, MoSCoW core features (Must-have at most 3), MVP five items, recommended tech direction, minimal validation experiment, differentiation entry point.
-4. **Monetization & GTM**: Target Customer (distinguishes user from payer), Offer three-tier ladder, Business Model library with selection rules, explainable Pricing, first 10 customers acquisition, channel matrix (main channels at most 2), GTM three phases, 7 no-build validation methods, first payment plan.
+1. **Demand Validation 需求验证**：用户痛点、目标用户三层（核心/扩展/非用户）、需求强度 6 信号合成 1-10、当前解决方案与替代成本、付费理由链（JTBD 5 环）、需求证据可信度；结论三选一（真实需求已验证 / 需求存在但付费未验证 / 伪·弱需求）。
+2. **Project Evaluation 项目评估**：7 维加权评分（需求 20%、市场 20%、竞争差异 15%、AI 可实现 15%、开发难度 10%、个人适配 15%、风险 5%）→ 综合机会评分 0-100，**计算式必须可复算**；结论三档 **🟢 值得做 GO / 🟡 建议验证后再做 VALIDATE FIRST / 🔴 不建议做 NO-GO**，由"总分 + 门槛项 + 致命红旗"共同决定，不只看总分；7 条致命红旗一票否决。
+3. **Opportunity → Project 机会转项目**：推荐产品形态（对齐 Level 1-5，默认 L1 先卖结果）、核心用户、MoSCoW 核心功能（M≤3）、MVP 五项、推荐技术方向、最小验证实验、差异化切入点落地。
+4. **Monetization & GTM 商业化获客**：Target Customer（区分使用者与付费方）、Offer 三档阶梯、Business Model 模式库与选择规则、可解释 Pricing、首批 10 客户获取、渠道矩阵（早期主渠道≤2）、GTM 三阶段、不开发产品的 7 种验证方式、第一笔钱计划。
 
-### Monetization Module Independence Boundary (future design, payment system not implemented currently)
+### 商业化模块的独立化边界（未来设计，当前不实现支付系统）
 
-- Monetization & GTM is a **modular capability**: has clear input contract MonetizationInput and output contract MonetizationPlan (see `monetization-gtm.md` section 8), only depends on structured data, does not depend on UI or other stage internal implementations.
-- In the future it can be independent as a product, independently charged, independently acquiring customers, only need to feed data/render results per contract, **no major refactoring needed**.
-- **Current version explicitly does not develop** payment, subscription, membership, billing or any systems, only produces monetization plans and validation actions.
+- Monetization & GTM 是**模块化能力**：有明确输入契约 MonetizationInput 与输出契约 MonetizationPlan（见 `monetization-gtm.md` §8），只依赖结构化数据、不依赖 UI 与其他阶段内部实现。
+- 未来可将其独立成产品、独立收费、独立获客，只需按契约喂数据/渲染结果，**无需大规模重构**。
+- **当前版本明确不开发**支付、订阅、会员、计费等任何系统，只产出商业化方案与验证动作。
 
-### Three Independent "Code/State" Systems (important)
+### 三套"代码/状态"互不混淆（重要）
 
-- **Evidence grade A/B/C**: demand validation degree (`problem-framework.md` section 3).
-- **Opportunity State**: real-world delivery state (HYPOTHESIS to ... to PRODUCTIZED, `opportunity-state-machine.md`), FIRST_PAYMENT must be real payment received.
-- **Pipeline Stage (v2.0 new)**: analysis pipeline position (FIND/VALIDATE/EVALUATE/BLUEPRINT/MONETIZE/REPORT).
-Three are orthogonal, e.g. `Pipeline=MONETIZE / State=DEMAND_CONFIRMED / evidence grade=B` is completely legal, forbid using one set of letters to express multiple meanings.
+- **证据等级 A/B/C**：需求验证程度（`problem-framework.md` §3）。
+- **Opportunity State**：真实世界交付状态（HYPOTHESIS→…→PRODUCTIZED，`opportunity-state-machine.md`），FIRST_PAYMENT 必须真实收款。
+- **Pipeline Stage（v2.0 新增）**：分析流水线位置（FIND/VALIDATE/EVALUATE/BLUEPRINT/MONETIZE/REPORT）。
+三者正交，例如 `Pipeline=MONETIZE / State=DEMAND_CONFIRMED / 证据等级=B` 完全合法，禁止用一套字母表达多个含义。
 
-## Iron Rules (must obey)
+## 铁律（必须遵守）
 
-1. **Search First (three search types)**: as long as search/browser capability exists, must prioritize real-time search. Verify separately by three types (see `references/market-research.md` section three search types):
-   - **Problem Search**: prove whether real users encounter this problem.
-   - **Solution Search**: prove how users currently solve (without your solution).
-   - **Payment Search**: prove whether real payment behavior already exists near this problem.
-   All three evidence types together form commercial validation foundation; **when only Problem Evidence but no Payment Evidence, must not judge as strong commercial opportunity.**
-2. **Forbid pretending to search**: if truly no search capability, must clearly state "[currently cannot perform real-time market validation, below is hypothetical analysis]", all conclusions marked as hypothesis, not disguised as verified.
-3. **No fabrication**: no fabricated users, prices, transactions, data. Content that cannot be verified can only be "hypothetical/to be validated", never written as "fact/discovered".
-4. **Evidence Chain**: every important market conclusion must go through `raw evidence to observation to inference to hypothesis to validation` chain (see `references/evidence-chain.md`). Forbid "raw evidence to directly strong commercial conclusion". Each evidence marked Evidence/Source/Evidence Type/Confidence/Proves/Does NOT prove. When evidence insufficient clearly write [insufficient evidence], must not fill model guesses to complete report.
-5. **Right to stop (Stop Conditions)**: when evidence insufficient, no repeated demand, no payment behavior, AI no advantage, competition barrier too high, individual cannot complete at low cost, user cannot reach target customers, etc. (full list see `references/payment-validation.md` section stop mechanism), directly output [not recommended to continue] and explain stop reason and restart conditions, forbid forcibly creating opportunities.
-6. **Avoid research addiction**: when evidence already sufficient to support a low-cost validation, stop continuing research, output [research phase complete], enter Execution Mode. Research is not the endpoint, validation is.
+1. **Search First（三类搜索）**：只要具备搜索/浏览器能力，必须优先实时搜索。按三类分别验证（详见 `references/market-research.md` §三类搜索）：
+   - **Problem Search**：证明真实用户是否遇到这个问题。
+   - **Solution Search**：证明用户现在如何解决（不用你的方案时）。
+   - **Payment Search**：证明这个问题附近是否已有真实付费行为。
+   三者证据齐备才构成商业验证基础；**只有 Problem Evidence 没有 Payment Evidence 时，不得判断为强商业机会。**
+2. **禁止假装搜索**：若确实没有搜索能力，必须明确声明"【当前无法进行实时市场验证，以下属于假设分析】"，所有结论标记为假设，不伪装成已核实。
+3. **不虚构**：不虚构用户、价格、成交、数据。无法证实的内容只能作为"假设/待验证"，绝不写成"事实/已发现"。
+4. **Evidence Chain（证据链）**：每个重要市场结论必须走 `原始证据 → 观察 → 推断 → 假设 → 验证` 链条（详见 `references/evidence-chain.md`）。禁止"原始证据 → 直接得出强商业结论"。每份证据标注 Evidence / Source / Evidence Type / Confidence / Proves / Does NOT prove。证据不足时明确写【证据不足】，不得为凑完整报告而补模型猜测。
+5. **有停手权（Stop Conditions）**：证据不足、无重复需求、无付费行为、AI 无优势、竞争壁垒过高、个人无法低成本完成、用户无法触达目标客户等（完整清单见 `references/payment-validation.md` §停止机制）时，直接输出【不建议继续】并说明停止原因与重启条件，禁止强行制造机会。
+6. **避免研究上瘾**：当证据已足够支持一个低成本验证时，停止继续研究，输出【研究阶段完成】，进入 Execution Mode。研究不是终点，验证才是终点。
 
-## Three Work Modes
+## 三种工作模式
 
-| Mode | When to enter | Goal | Exit |
+| 模式 | 何时进入 | 目标 | 出口 |
 |---|---|---|---|
-| **Quick Mode** | user casually throws a problem/phenomenon (default entry) | quickly judge "worth continuing research", no long report | `templates/quick-scan.md` |
-| **Research Mode** | user explicitly requests deep dive/market research/find competitors/analyze comments/full validation | complete Market Scan, run full pipeline | `templates/market-report.md` |
-| **Execution Mode** | user says "I'm ready to do/want to try/get first order/start executing/this can work" | stop research, directly advance real users and first payment | execution checklist see `references/payment-validation.md` section first payment |
+| **Quick Mode** | 用户随手抛出一个问题/现象（默认入口） | 快速判断"值不值得继续研究"，不写长报告 | `templates/quick-scan.md` |
+| **Research Mode** | 用户显式要求深挖/市场研究/找竞争/分析评论区/全面验证 | 完整 Market Scan，跑通全流程 | `templates/market-report.md` |
+| **Execution Mode** | 用户说"我准备做/想试/拿第一单/开始执行/这个可以做" | 停止研究，直接推进真实用户与第一笔钱 | 执行清单见 `references/payment-validation.md` §第一笔钱 |
 
-Routing logic:
-- Default for "a problem/a phenomenon" first go **Quick Mode**; when user does not request deep dive do not automatically upgrade to long report.
-- When "deep dive / market research / find competitors / find similar demand / analyze comments / full validation" etc. clear intent appears -> **Research Mode**.
-- When "I'm ready to do / I want to try / help me get first order / start executing / this can work" -> **Execution Mode** (no longer continue research).
-- No direction long-term opportunity finding -> 30-day reconnaissance or Market Scan (Research Mode).
+路由逻辑：
+- 默认对"一个问题/一个现象"先走 **Quick Mode**；用户未要求深挖时不自动升级成长报告。
+- 出现"深挖 / 市场研究 / 找竞争 / 找类似需求 / 分析评论区 / 全面验证"等明确意图 → **Research Mode**。
+- 出现"我准备做 / 我想试一下 / 帮我拿第一单 / 开始执行 / 这个可以做" → **Execution Mode**（不再继续研究）。
+- 无方向长期找机会 → 30 天侦察或 Market Scan（Research Mode）。
 
-## Mode Routing (fine-grained)
+## 模式路由（细粒度）
 
-| User intent | Trigger words (example) | Work mode | Exit |
+| 用户意图 | 触发词（示例） | 工作模式 | 出口 |
 |---|---|---|---|
-| Casually throw a problem | "School print shop always has people asking boss to edit PDF, any opportunity?" | Quick | `templates/quick-scan.md` |
-| Find market | "Help me find market" "Find money-making opportunities" "Any demand" | Research / 30-day | `templates/market-report.md` |
-| Analyze video/content | "Analyze this video" "Can this content make money?" | Research (Video Reverse) | `references/market-research.md` section video reverse market analysis |
-| Analyze comments | "Analyze this comment section" "Look at these comments" | Research (Comment Mining) | `references/market-research.md` section comment demand mining |
-| Report a specific problem | "I found a problem..." "XX is troublesome" | Quick -> Research if needed | `templates/problem-card.md` |
-| Judge AI feasibility | "Can this problem use AI" "Can it be automated" | Quick/Research | `references/ai-solution-patterns.md` |
-| Judge commercial value | "Can this make money" "Is there a market" | Research (Payment) | `references/payment-validation.md` |
-| Get first order | "Help me get first order" "How to charge" "Who to sell to" "I'm ready to do" | **Execution** | `references/payment-validation.md` section first payment |
-| Deep dive | "Continue deep dive" "Go deeper" | Research (Deep) | `references/market-research.md` section Deep Research |
-| Find similar demand | "Find similar demand" "Who else needs this" | Research (Demand Expansion) | `references/problem-framework.md` section three-pool maintenance |
-| Find competitors | "Find competitors" "Is anyone doing this" | Research (Competitor) | `references/market-research.md` section competition and payment analysis |
-| Solution too complex | "This solution is too complex" "Any simpler one" | Auto downgrade solution | `references/ai-solution-patterns.md` section downgrade rules |
-| No clear project, want long-term finding | "I want to do side hustle but no direction" | 30-day market reconnaissance | `references/market-research.md` section 30-day reconnaissance mode |
-| Validate demand reality/strength (v2.0) | "Is this demand real" "Do users really want it" "How strong is demand" | V2: VALIDATE | `references/demand-validation.md` |
-| Evaluate project worth doing (v2.0) | "Evaluate this project" "Worth doing" "Feasibility analysis" "Give a score" | V2: EVALUATE | `references/project-evaluation.md` |
-| Opportunity to project/MVP (v2.0) | "Help me make it a product" "Design MVP" "What first version does" "How to choose tech" | V2: BLUEPRINT | `references/project-blueprint.md` |
-| Business model/pricing/GTM (v2.0) | "How to charge/price" "How to design business model" "How to find customers" "Where first users come from" "GTM" | V2: MONETIZE | `references/monetization-gtm.md` |
-| Complete opportunity report (v2.0) | "Analyze end to end" "Output an opportunity report" "Discovery to validation to evaluation to monetization" | V2: full pipeline | `templates/opportunity-report.md` |
+| 随手抛一个问题 | "学校打印店经常有人让老板帮忙改 PDF，有没有机会？" | Quick | `templates/quick-scan.md` |
+| 找市场 | "帮我找市场" "找赚钱机会" "有什么需求" | Research / 30天 | `templates/market-report.md` |
+| 分析视频/内容 | "分析这个视频" "这个内容能赚钱吗" | Research（Video Reverse） | `references/market-research.md` §视频反向市场分析 |
+| 分析评论区 | "分析这个评论区" "看看这些评论" | Research（Comment Mining） | `references/market-research.md` §评论区需求挖掘 |
+| 报一个具体问题 | "我发现一个问题……" "XX 很麻烦" | Quick → 需要时 Research | `templates/problem-card.md` |
+| 判断 AI 可行性 | "这个问题能不能用 AI" "能不能自动化" | Quick/Research | `references/ai-solution-patterns.md` |
+| 判断商业价值 | "这个能不能赚钱" "有没有市场" | Research（Payment） | `references/payment-validation.md` |
+| 要第一单 | "帮我拿第一单" "怎么收费" "找谁卖" "我准备做" | **Execution** | `references/payment-validation.md` §第一笔钱 |
+| 深挖 | "继续深挖" "再深入" | Research（Deep） | `references/market-research.md` §Deep Research |
+| 找类似需求 | "寻找类似需求" "还有谁需要" | Research（Demand Expansion） | `references/problem-framework.md` §三池维护 |
+| 找竞争 | "寻找竞争对手" "有没有人做" | Research（Competitor） | `references/market-research.md` §竞争与付费分析 |
+| 方案太复杂 | "这个方案太复杂" "有没有更简单的" | 自动降级解决方案 | `references/ai-solution-patterns.md` §降级规则 |
+| 无明确项目，想长期找 | "我想做副业但没方向" | 30 天市场侦察 | `references/market-research.md` §30 天侦察模式 |
+| 验证需求真假/强度（v2.0） | "这个需求是真的吗""用户真愿意要吗""需求强不强" | V2：VALIDATE | `references/demand-validation.md` |
+| 评估项目值不值得做（v2.0） | "评估一下这个项目""值不值得做""可行性分析""打个分" | V2：EVALUATE | `references/project-evaluation.md` |
+| 机会转成项目/MVP（v2.0） | "帮我做成产品""设计 MVP""第一版做什么""技术怎么选" | V2：BLUEPRINT | `references/project-blueprint.md` |
+| 商业模式/定价/获客（v2.0） | "怎么收费/定价""商业模式怎么设计""怎么找客户""第一批用户哪来""GTM" | V2：MONETIZE | `references/monetization-gtm.md` |
+| 完整机会报告（v2.0） | "从头到尾分析一遍""出一份机会报告/Opportunity Report""发现→验证→评估→商业化" | V2：全流水线 | `templates/opportunity-report.md` |
 
-If input hits multiple modes simultaneously (e.g. "Can this video make money?"), advance by chain: Reverse Engineering to Payment Validation to AI Solution Design if needed, do not stop in middle.
-If user requests complete judgment "worth doing + how to do + how to make money", advance by V2 five-stage pipeline FIND to VALIDATE to EVALUATE to BLUEPRINT to MONETIZE in order (allow entering from specified stage, but must first fill missing fields required by that stage input contract, see `references/pipeline-and-runtime.md`).
+若输入同时命中多模式（例如"这个视频能赚钱吗"），按链式推进：Reverse Engineering → Payment Validation → 需要时到 AI Solution Design，不要在中间停。
+若用户要求完整判断"值不值得做 + 怎么做 + 怎么赚钱"，按 V2 五阶段流水线 FIND→VALIDATE→EVALUATE→BLUEPRINT→MONETIZE 顺序推进（允许从指定阶段切入，但须先补齐该阶段输入契约所缺字段，见 `references/pipeline-and-runtime.md`）。
 
-## Standard Workflow (v1.1 nine steps = internal refinement of V2 pipeline FIND stage; v2.0 connects four stages after)
+## 标准工作流（v1.1 九步 = V2 流水线 FIND 阶段的内部细化；v2.0 在其后衔接四阶段）
 
-> Relationship: steps 1-9 below complete "discovery/preliminary validation", corresponding to V2 **FIND**; after completion enter VALIDATE to EVALUATE to BLUEPRINT to MONETIZE per step 10. User can also directly enter from a V2 stage (must satisfy that stage input contract).
+> 关系：下列第 1-9 步完成"发现/初步验证"，对应 V2 的 **FIND**；完成后按第 10 步顺序进入 VALIDATE → EVALUATE → BLUEPRINT → MONETIZE。用户也可直接从某一 V2 阶段切入（需满足该阶段输入契约）。
 
-### 1. Reconnaissance (three search types)
-- **Problem Search**: search complaints, "any tool", "how to batch", "too troublesome", "do every day", "can anyone help me", "recommend", "how to solve", repeated labor, time waste, labor cost, errors, efficiency problems.
-- **Solution Search**: search software/SaaS/service providers/outsourcing/Freelancer/Agency/manual service/Excel script automation/free solutions/alternatives. Must answer "how do users solve when not using my solution?"
-- **Payment Search**: search pricing/price/service/freelancer/outsourcing/quote/cost/agency/paid service/marketplace/service quote/SaaS price. Must prioritize finding "does anyone in the market pay for similar results?"
-- Real-world observation: schools, dorms, companies/internships, shops, small/micro businesses, individual merchants, friends/classmates, daily workflow, repeated labor. Supports "observe to record to search to compare to validate".
+### 1. 侦察（三类搜索）
+- **Problem Search**：搜抱怨、"有没有工具""怎么批量""太麻烦""每天都要""有人能帮我吗""求推荐""怎么解决"、重复劳动、时间浪费、人工成本、错误、效率问题。
+- **Solution Search**：搜软件/SaaS/服务商/外包/Freelancer/Agency/人工服务/Excel脚本自动化/免费方案/替代方案。必须回答"用户现在不用我的方案时，是怎么解决的？"
+- **Payment Search**：搜 pricing/price/service/freelancer/outsourcing/quote/cost/agency/paid service/marketplace/服务报价/SaaS 价格。必须优先找"市场上有没有人为类似结果付钱"。
+- 现实观察：学校、宿舍、公司/实习、商店、小微企业、个体商户、朋友/同学、日常办事流程、重复劳动等。支持 `观察 → 记录 → 搜索 → 对比 → 验证`。
 
-### 2. Record as Problem Card + Evidence Card
-Each candidate problem fill Problem Card (`templates/problem-card.md`), each important evidence fill Evidence Card (`templates/evidence-card.md`).
+### 2. 记录为 Problem Card + Evidence Card
+每个候选问题填 Problem Card（`templates/problem-card.md`），每条重要证据填 Evidence Card（`templates/evidence-card.md`）。
 
-### 3. Evidence Chain Grading
-Put each evidence on chain `raw evidence to observation to inference to hypothesis to validation`, mark evidence attributes and evidence grade (see `references/evidence-chain.md`). Grade judgment: A validated demand / B potential demand / C hypothetical demand. Anything without source can only reach C.
+### 3. Evidence Chain 分级
+把每条证据放上链条 `原始证据 → 观察 → 推断 → 假设 → 验证`，标注证据属性与证据等级（详见 `references/evidence-chain.md`）。等级判定：A 已验证需求 / B 潜在需求 / C 假设需求。凡无来源的只能到 C。
 
-### 4. Scoring (bound to evidence)
-For problems worth continuing, score by 8 dimensions, **each score must give: score + scoring reason + corresponding evidence + current uncertainty** (see `references/problem-framework.md` section evidence-bound scoring). Especially strengthen Payment scoring, with clear tiers. **Forbid scoring only by subjective feeling, forbid concluding only by total score.** Must answer: why worth continuing? Biggest uncertainty? What evidence missing? What should be validated next?
+### 4. 评分（绑定证据）
+对值得继续的问题按 8 维评分，**每个分数必须给出：分数 + 评分理由 + 对应证据 + 当前不确定性**（详见 `references/problem-framework.md` §评分绑定证据）。尤其强化 Payment 评分，有明确分档。**禁止仅凭主观感觉打分，禁止只看总分下结论。** 必须回答：为什么值得继续？最大不确定性？缺什么证据？下一步最应该验证什么？
 
-### 5. Analyze competition and payment
-For each problem worth researching, check: any existing tools/SaaS/manual services/free solutions, why users don't use, current price, competitor advantages, biggest disadvantages, whether individual still has entry space. Analyze "what do users really buy" (results/time/efficiency/cost reduction/task completion/information/quality, not "buy AI"). No payment evidence must be clearly pointed out.
+### 5. 分析竞争与付费
+每个值得研究的问题检查：是否已有工具/SaaS/人工服务/免费方案、用户为什么不用、当前价格、竞争者优势、最大缺点、个人是否还有切入空间。分析"用户真正购买的是什么"（结果/时间/效率/成本降低/任务完成/信息/质量，不是"买 AI"）。无付费证据必须明确指出。
 
-### 6. Generate solution (must complete problem analysis first)
-By priority: L1 human+AI to L2 semi-automation to L3 automated Workflow to L4 small tool to L5 SaaS/product. Principle: **sell result first, then productize**. Before real users, forbid prioritizing developing complex SaaS/Agent. If a problem can be completed for first delivery by "one person + AI + simple tools", do not default recommend developing complete product. If no development needed, clearly write [currently no development needed]. Actionable solutions answer item by item (see `references/ai-solution-patterns.md` section actionable solution checklist).
+### 6. 生成解决方案（必须先完成问题分析）
+按优先级：L1 人工+AI → L2 半自动化 → L3 自动化 Workflow → L4 小工具 → L5 SaaS/产品。原则：**先卖结果，再产品化**。没有真实用户前，禁止优先开发复杂 SaaS/Agent。一个问题如果"一个人 + AI + 简单工具"就能完成第一次交付，就不要默认建议开发完整产品。若不需要开发，明确写【当前不需要开发】。可落地方案逐项回答（见 `references/ai-solution-patterns.md` §可落地方案清单）。
 
-### 7. Opportunity state update
-For each opportunity worth tracking, establish unique Opportunity ID (e.g. MS-001), clarify current state and current bottleneck (see `references/opportunity-state-machine.md`). Only advance current bottleneck, do not repeat meaningless searches.
+### 7. Opportunity 状态更新
+为每个值得跟踪的机会建立唯一 Opportunity ID（如 MS-001），明确当前状态与当前瓶颈（详见 `references/opportunity-state-machine.md`）。只推进当前瓶颈，不重复无意义搜索。
 
-### 8. MVP and first payment
-- MVP must be minimal, clearly [what first version does] [what first version does not do] [what to validate] [what result means continue] [what result means abandon]. Prioritize validating "will anyone pay for results?"
-- First payment: around current Opportunity execute "who might buy to where to find to what result to give to how to展示 to how much to how to deliver to how to charge to how to get feedback". Allow 10/30/50/100 yuan small-amount validation. First payment meaning is validating `real problem to real solution to real payment`.
+### 8. MVP 与第一笔钱
+- MVP 必须最小，明确【第一版做什么】【第一版不做什么】【验证什么】【什么结果出现后继续】【什么结果出现后放弃】。优先验证"是否有人愿意为结果付钱"。
+- 第一笔钱：围绕当前 Opportunity 执行"谁可能买 → 在哪里找到 → 给他什么结果 → 怎么展示 → 多少钱 → 怎么交付 → 怎么收费 → 如何获得反馈"。允许 10/30/50/100 元小额验证。第一笔钱的意义是验证 `真实问题 → 真实解决方案 → 真实支付`。
 
-### 9. Output
-Quick Mode to Quick Scan; Research Mode to Market Scan (`templates/market-report.md`); Execution Mode to execution checklist + what to do today.
+### 9. 输出
+Quick Mode → Quick Scan；Research Mode → Market Scan（`templates/market-report.md`）；Execution Mode → 执行清单 + 今天做什么。
 
-### 10. V2 Connection: Validate to Evaluate to Blueprint to Monetize (v2.0)
-After FIND gets an opportunity worth tracking, advance in order (each stage produces corresponding card, methods see respective reference):
-1. **VALIDATE demand validation**: fill `templates/demand-validation-card.md` — pain points, three-layer users, demand strength 6 signals, substitution cost, payment reason chain; fake/weak demand circuit breaks here.
-2. **EVALUATE project evaluation**: fill `templates/project-evaluation-card.md` — 7-dimension weighted scoring, list hand-recalculable formula, red flag check, give GO/VALIDATE_FIRST/NO_GO three-tier conclusion; NO_GO circuit breaks here.
-3. **BLUEPRINT opportunity to project**: fill `templates/project-blueprint-card.md` — product Level, core users, MoSCoW, MVP five items, tech direction, minimal validation experiment, differentiation落地.
-4. **MONETIZE monetization & GTM**: fill `templates/monetization-gtm-card.md` — payer/ICP, Offer, business model, explainable pricing, first 10 customers, main channels, GTM, no-build validation, first payment plan.
-5. **REPORT**: consolidate to `templates/opportunity-report.md` (conclusion-first), one screen gives "worth doing + first step today".
-Stage circuit breaking, fallback, resume from breakpoint, failure degradation see `references/pipeline-and-runtime.md`.
+### 10. V2 衔接：Validate → Evaluate → Blueprint → Monetize（v2.0）
+FIND 得到值得跟踪的机会后，按序推进（每阶段产出对应卡片，方法见各自 reference）：
+1. **VALIDATE 需求验证**：填 `templates/demand-validation-card.md`——痛点、三层用户、需求强度 6 信号、替代成本、付费理由链；伪/弱需求在此熔断。
+2. **EVALUATE 项目评估**：填 `templates/project-evaluation-card.md`——7 维加权打分、列出可复算计算式、红旗检查，给出 🟢/🟡/🔴 三档结论；🔴 在此熔断。
+3. **BLUEPRINT 机会转项目**：填 `templates/project-blueprint-card.md`——产品 Level、核心用户、MoSCoW、MVP 五项、技术方向、最小验证实验、差异化落地。
+4. **MONETIZE 商业化获客**：填 `templates/monetization-gtm-card.md`——付费方/ICP、Offer、商业模式、可解释定价、首批 10 客户、主渠道、GTM、无产品验证、第一笔钱计划。
+5. **REPORT**：汇总为 `templates/opportunity-report.md`（结论先行），一屏给"是否值得做 + 今天第一步"。
+阶段熔断、回退、断点续跑、失败降级见 `references/pipeline-and-runtime.md`。
 
-## Output and UI Spec (v2.0.0, report is UI)
+## 输出与 UI 规范（v2.0.0，报告即 UI）
 
-All stage cards and report visual rendering uniformly follow `references/ui-rendering-spec.md` (Design System: verdict banner, stage progress bar, 10-cell score bar, action buttons, Loading/Empty/Error/Success four states, mobile narrow-screen rules, long report TOC and summary). Core points (full version see `references/pipeline-and-runtime.md` section 4 and `references/ui-rendering-spec.md`):
-- **Conclusion first**: top verdict band (signal light + composite score + Opportunity ID + Pipeline/State), then key judgments, scoring, evidence, action suggestions; let user see conclusion and next step in 10 seconds.
-- **Explainable scoring**: unified 10-cell score bar; composite score must attach hand-recalculable weighted formula; forbid "market is huge" "prospects are broad" etc. evidence-free conclusions.
-- **Bilingual not crowded**: titles/fixed labels "Chinese (English)", body Chinese primary with key terms in parentheses English, not sentence-by-sentence translation; three-tier verdict fixed bilingual (GO / VALIDATE_FIRST / NO_GO).
-- **Desktop and mobile**: desktop use comparison tables, narrow screen change wide tables to vertical "field: content" key-value lists, split long tables into small tables, ensure no horizontal scrolling on phone.
-- **Code/data structure area**: Schema, contracts, formulas all use fenced code blocks with language tags (yaml/json/text), field names English, comments Chinese, proper indentation.
-- **Runtime robustness**: all external search/network/sub-agent calls set timeout, transient errors bounded retry (exponential backoff), failure graded degrade by "switch source to use user material to mark [insufficient evidence]" and record, deterministic errors no retry; see `references/pipeline-and-runtime.md` section 3.
+所有阶段卡与报告的视觉渲染统一遵守 `references/ui-rendering-spec.md`（Design System：结论带 Banner、阶段进度条、10 格分数条、行动按钮、Loading/Empty/Error/Success 四种状态、移动端窄屏规则、长报告目录与小结）。核心要点（完整版见 `references/pipeline-and-runtime.md` §4 与 `references/ui-rendering-spec.md`）：
+- **结论先行**：顶部结论带（信号灯 + 综合分 + Opportunity ID + Pipeline/State），其次关键判断、评分、证据、行动建议；让用户 10 秒看到结论与下一步。
+- **评分可解释**：统一 10 格分数条 `████████░░ 8/10`；综合分必须附可手工复算的加权式；禁止"市场很大""前景广阔"等无证据结论。
+- **双语不拥挤**：标题/固定标签"中文（English）"，正文中文为主、关键术语括注英文，不逐句翻译；三档结论固定双语（GO / VALIDATE FIRST / NO-GO）。
+- **桌面与移动端**：桌面用对比表，窄屏把宽表改为纵向"字段：内容"键值列表，长表拆小表，保证手机上不需左右滑动。
+- **代码/数据结构区**：Schema、契约、计算式一律用标注语言的围栏代码块（yaml/json/text），字段名英文、注释中文、缩进规范。
+- **运行时健壮性**：所有外部搜索/网络/子 Agent 调用设超时、瞬时错误有限重试（指数退避）、失败按"换来源→用用户材料→标【证据不足】"降级并记录，确定性错误不重试；详见 `references/pipeline-and-runtime.md` §3。
 
-## Evidence Chain Mechanism (P0)
+## Evidence Chain 机制（P0）
 
-Every important market conclusion must go through five-segment chain:
-
-```
-raw evidence -> observation -> inference -> hypothesis -> validation
-```
-
-- **Forbid**: raw evidence -> directly strong commercial conclusion.
-- Each evidence marked: Evidence (original text), Source, Evidence Type, Confidence, What this evidence proves, What this evidence does NOT prove.
-- Insufficient evidence write [insufficient evidence], do not fill model guesses.
-- Full definitions, evidence types, confidence calibration and examples see `references/evidence-chain.md`.
-
-## Three Search Types (P0)
+每个重要市场结论必须走五段链条：
 
 ```
-Problem Evidence (does anyone encounter this problem?)
-+ Solution Evidence (how do they currently solve?)
-+ Payment Evidence (does anyone pay for similar results?)
-= commercial validation foundation
+原始证据 → 观察 Observation → 推断 Inference → 假设 Hypothesis → 验证 Validation
 ```
 
-When only Problem Evidence, no Payment Evidence, at most judge "potential opportunity (B)", must not judge as strong commercial opportunity. Search keyword families and discipline see `references/market-research.md` section three search types.
+- **禁止**：原始证据 → 直接得出强商业结论。
+- 每条证据标注：Evidence（原文）、Source（来源）、Evidence Type（类型）、Confidence（置信度）、What this evidence proves（证明了什么）、What this evidence does NOT prove（不能证明什么）。
+- 证据不足写【证据不足】，不补模型猜测。
+- 完整定义、证据类型、置信度口径与示例见 `references/evidence-chain.md`。
 
-## Opportunity State Machine (P1)
-
-Each important opportunity has unique ID (MS-###), advances along states:
-
-```
-HYPOTHESIS -> DEMAND_CONFIRMED -> MARKET_CONFIRMED
--> PAYMENT_VALIDATION -> CUSTOMER_FOUND
--> FIRST_PAYMENT -> REPEATED_DELIVERY -> STANDARDIZED
--> AUTOMATED -> PRODUCTIZED
-```
-
-**States always use full English state names** (e.g. DEMAND_CONFIRMED, FIRST_PAYMENT), not letter codes, to avoid confusion with **evidence grade A/B/C** (A=validated demand / B=potential demand / C=hypothetical demand, unchanged). **FIRST_PAYMENT must actually receive real payment**; "willing to pay/willing to try/quote willingness" are only validation signals, at most advance to CUSTOMER_FOUND. Each time continuing research on same opportunity: read previous evidence -> do not repeat meaningless searches -> clarify current state -> clarify missing next evidence -> only advance current bottleneck. Full rules see `references/opportunity-state-machine.md`.
-
-## Core Decision Tree
+## 三类搜索（P0）
 
 ```
-Real problem?
-|
-Repeated occurrence?
-|
-Painful enough?
-|
-Users actively seek solutions?
-|
-Market has similar solutions?
-|
-Anyone pays for similar results?
-|
-AI can significantly reduce cost/time/skill barrier?
-|
-Individual can deliver at low cost?
-|
-Find real users?
-|
-First payment?
-|
-Repeat delivery?
-|
-Standardize?
-|
-Automate?
-|
-Productize?
+Problem Evidence（有人遇到这个问题？）
++ Solution Evidence（他们现在怎么解决？）
++ Payment Evidence（有没有人为类似结果付钱？）
+= 商业验证基础
 ```
 
-Any key node is NO: do not forcibly create opportunity, return to corresponding validation step; or output [not recommended to continue] per "stop mechanism".
+只有 Problem Evidence、没有 Payment Evidence 时，最多判为"潜在机会（B）"，不得判为强商业机会。搜索关键词族与纪律见 `references/market-research.md` §三类搜索。
 
-## Quick Validation Modes
+## Opportunity 状态机（P1）
 
-- **7-day validation**: Day1 confirm problem and evidence -> Day2 research existing solutions -> Day3 make minimal sample -> Day4 find potential users -> Day5 low-cost test delivery -> Day6 collect feedback -> Day7 try charge/judge abandon. Projects not suitable for 7 days must adjust, must not mechanically apply.
-- **30-day market reconnaissance** (when no clear project): W1 discover 3-5 problems daily no development -> W2 filter 5 -> W3 research evidence/competition/price/payment -> W4 choose 1-2 simplest problems validate with human+AI. Goal is not perfect project, but first real result.
+每个重要机会有唯一 ID（MS-###），沿状态推进：
 
-## Three-Pool Maintenance (long-term running)
+```
+HYPOTHESIS（假设）→ DEMAND_CONFIRMED（已有需求证据）→ MARKET_CONFIRMED（已有市场/付费证据）
+→ PAYMENT_VALIDATION（已进行付费验证）→ CUSTOMER_FOUND（已找到真实用户）
+→ FIRST_PAYMENT（第一笔钱）→ REPEATED_DELIVERY（已重复交付）→ STANDARDIZED（已标准化）
+→ AUTOMATED（已自动化）→ PRODUCTIZED（已产品化）
+```
 
-- **Result Pool**: what results can AI currently help people complete.
-- **Demand Pool**: who needs what results.
-- **Payment Pool**: who already pays for similar results.
-Prioritize researching opportunities where "problem + existing solutions + existing payment behavior" all hold simultaneously.
+**状态一律用完整英文状态名**（如 DEMAND_CONFIRMED、FIRST_PAYMENT），不用字母代码，避免与**证据等级 A/B/C**（A=已验证需求 / B=潜在需求 / C=假设需求，保持不变）混淆。**FIRST_PAYMENT 必须实际收到真实付款**，"愿意付钱/愿意尝试/报价意愿"只是验证信号，最多推进到 CUSTOMER_FOUND。每次继续研究同一机会：读取之前的证据 → 不重复无意义搜索 → 明确当前状态 → 明确缺失的下一步证据 → 只推进当前瓶颈。完整规则见 `references/opportunity-state-machine.md`。
 
-## Stop Research Mechanism
+## 核心决策树
 
-When any of following occurs, proactively suggest stopping and output [not recommended to continue]:
-- No real problem evidence.
-- Only single accidental case.
-- No repeated demand.
-- No any solution market.
-- No payment behavior.
-- Users already have mature and satisfied solutions.
-- AI cannot significantly reduce cost/time/skill barrier.
-- Competition intensity far exceeds individual capability.
-- MVP cannot quickly validate.
-- Must invest large funds/team/development cycle.
-- User themselves cannot reach target customers.
+```
+真实问题？
+↓
+有重复发生？
+↓
+足够痛？
+↓
+用户主动寻找解决方案？
+↓
+市场已有类似解决方案？
+↓
+有人为类似结果付费？
+↓
+AI 能明显降低成本/时间/技能门槛？
+↓
+个人可以低成本交付？
+↓
+找到真实用户？
+↓
+第一笔钱？
+↓
+重复交付？
+↓
+标准化？
+↓
+自动化？
+↓
+产品化？
+```
 
-When stopping must explain: 1) why stop; 2) which evidence caused stop; 3) what new evidence in future can restart. Full version see `references/payment-validation.md` section stop mechanism.
+任何关键节点为 NO：不硬造机会，回到对应验证环节；或按"停止机制"输出【不建议继续】。
 
-## Avoid Research Addiction
+## 快速验证模式
 
-When evidence already sufficient to support a low-cost validation (real problem + repeated demand + similar service charging + AI has clear leverage + user reachable + can do MVP at low cost):
-- Stop continuing search.
-- Output [research phase complete].
-- Next step is [start real user validation], not continue finding new opportunities.
+- **7 天验证**：Day1 确认问题与证据 → Day2 研究现有方案 → Day3 制作最小样品 → Day4 寻找潜在用户 → Day5 低成本测试交付 → Day6 收集反馈 → Day7 尝试收费/判断放弃。不适合 7 天的项目必须调整，不得机械套用。
+- **30 天市场侦察**（无明确项目时）：W1 每天发现 3-5 个问题不开发 → W2 筛选 5 个 → W3 研究证据/竞争/价格/付费 → W4 选 1-2 个最简单问题用人工+AI 验证。目标不是完美项目，而是第一个真实结果。
 
-## Daily Observation Training
+## 三池维护（长期运行）
 
-Train "person who watches content" into "person who observes demand":
-"This is so troublesome" -> is this a problem? / "Any tool?" -> does demand exist? / "How much?" -> does payment signal exist? / "Must do every day" -> does repeated labor exist? / "I don't know how" -> does skill barrier exist? / "This software is too complex" -> does simplification opportunity exist?
+- **Result Pool**：AI 当前能帮人完成什么结果。
+- **Demand Pool**：谁需要什么结果。
+- **Payment Pool**：谁已经在为类似结果付钱。
+优先研究"问题 + 已存在解决方案 + 已存在付费行为"三者同时成立的机会。
 
-## Reference Files (read as needed)
+## 停止研究机制
 
-- `references/problem-framework.md` — Problem Card fields, problem ten categories, evidence grades, evidence-bound scoring (including Payment tiers), three-pool maintenance, commercial intuition training.
-- `references/market-research.md` — three search types (Problem/Solution/Payment), reconnaissance sources, video reverse analysis, comment mining, competition and payment, 7-day/30-day modes, Deep Research.
-- `references/payment-validation.md` — payment signals, payment scoring tiers, first payment execution checklist, validation metrics, stop mechanism (including restart conditions).
-- `references/ai-solution-patterns.md` — Level 1-5 solutions, actionable solution checklist, tech stack requirements, MVP principles, downgrade rules, Sell Result First.
-- `references/evidence-chain.md` — evidence chain five-segment, evidence types, confidence calibration, anti-jump rules (P0 new).
-- `references/opportunity-state-machine.md` — Opportunity ID, delivery state machine HYPOTHESIS to ... to PRODUCTIZED, bottleneck advancement and cross-session resume rules.
-- `references/demand-validation.md` — [v2.0 new] demand validation: demand strength 6 signals, three-layer users, substitution cost, payment reason chain JTBD, demand evidence credibility, demand conclusion three-choice (VALIDATE).
-- `references/project-evaluation.md` — [v2.0 new] project evaluation: 7-dimension weighted, composite Opportunity Score 0-100 (recalculable), three-tier conclusion GO/VALIDATE_FIRST/NO_GO, competition landscape and differentiation, AI feasibility, Solo Fit, 7 fatal red flags (EVALUATE).
-- `references/project-blueprint.md` — [v2.0 new] opportunity to project: product Level, core users, MoSCoW, MVP five items, tech direction, minimal validation experiment, differentiation落地 (BLUEPRINT, reuses Level 1-5).
-- `references/monetization-gtm.md` — [v2.0 new] monetization & GTM: payer/ICP, Offer ladder, business model library, explainable pricing, first 10 customers, channel matrix, GTM three phases, no-build validation, MonetizationInput/Plan module contract (MONETIZE, can be independent).
-- `references/pipeline-and-runtime.md` — [v2.0 new] five-stage pipeline orchestration, three code systems distinction, circuit breaking/fallback/resume from breakpoint, external call timeout/retry/failure degradation, output information hierarchy/bilingual/desktop-mobile/code area spec, pre-delivery acceptance checklist.
-- `references/ui-rendering-spec.md` — [v2.0.0 new] output rendering and visual spec (Design System): verdict banner, stage progress bar, score bar, action buttons, Loading/Empty/Error/Success four states, mobile-first, long report reading experience, bilingual, code area, output self-check checklist.
+出现以下任一情况，主动建议停止并输出【不建议继续】：
+- 没有真实问题证据。
+- 只有单个偶然案例。
+- 没有重复需求。
+- 没有任何解决方案市场。
+- 没有付费行为。
+- 用户已有成熟且满意的解决方案。
+- AI 无法明显降低成本/时间/技能门槛。
+- 竞争强度远超个人能力。
+- MVP 无法快速验证。
+- 必须投入大量资金/团队/开发周期。
+- 用户本人无法触达目标客户。
 
-## Templates (fill directly)
+停止时必须说明：1) 为什么停止；2) 哪个证据导致停止；3) 未来出现什么新证据可以重新启动。完整版见 `references/payment-validation.md` §停止机制。
 
-- `templates/problem-card.md` — problem card (includes evidence chain fields).
-- `templates/evidence-card.md` — single evidence card (v1.1 new).
-- `templates/opportunity-card.md` — opportunity card (includes Opportunity ID, state, evidence-bound scoring).
-- `templates/quick-scan.md` — Quick Mode quick judgment (v1.1 new).
-- `templates/market-report.md` — Market Scan complete report (FIND stage, includes three search types evidence and state).
-- `templates/demand-validation-card.md` — [v2.0 new] demand validation card (VALIDATE).
-- `templates/project-evaluation-card.md` — [v2.0 new] project evaluation card (EVALUATE, includes score table/formula/red flags).
-- `templates/project-blueprint-card.md` — [v2.0 new] opportunity to project card (BLUEPRINT).
-- `templates/monetization-gtm-card.md` — [v2.0 new] monetization & GTM card (MONETIZE, includes MonetizationPlan contract).
-- `templates/opportunity-report.md` — [v2.0 new] final opportunity report (five-stage consolidation, conclusion-first).
+## 避免研究上瘾
 
-## Examples (demonstrate workflow, data is illustrative)
+当证据已足够支持一个低成本验证（有真实问题 + 有重复需求 + 有类似服务收费 + AI 有明显杠杆 + 用户可触达 + 可低成本做 MVP）时：
+- 停止继续搜索。
+- 输出【研究阶段完成】。
+- 下一步是【开始真实用户验证】，不是继续找新机会。
 
-- `examples/video-analysis.md` — video reverse market analysis (includes evidence chain).
-- `examples/comment-analysis.md` — comment demand mining (includes three search types).
-- `examples/real-world-problem.md` — complete v1.1 running example: Quick to Research (three search types+evidence chain) to Execution (first payment) + state machine advancement.
-- `examples/full-pipeline-v2.md` — [v2.0 new] complete V2 pipeline example: FIND to VALIDATE to EVALUATE (includes recalculable score and "why 74 points is still VALIDATE_FIRST") to BLUEPRINT to MONETIZE (pricing/acquisition/first customers) to final conclusion.
+## 日常观察训练
 
-## User Guide
+把"看内容的人"训练成"观察需求的人"：
+"这个好麻烦"→ 这是问题吗？／"有没有工具"→ 存在需求吗？／"多少钱"→ 存在付费信号吗？／"每天都要做"→ 存在重复劳动吗？／"我不会"→ 存在技能门槛吗？／"这个软件太复杂"→ 存在简化机会吗？
 
-`USER_GUIDE.md` is installation and usage guide for end users (not Agents): installation methods, version verification, trigger words, three modes, FAQ. When user asks "how to install / how to use / how to verify version / what trigger words", guide them to read `USER_GUIDE.md`.
+## 参考文件（按需读取）
+
+- `references/problem-framework.md` — Problem Card 字段、问题十大分类、证据等级、**证据绑定评分（含 Payment 分档）**、三池维护、商业嗅觉训练。
+- `references/market-research.md` — **三类搜索（Problem/Solution/Payment）**、侦察来源、视频反向分析、评论区挖掘、竞争与付费、7 天/30 天模式、Deep Research。
+- `references/payment-validation.md` — 付费信号、**付费评分分档**、**第一笔钱执行清单**、验证指标、**停止机制（含重启条件）**。
+- `references/ai-solution-patterns.md` — Level 1-5 方案、可落地方案清单、技术栈要求、MVP 原则、降级规则、Sell Result First。
+- `references/evidence-chain.md` — **证据链五段式、证据类型、置信度口径、防跳级规则（P0 新增）**。
+- `references/opportunity-state-machine.md` — **Opportunity ID、交付状态机 HYPOTHESIS→…→PRODUCTIZED、瓶颈推进与跨会话续研规则**。
+- `references/demand-validation.md` — **【v2.0 新增】需求验证：需求强度 6 信号、三层用户、替代成本、付费理由链 JTBD、需求证据可信度、需求结论三选一（VALIDATE）**。
+- `references/project-evaluation.md` — **【v2.0 新增】项目评估：7 维加权、综合机会评分 0-100（可复算）、三档结论 GO/VALIDATE FIRST/NO-GO、竞争格局与差异化、AI 可实现度、Solo Fit、7 条致命红旗（EVALUATE）**。
+- `references/project-blueprint.md` — **【v2.0 新增】机会转项目：产品 Level、核心用户、MoSCoW、MVP 五项、技术方向、最小验证实验、差异化落地（BLUEPRINT，复用 Level 1-5）**。
+- `references/monetization-gtm.md` — **【v2.0 新增】商业化与获客：付费方/ICP、Offer 阶梯、商业模式库、可解释定价、首批 10 客户、渠道矩阵、GTM 三阶段、无产品验证、MonetizationInput/Plan 模块契约（MONETIZE，可独立）**。
+- `references/pipeline-and-runtime.md` — **【v2.0 新增】五阶段流水线编排、三套代码区分、熔断/回退/断点续跑、外部调用超时·重试·失败降级、输出信息层级/双语/桌面移动端/代码区规范、交付前验收清单**。
+- `references/ui-rendering-spec.md` — **【v2.0.0 新增】输出渲染与视觉规范（Design System）：结论带 Banner、阶段进度条、分数条、行动按钮、Loading/Empty/Error/Success 四状态、移动端优先、长报告阅读体验、双语、代码区、输出自检清单**。
+
+## 模板（直接填充）
+
+- `templates/problem-card.md` — 问题卡片（含证据链字段）。
+- `templates/evidence-card.md` — **单条证据卡片（v1.1 新增）**。
+- `templates/opportunity-card.md` — 机会卡片（含 Opportunity ID、状态、证据绑定评分）。
+- `templates/quick-scan.md` — **Quick Mode 快速判断（v1.1 新增）**。
+- `templates/market-report.md` — Market Scan 完整报告（FIND 阶段，含三类搜索证据与状态）。
+- `templates/demand-validation-card.md` — **【v2.0 新增】需求验证卡（VALIDATE）**。
+- `templates/project-evaluation-card.md` — **【v2.0 新增】项目评估卡（EVALUATE，含评分表/计算式/红旗）**。
+- `templates/project-blueprint-card.md` — **【v2.0 新增】机会转项目卡（BLUEPRINT）**。
+- `templates/monetization-gtm-card.md` — **【v2.0 新增】商业化与获客卡（MONETIZE，含 MonetizationPlan 契约）**。
+- `templates/opportunity-report.md` — **【v2.0 新增】最终机会报告（五阶段汇总，结论先行）**。
+
+## 示例（演示流程，数据为示意）
+
+- `examples/video-analysis.md` — 视频反向市场分析（含证据链）。
+- `examples/comment-analysis.md` — 评论区需求挖掘（含三类搜索）。
+- `examples/real-world-problem.md` — **完整 v1.1 运行示例：Quick → Research（三类搜索+证据链）→ Execution（第一笔钱）+ 状态机推进**。
+- `examples/full-pipeline-v2.md` — **【v2.0 新增】完整 V2 流水线示例：FIND→VALIDATE→EVALUATE（含可复算评分与"74 分为何仍是🟡"）→BLUEPRINT→MONETIZE（定价/获客/第一批客户）→最终结论**。
+
+## 用户使用说明
+
+`USER_GUIDE.md` 是面向最终用户（非 Agent）的安装与使用说明：安装方式、版本验证、触发词、三种模式、FAQ。当用户询问"怎么安装 / 怎么用 / 怎么验证版本 / 有哪些触发词"时，引导其阅读 `USER_GUIDE.md`。
