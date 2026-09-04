@@ -1,6 +1,6 @@
 # Market Scout
 
-**AI 项目机会发现与验证 Agent**
+**v2.0.0** · AI 项目机会发现与验证 Agent
 
 Find opportunities.
 Validate demand.
@@ -282,6 +282,7 @@ Final Verdict
 | First 10 Customers | 首批 10 客户获取法，从名单到转化到转介绍 |
 | GTM Three Phases | A 拿第一笔钱 → B 重复交付标准化 → C 产品化规模化 |
 | No-build Validation | 7 种不开发产品的验证方式（Concierge / 落地页 / 预售 / Fake Door…） |
+| Modular Data Contract | `MonetizationInput` / `MonetizationPlan`，未来可独立成产品 |
 | Runtime Robustness | 超时 / 有限重试 / 失败降级 / 断点续跑 |
 
 ---
@@ -319,7 +320,7 @@ market-scout/
 ├── references/       # 方法论文档（12 篇）
 ├── templates/        # 可填充模板（10 张卡片）
 ├── examples/         # 完整示例（4 个，含 v2 全流程示例）
-├── tools/            # 自检脚本（161 项检查）
+├── tools/            # 自检脚本 validate_skill.py（161 项检查）
 ├── website/          # 产品落地页（GitHub Pages 就绪）
 ├── USER_GUIDE.md     # 用户使用指南
 └── README.md         # 本文件
