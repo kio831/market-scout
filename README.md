@@ -1,369 +1,278 @@
-# Market Scout
+<div align="center">
 
-**v2.0.0** · AI 项目机会发现与验证 Agent
+# 🔭 Market Scout
 
-Find opportunities.
-Validate demand.
-Evaluate projects.
-Monetize ideas.
+### AI Market Opportunity Discovery & Validation Skill
+### AI 市场机会发现 · 需求验证 · 项目评估 · 商业化决策 Skill
 
-**[ Find → Validate → Evaluate → Monetize ]**
+把一个模糊想法，跑成 **「是否值得做的结论 + 最小可行方案 + 下一步行动」**。
 
-> 不要凭感觉决定做什么。
-> 先去市场寻找证据，再决定是否值得开发。
+[![Version](https://img.shields.io/badge/version-v3.0.0-blue)](./CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+![Type](https://img.shields.io/badge/type-Agent%20Skill-orange)
+![Platform](https://img.shields.io/badge/platform-Any%20Markdown%20Agent-lightgrey)
+![Decision Layer](https://img.shields.io/badge/V3-Decision%20Layer-brightgreen)
 
----
+**Evidence → Score → Decision → MVP → Action**
 
-## 适合谁？
+[⬇ 下载 V3.0.0](./releases/market-scout-v3.0.0.zip) · [🚀 安装](#-安装-v3) · [⚡ 快速开始](#-快速开始) · [🗺 版本演进](#-v1--v2--v3-版本演进) · [📁 项目结构](#-项目结构)
 
-- **独立开发者 / Indie Hackers** — 想做副业但不知道做什么
-- **AI 创业者** — 有想法但不确定值不值得投入
-- **学生 / 第一次创业的人** — 需要结构化、低成本的验证路径
-- **有项目想法但不知道是否值得做的人** — 想验证而不是直接开干
-- **不知道做什么、想寻找真实用户痛点的人** — 从市场和社区中发现机会
+</div>
 
 ---
 
-## V1 — Find the Opportunity
+## 🎯 这是什么
 
-V1 的核心任务只有一个：
+Market Scout 是一个 **纯 Markdown 编写的 AI Agent Skill（方法论文档包）**。安装到支持 Skill 的 AI 客户端后，Agent 就获得一整套「市场机会发现 → 需求验证 → 项目评估 → MVP 设计 → 商业化决策」的工作流。
 
-> **帮你找到"值得关注的问题"。**
+> 它 **不是「AI 创业点子生成器」**，不会凭空给你编项目。
+> 它从**真实问题和真实市场证据**出发，帮你发现需求、验证机会、评估项目、设计 MVP，并决定下一步具体行动。
 
-你可以把这些交给 Market Scout：
-
-- 抖音 / TikTok 视频
-- 评论区
-- Reddit / X / 社区讨论
-- GitHub Issue
-- 现实生活中的问题
-- 自己观察到的现象
-
-然后它帮你完成：
+它的思考顺序是：
 
 ```
-Problem → Evidence → Demand → Opportunity
+先问：谁遇到了什么问题？为什么愿意付钱解决？
+再问：AI 能否让我更低成本、更快地解决它？
+最后：值不值得做？第一版做什么？今天先做什么？
 ```
 
-**举个例子：**
+## 🧭 可以用在哪些方面
 
-```
-一个视频
-  ↓
-发现大量用户抱怨
-  ↓
-提取真实痛点
-  ↓
-寻找更多类似证据
-  ↓
-判断是不是普遍需求
-  ↓
-形成 Opportunity
-```
-
-> **V1 更适合"我不知道做什么，我想寻找机会"。**
-
----
-
-## V2 — From Opportunity to Business
-
-> **V1 帮你发现机会，V2 帮你判断这个机会到底值不值得做。**
-
-V2 在 V1 基础上新增四大能力：
-
-### 01 — Demand Validation 需求验证
-
-这个问题是不是真的存在？谁最痛？谁可能付钱？
-
-- 需求强度 6 信号打分（1-10，每分绑定证据）
-- 三层目标用户（核心 / 扩展 / 非用户）
-- 付费理由链 JTBD（Job → Cost → Trigger → Reason → Authority）
-- 当前解决方案与替代成本（定价锚）
-
-### 02 — Project Evaluation 项目评估
-
-市场、竞争、开发难度、AI 可行性、个人开发者适配度、风险。
-
-- 7 维加权综合评分（0-100，计算式可手工复算）
-- 7 条致命红旗（一票否决）
-- 最终给出三档结论：
-
-| 🟢 GO | 🟡 VALIDATE FIRST | 🔴 NO GO |
-|---|---|---|
-| 值得做 | 建议验证后再做 | 不建议做 |
-
-### 03 — Opportunity → Project 机会转项目
-
-把一个市场机会转换成真正可以开发的项目：
-
-```
-Opportunity → MVP → Product
-```
-
-包括：
-
-- 推荐产品形态（Level 1-5，默认 L1 先卖结果）
-- 核心用户
-- MVP 范围（做什么 / 不做什么 / 验证什么 / 继续条件 / 放弃条件）
-- Must-have Features（MoSCoW 优先级，M ≤ 3）
-- 技术方向
-- 最小验证实验
-
-### 04 — Monetization & GTM 商业化与获客
-
-这是 V2 最重要的升级之一。
-
-不再只问：
-
-> **"这个项目有没有市场？"**
-
-而是继续问：
-
-> **谁会付钱？卖什么？多少钱？去哪里找到第一批客户？**
-
-包括：
-
-- Target Customer（区分使用者与付费方）
-- Offer（三档阶梯：引流 / 主力 / 增值）
-- Business Model
-- Pricing（可解释定价：价值锚 / 市场锚 / 成本底线）
-- Acquisition Channels（主渠道 ≤ 2）
-- First 10 Customers（首批 10 客户获取法）
-- GTM Strategy（三阶段路径）
-- 7 种不开发产品的验证方式
-
----
-
-## V1 vs V2 对比
-
-| | V1 | V2 |
-|---|---|---|
-| **核心目标** | Find Problems | Find → Build → Monetize |
-| 市场发现 | ✓ | ✓ |
-| 痛点分析 | ✓ | ✓ |
-| Evidence Chain | ✓ | ✓ |
-| 需求验证 | 基础 | 深度验证 |
-| 项目评估 | — | ✓ |
-| MVP 设计 | 基础 | ✓ |
-| 商业模式 | — | ✓ |
-| Pricing | — | ✓ |
-| 获客策略 | — | ✓ |
-| First Customers | — | ✓ |
-| **最终结论** | Opportunity | GO / VALIDATE / NO GO |
-
-> **V1 answers: "What problem should I solve?"**
-> **V2 answers: "Should I build it, what should I build, and how can I make money from it?"**
-
----
-
-## Two Ways to Start 双入口
-
-### 🔍 Discover Opportunity 发现机会
-
-**我不知道做什么。**
-
-从真实市场、社区、用户讨论中寻找：
-
-```
-Problem → Demand → Opportunity
-```
-
-把一个视频、一条评论、一个现象交给 Market Scout，它帮你从中提取真实痛点、寻找证据、形成机会。
-
----
-
-### 💡 Validate My Idea 验证想法
-
-**我已经有一个项目想法。**
-
-直接把自己的想法交给 Market Scout：
-
-```
-Idea → Evidence → Validation → Evaluation → Monetization
-```
-
-最终告诉你：
-
-> **这个项目值不值得做，以及应该怎么做。**
-
----
-
-## How It Works 工作流程
-
-```
-             MARKET SCOUT
-        ┌──────────────────┐
-        │ Market / My Idea │
-        └────────┬─────────┘
-                 ↓
-              FIND
-           发现机会
-                 ↓
-            VALIDATE
-            验证需求
-                 ↓
-            EVALUATE
-            项目评估
-                 ↓
-             BUILD
-             MVP方案
-                 ↓
-            MONETIZE
-            商业化
-                 ↓
-           FIRST CUSTOMERS
-             第一批客户
-```
-
-> Market Scout 不负责替你"幻想一个项目"，而是通过 **Evidence → Validation → Evaluation**，把一个模糊想法逐渐变成一个可以执行的项目判断。
-
-伪需求和 NO_GO 会在对应阶段熔断，不硬造机会。
-
----
-
-## Example 真实使用例子
-
-> ⚠️ 以下为示例数据，仅用于演示流程，不代表真实市场结论。
-
-### 输入
-
-> **"我想做一个 AI 简历优化工具。"**
-
-Market Scout 不应该直接回答"这个项目很好，可以做"，而应该：
-
-```
-Search real demand
-        ↓
-Find user pain points
-        ↓
-Analyze existing solutions
-        ↓
-Check willingness to pay
-        ↓
-Evaluate competition
-        ↓
-Evaluate development difficulty
-        ↓
-Find differentiation
-        ↓
-Design MVP
-        ↓
-Pricing
-        ↓
-First customers
-        ↓
-Final Verdict
-```
-
-### 最终
-
-```
-🟢 GO 值得做  /  🟡 VALIDATE FIRST 建议验证后再做  /  🔴 NO GO 不建议做
-```
-
-完整示例（含可复算评分 74/100）见 [`examples/full-pipeline-v2.md`](examples/full-pipeline-v2.md)。
-
----
-
-## Under the Hood 专业方法论
-
-前面的内容让普通用户看懂，这里是背后的专业方法：
-
-| 方法 | 说明 |
+| | |
 |---|---|
-| Evidence Chain | 原始证据 → 观察 → 推断 → 假设 → 验证，防跳级 |
-| Problem / Solution / Payment Search | 三类搜索，只有 Problem 无 Payment 不得判强机会 |
-| Demand Strength Score | 需求强度 6 信号合成 1-10 分，每分绑定证据 |
-| 7-Dimension Opportunity Score | 7 维加权综合评分 0-100，计算式可手工复算 |
-| Fatal Red Flags | 7 条致命红旗，触发任一直接 NO GO |
-| MoSCoW MVP | Must-have ≤ 3，先卖结果再产品化 |
-| Payment Reason Chain | JTBD 5 环：Job → Cost → Trigger → Reason → Authority |
-| Pricing Framework | 价值锚 / 市场锚 / 成本底线 / 首单价 / 提价路径 |
-| First 10 Customers | 首批 10 客户获取法，从名单到转化到转介绍 |
-| GTM Three Phases | A 拿第一笔钱 → B 重复交付标准化 → C 产品化规模化 |
-| No-build Validation | 7 种不开发产品的验证方式（Concierge / 落地页 / 预售 / Fake Door…） |
-| Modular Data Contract | `MonetizationInput` / `MonetizationPlan`，未来可独立成产品 |
-| Runtime Robustness | 超时 / 有限重试 / 失败降级 / 断点续跑 |
+| 🔍 **Market Research**<br>市场研究：三类搜索（问题 / 现有方案 / 付费行为）交叉验证 | 💡 **Opportunity Discovery**<br>发现创业机会：从日常现象里找出可验证的商业机会 |
+| 🎯 **Pain Point Discovery**<br>发现真实痛点：区分「有点不方便」和「愿意付钱解决」 | 🔎 **Problem Validation**<br>验证需求真假：需求强度 6 信号 + 证据三态，拒绝自我感动 |
+| 🏆 **Competition Analysis**<br>竞争与切入分析：不数竞品数量，只看「还有没有切入空间」 | 💰 **Monetization**<br>商业化：商业模式、定价锚、获客渠道、第一批客户 |
+| 🧩 **MVP Planning**<br>最小可行产品：9 字段方案，默认「人工 + AI」先卖结果 | 🚀 **Action Planning**<br>行动计划：按机会类型生成分步行动，明确「今天做什么」 |
 
----
+**可以分析的输入**：短视频内容、评论区、用户反馈、社交媒体帖子、现实生活中观察到的问题、已有产品、市场需求、创业想法……
 
-## Quick Start 快速开始
+**最终帮你回答一个问题：这件事，到底值不值得做？**
 
-### 1. Download Market Scout
+## 🗺 V1 → V2 → V3 版本演进
 
-从 [Releases](https://github.com/kio831/market-scout/releases) 下载 `market-scout.skill` 或 `.zip`。
+```mermaid
+flowchart TB
+    subgraph V1["V1 · DISCOVER 发现问题"]
+        direction LR
+        A1["Market Scan<br/>市场扫描"] --> A2["三类搜索<br/>问题/方案/付费"] --> A3["Evidence Chain<br/>证据链"]
+    end
+    subgraph V2["V2 · VALIDATE & COMMERCIALIZE 验证与商业化"]
+        direction LR
+        B1["Validate<br/>需求验证"] --> B2["Evaluate<br/>项目评估"] --> B3["Blueprint<br/>方案设计"] --> B4["Monetize<br/>商业化获客"]
+    end
+    subgraph V3["V3 · DECIDE & EXECUTE 决策与行动（当前版本）"]
+        direction LR
+        C1["Evidence<br/>证据归一"] --> C2["Score<br/>0-100 评分"] --> C3["Decision<br/>三档决策"] --> C4["MVP<br/>最小方案"] --> C5["Action<br/>下一步行动"]
+    end
+    V1 --> V2 --> V3
+```
 
-### 2. Install SKILL.md into your AI Agent
+- **V1 解决「发现问题」**，V2 解决「验证 + 怎么赚钱」，**V3 解决「到底做不做、现在做什么」**。
+- 三个版本是**增量叠加**关系：V3 完整包含 V2、V1 的全部方法、模板与示例，没有删除任何旧能力。
 
-- **拖拽安装**：把 `market-scout.skill` 拖入支持 Skill 的 AI 客户端
-- **手动安装**：解压后放入技能目录，确保路径为 `<skills-dir>/market-scout/SKILL.md`
+### V1 — DISCOVER 发现问题（基础版）
 
-验证：打开 `SKILL.md` 能搜到 `Monetization & GTM` 和 `值得做 GO` 即为 v2.0.0。
+V1 是 Market Scout 的基础版本，核心是**从真实内容和真实问题中发现值得关注的市场机会**：
 
-### 3. Start with one of these prompts
+- Market Scan 市场扫描、Problem Card 问题卡片
+- Problem / Solution / Payment 三类搜索
+- Evidence Chain 证据链（原始证据 → 观察 → 推断 → 假设 → 验证）
+- Quick / Research / Execution 三种工作模式、基础机会判断
 
-#### Discover Mode 发现模式
+> 一句话：**V1 帮你「发现问题」。**
 
-> **"Find a real user problem worth solving in [market]."**
+### V2 — VALIDATE & COMMERCIALIZE 验证与商业化
 
-#### Validate Mode 验证模式
+V2 在 V1 之上建立了完整的机会验证与商业化流水线：
 
-> **"I want to build [idea]. Validate whether this is worth building."**
+```
+Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 方案设计 → Monetize 商业化
+```
 
----
+- **Validate**：需求强度 6 信号、三层目标用户、替代成本、付费理由链 JTBD
+- **Evaluate**：7 维加权评分 0-100（可手工复算）、GO / VALIDATE_FIRST / NO_GO 三档结论、7 条致命红旗
+- **Blueprint**：产品形态 Level 1-5、MoSCoW、MVP 五项、最小验证实验
+- **Monetize**：付费方画像、Offer 三档、商业模式库、可解释定价、首批 10 客户、GTM 路径
 
-## Repository Structure 项目结构
+> 一句话：**V2 回答「有没有真实需求？有没有市场？能不能做？怎么赚钱？」**
+
+### V3 — DECISION LAYER 决策层（⭐ 当前版本，重点）
+
+V3 最大的变化不是多加几个功能，而是在 V2 的分析流水线之上，增加了一层 **Decision Layer（决策层）**：
+
+```mermaid
+flowchart LR
+    E["Evidence<br/>证据三态"] --> S["Score<br/>7 维 0-100"] --> D["Decision<br/>三档决策"] --> M["MVP<br/>9 字段方案"] --> A["Action<br/>类型化行动"]
+```
+
+> **V2 帮你把机会分析清楚；V3 帮你决定这个机会到底值不值得做，以及下一步具体怎么做。**
+
+## ✨ V3 核心升级（5 个新模块）
+
+| 模块 | 能力说明 |
+|---|---|
+| **01 · Market Evidence 市场证据** | 每条关键结论强制区分三态：✅ **Evidence**（找到的公开信息，可引用来源）／🟡 **Inference**（基于证据的推导，最高 7 分）／⚪ **Unknown**（信息不足，按 0 分计）。证据不足时直接**熔断**：不评分、不编造，并说明缺什么、去哪补。 |
+| **02 · Opportunity Score 机会评分** | 7 维加权出 **0–100 分**：需求 15% · 痛点 15% · 竞争切入 15% · **变现 20%** · 开发 15% · 获客 10% · AI 优势 10%；每维再拆 3-4 个子信号，计算式必须写出、**可手工复算**，不是 AI 主观分。 |
+| **03 · Decision 机会决策** | 由「总分 + 门槛 + 红旗 + 证据充分度」共同决定：🟢 **RECOMMENDED** 推荐继续做／🟡 **POTENTIAL** 有潜力但需先验证／🔴 **NOT_RECOMMENDED** 不建议投入；每个决策必须带编号 Why 列表，每条理由绑定证据。 |
+| **04 · MVP Blueprint 最小方案** | 值得做才生成，固定 9 字段：Product / Target User / Core Problem / Core Value / Must Have（≤3）/ Nice to Have / **Do Not Build** / Build Difficulty / Recommended Stack。默认「人工 + AI」先卖结果，而不是一上来开发复杂产品。 |
+| **05 · Action Plan 行动计划** | 按 5 类机会（企业工具 / 个人工具 / AI Agent / 本地服务 / 数字产品）生成**不同的**分步计划，每步含「目标 · 做什么 · 成功标准 · 失败转向」，结尾给出 1-3 个「今天就能做」的动作。 |
+
+> 五个模块严格按 **Evidence → Score → Decision → MVP → Action** 顺序执行，前一步不达标，后一步不启动。
+
+## 🔄 V3 完整闭环（一张图看懂）
+
+```mermaid
+flowchart TB
+    P["真实问题 / 视频 / 评论区 / 现象"] --> R["Market Research 三类搜索"]
+    R --> PA["Pain Point 痛点与现有方案"]
+    PA --> E["Evidence 证据三态归一"]
+    E --> S["Opportunity Score 0-100 可复算"]
+    S --> D{"Decision 三档决策"}
+    D -->|RECOMMENDED 或 POTENTIAL| M["MVP Blueprint 9 字段最小方案"]
+    D -->|NOT_RECOMMENDED| X["停止：原因 + 重启条件"]
+    M --> A["Action Plan 分步行动"]
+    A --> U["真实用户验证（先拿第一笔钱）"]
+    U --> C["商业化：复购 → 标准化 → 产品化"]
+```
+
+> 这张图就是 Market Scout 的世界观：**不是让 AI 给你编创业项目，而是从真实需求出发，一步一步走到执行。**
+
+## 📺 使用示例（均来自仓库 examples，演示数据）
+
+### 示例 1：🟢 值得做 —— 本地小店小红书文案代做（78/100）
+
+> 完整示例见 [`examples/v3-decision-run.md`](./examples/v3-decision-run.md)
+
+```
+输入：「很多小店主想在小红书获客但不会写种草文案，代运营一个月好几千，
+      我用 AI 帮他们写，值不值得做？」
+  ↓ Evidence   重复求助 + 代运营 2000-5000 元/月报价（Evidence），付费意愿为 Inference
+  ↓ Score      需求80 痛点77 竞争切入70 变现80 开发88 获客70 AI优势78
+  ↓           = 78/100（计算式可复算），红旗 R1-R7 均未命中
+  ↓ Decision   🟢 RECOMMENDED（需求/变现门槛均达标，证据 Partial）
+  ↓ MVP        L1 人工+AI，【当前不需要开发】，每月 8 条成品图文包
+  ↓ Action     LOCAL_SERVICE 路径：3 家免费样品 → 199 元首月收款 → 复购标准化
+结果：今天就做出 3 条品类样品、列出 20 家目标店、谈 3 家免费试做。
+```
+
+### 示例 2：🔴 不建议投入 —— AI 会议纪要工具（48/100）
+
+> 完整示例见 [`examples/v3-crowded-market.md`](./examples/v3-crowded-market.md)
+
+```
+输入：「开会软件都自带 AI 会议纪要了，我再做一个还有机会吗？」
+  ↓ Competition 切入空间四问：巨头免费内建（Evidence）、未抓到用户抱怨（Unknown）、
+  ↓                        细分方向也已有产品 → 无有证据的切入空间，维度封顶 40
+  ↓ Score       = 48/100；红旗 R5 命中（巨头免费碾压且无结构性差异）
+  ↓ Decision    🔴 NOT_RECOMMENDED —— 判负理由不是「竞争激烈」，而是「没有切入空间」
+  ↓ Action      不生成 MVP；只保留一个验证动作：访谈 5 位重度用户找明确缺口
+教学点：竞品多 ≠ 判死，竞品少 ≠ 蓝海；V3 永远只评「切入空间」。
+```
+
+> 更多完整流水线示例：[`examples/full-pipeline-v2.md`](./examples/full-pipeline-v2.md)（74 分为何仍是 POTENTIAL）、[`examples/real-world-problem.md`](./examples/real-world-problem.md)、[`examples/comment-analysis.md`](./examples/comment-analysis.md)、[`examples/video-analysis.md`](./examples/video-analysis.md)。
+
+## ⬇ Download
+
+### Latest Version：Market Scout V3.0.0（当前版本）
+
+- 📦 **[market-scout-v3.0.0.zip](./releases/market-scout-v3.0.0.zip)**（仓库内正式安装包，解压后顶层为 `market-scout/` 目录）
+- 历史版本变更见 [CHANGELOG.md](./CHANGELOG.md)
+- 推送到 GitHub 后，也可以在仓库的 **Releases** 页面基于同一文件创建正式 Release（当前仓库内安装包以 `releases/` 目录为准）。
+
+## 🚀 安装 V3
+
+> 以下安装方式与 [`USER_GUIDE.md`](./USER_GUIDE.md) 完全一致，无任何额外命令或依赖。这是纯 Markdown Skill，**不需要 npm / pip 安装，不运行任何服务**。
+
+**方式一：拖拽一键安装（推荐）**
+
+1. 下载并解压 `market-scout-v3.0.0.zip`，取出其中的 `market-scout` 文件夹（部分客户端也支持直接拖 zip）。
+2. 拖入 AI 客户端的「技能 / 一键安装」入口；提示格式不支持时改用方式二。
+3. 按下方「验证安装」确认版本。
+
+**方式二：手动放入技能目录**
+
+1. 解压得到 `market-scout` 文件夹。
+2. 放入 AI 客户端的技能目录（通常叫 `.user_skills/` 或 `skills/`）。
+3. 保证路径为 `<技能目录>/market-scout/SKILL.md`（SKILL.md 在文件夹根下）。
+4. 重启或刷新客户端。
+
+> 装过 v1.1 / v2.0.0：V3 向下兼容、旧能力全部保留；部分平台同名目录不会自动覆盖，建议先删除旧 `market-scout` 文件夹再安装。
+
+**验证安装**：打开安装后的 `SKILL.md`，同时搜到 `Opportunity Score` 和 `值得继续做 RECOMMENDED` = V3.0.0；只搜到 `值得做 GO` = 还是 V2。
+
+## ⚡ 快速开始
+
+装好后，直接对 AI 说一句话即可：
+
+| 你想做什么 | 可以这样说 |
+|---|---|
+| 快速判断一个想法 | "学校打印店总有人让老板改 PDF，有没有机会？" |
+| 分析视频 / 评论区 | "分析这个评论区，看能不能做成生意" |
+| 验证需求真假 | "这个需求是真的吗？用户真的愿意付钱吗？" |
+| **打分与决策（V3）** | "这个想法值不值得做，打个分" / "帮我决策" |
+| **MVP 与下一步（V3）** | "第一版做什么？" / "下一步做什么？" / "今天做什么？" |
+| 设计商业模式 | "怎么收费？定什么价？第一批客户从哪来？" |
+| 完整跑一遍 | "从发现到商业化完整分析一遍，出一份机会报告" |
+| 准备开干 | "帮我拿第一单" / "我准备做了" |
+
+**三种工作模式**：Quick Mode（随手判断，默认）· Research Mode（深挖完整报告）· Execution Mode（停止研究、直接给执行清单）。
+
+## 📁 项目结构
 
 ```
 market-scout/
-├── SKILL.md          # 核心入口：规则、流水线、模式路由
-├── references/       # 方法论文档（12 篇）
-├── templates/        # 可填充模板（10 张卡片）
-├── examples/         # 完整示例（4 个，含 v2 全流程示例）
-├── tools/            # 自检脚本 validate_skill.py（161 项检查）
-├── website/          # 产品落地页（GitHub Pages 就绪）
-├── USER_GUIDE.md     # 用户使用指南
-└── README.md         # 本文件
+├── SKILL.md                    # 核心入口：铁律、V2 五阶段流水线、V3 决策层、模式路由
+├── README.md                   # 本文件（GitHub 项目主页）
+├── USER_GUIDE.md               # 面向最终用户的安装与使用说明
+├── CHANGELOG.md                # 版本变更记录（v1.0 → v1.1 → v2.0.0 → v3.0.0）
+├── CONTRIBUTING.md / LICENSE / .gitignore
+├── references/  (18)           # 方法论文档
+│   ├── * v1 基础（6）：problem-framework / market-research / payment-validation
+│   │                     ai-solution-patterns / evidence-chain / opportunity-state-machine
+│   ├── * v2 流水线（6）：demand-validation / project-evaluation / project-blueprint
+│   │                     monetization-gtm / pipeline-and-runtime / ui-rendering-spec
+│   └── * v3 决策层（6）：v3-overview / v3-evidence / v3-scoring
+│                          v3-decision / v3-mvp / v3-action-plan
+├── templates/   (16)           # 可直接填充的卡片/报告模板（v1 五张 + v2 五张 + v3 六张）
+├── examples/    (6)            # 流程示例（全部为演示数据）
+├── tools/
+│   └── validate_skill.py       # 自检脚本：文件清单/交叉引用/版本一致/权重合计，无第三方依赖
+├── releases/
+│   └── market-scout-v3.0.0.zip # ✅ V3.0.0 正式安装包
+└── website/
+    └── index.html              # 项目落地页（可挂 GitHub Pages）
 ```
 
----
+自检（可选）：在项目根目录运行 `python tools/validate_skill.py`，检查文件完整性、交叉引用、版本一致性与权重合计。
 
-## Roadmap 未来规划
+## 🗺 Roadmap
 
-- [x] Market Opportunity Discovery
-- [x] Demand Validation
-- [x] Project Evaluation (7-dim scoring)
-- [x] Opportunity → Project
-- [x] Monetization & GTM (modular)
-- [x] Final Opportunity Report
-- [ ] More real-world data sources
-- [ ] Better market scoring with real data
-- [ ] Interactive opportunity reports
-- [ ] Multi-opportunity comparison
-- [ ] Standalone Monetization Module
-- [ ] Web App
-- [ ] More Agent integrations
+| 版本 | 状态 | 内容 |
+|---|---|---|
+| v1.0 | ✅ 已发布 | Market Scan、Problem Card、三类搜索、Level 1-5 |
+| v1.1 | ✅ 已发布 | Evidence Chain、三种模式、Opportunity 状态机、停止机制 |
+| v2.0.0 | ✅ 已发布 | Validate / Evaluate / Blueprint / Monetize 四阶段、0-100 评分、UI 规范 |
+| **v3.0.0** | **🚀 当前版本** | **Decision Layer：证据三态、7 维评分、三档决策、MVP Blueprint、类型化 Action Plan** |
+| 后续设想 | 📋 规划中（非当前功能） | 交互式 HTML 报告、多机会对比看板、评分历史追踪 |
+| 远期设想 | 🔮 探索中（非当前功能） | 商业化模块独立为可调用服务、真实市场数据源接入、Web 化 |
 
----
+> 当前版本是**纯 Markdown 文档型 Skill**：不含支付/订阅/计费系统、不含内置数据源或自动化 API，所有市场数据来自 Agent 运行时的实时搜索。
 
-## Contributing 贡献
+## 🤝 Contributing
 
-欢迎贡献。请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+欢迎 Issue 与 PR，流程见 [CONTRIBUTING.md](./CONTRIBUTING.md)：文档改进可直接 PR；新功能请先开 Issue 讨论。
 
-- Bug 报告 / 功能建议：开 Issue
-- 新功能：先开 Issue 讨论，再提 PR
-- 文档改进：直接提 PR
+## 📄 License
 
-## License 许可
-
-[MIT](LICENSE) © Market Scout Contributors
-
-可自由使用、修改、分发——包括个人副业探索和商业项目。
+[MIT](./LICENSE) © Market Scout Contributors —— 可自由使用、修改、分发，包括用于个人副业探索与商业项目。
 
 ---
 
 <div align="center">
 
-如果这个工具帮你拿到了第一笔钱，欢迎回来分享你的故事 💪
+**如果它帮你拿到了第一笔钱，欢迎回来分享你的故事。**
+
+[⬆ 回到顶部](#-market-scout)
 
 </div>

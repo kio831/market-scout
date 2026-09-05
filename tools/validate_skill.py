@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Market Scout skill package self-check (v2.0.0 release).
+Market Scout skill package self-check (v3.0.0 release).
 
 Usage:
     python tools/validate_skill.py [skill_dir]
@@ -11,8 +11,8 @@ Checks:
   2. SKILL.md YAML frontmatter (name / description).
   3. Cross references: every `references|templates|examples/<file>.md`
      cited in any markdown actually exists.
-  4. Required sections/fields inside v2 cards/templates.
-  5. Version consistency on top-level docs (v2.0.0).
+  4. Required sections/fields inside v2 + v3 cards/templates.
+  5. Version consistency on top-level docs (v3.0.0 across SKILL/USER_GUIDE/README; website landing page is a v2-era asset kept as-is).
   6. UI rendering spec anchors in v2 templates (verdict banner / pipeline bar / action).
   7. Open-source release assets (CHANGELOG / LICENSE / CONTRIBUTING / .gitignore / website).
 Exit code 0 = all passed; 1 = errors found.
@@ -20,6 +20,9 @@ Exit code 0 = all passed; 1 = errors found.
 import re
 import sys
 from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 # ---- Expected manifest -------------------------------------------------------
 EXPECTED = [
@@ -52,7 +55,22 @@ EXPECTED = [
     "examples/comment-analysis.md",
     "examples/real-world-problem.md",
     "examples/full-pipeline-v2.md",
+    "references/v3-overview.md",
+    "references/v3-evidence.md",
+    "references/v3-scoring.md",
+    "references/v3-decision.md",
+    "references/v3-mvp.md",
+    "references/v3-action-plan.md",
+    "templates/v3-evidence-board.md",
+    "templates/v3-score-card.md",
+    "templates/v3-decision-card.md",
+    "templates/v3-mvp-card.md",
+    "templates/v3-action-plan-card.md",
+    "templates/v3-report.md",
+    "examples/v3-decision-run.md",
+    "examples/v3-crowded-market.md",
     "tools/validate_skill.py",
+    "releases/market-scout-v3.0.0.zip",
 ]
 
 # ---- Required keywords per v2 artifact (must ALL appear) ---------------------
@@ -78,9 +96,34 @@ REQUIRED_KEYWORDS = {
     "templates/opportunity-report.md": ["FIND", "VALIDATE", "EVALUATE", "BLUEPRINT", "MONETIZE", "Verdict"],
     "templates/opportunity-card.md": ["Pipeline Stage", "Opportunity Score", "值得做 GO"],
     "examples/full-pipeline-v2.md": ["74", "VALIDATE", "EVALUATE", "BLUEPRINT", "MONETIZE", "MonetizationPlan"],
-    "README.md": ["v2.0.0", "Find", "Validate", "Evaluate", "Monetize", "Roadmap", "License", "MonetizationInput", "validate_skill.py"],
+    "README.md": ["v3.0.0", "Find", "Validate", "Evaluate", "Monetize", "Decision",
+                  "RECOMMENDED", "POTENTIAL", "NOT_RECOMMENDED", "Roadmap", "License",
+                  "validate_skill.py", "releases/market-scout-v3.0.0.zip"],
     "USER_GUIDE.md": ["v2.0.0", "值得做 GO", "Monetization & GTM"],
 }
+
+# ---- Required keywords for v3 artifacts (merged into REQUIRED_KEYWORDS) ------
+V3_REQUIRED_KEYWORDS = {
+    "SKILL.md": ["v3.0.0", "V3 决策层", "RECOMMENDED", "POTENTIAL", "NOT_RECOMMENDED", "v3-overview.md"],
+    "references/v3-overview.md": ["V3Input", "V3Output", "Evidence", "RECOMMENDED", "验收清单"],
+    "references/v3-evidence.md": ["Evidence", "Inference", "Unknown", "Sufficient", "Insufficient", "不编造"],
+    "references/v3-scoring.md": ["需求强度", "痛点强度", "竞争与切入空间", "变现潜力", "开发可行性", "获客难度", "AI Advantage", "切入空间", "红旗"],
+    "references/v3-decision.md": ["RECOMMENDED", "POTENTIAL", "NOT_RECOMMENDED", "Why", "VALIDATE_FIRST"],
+    "references/v3-mvp.md": ["Product", "Target User", "Core Problem", "Core Value", "Must Have", "Do Not Build", "Recommended Stack"],
+    "references/v3-action-plan.md": ["B2B_TOOL", "CONSUMER_TOOL", "AI_AGENT", "LOCAL_SERVICE", "DIGITAL_PRODUCT", "今天做什么"],
+    "CHANGELOG.md": ["3.0.0", "决策层", "Opportunity Score", "MVP Blueprint", "Action Plan"],
+    "templates/v3-evidence-board.md": ["Evidence", "Inference", "Unknown", "充分度"],
+    "templates/v3-score-card.md": ["计算式", "百分条", "切入空间", "红旗"],
+    "templates/v3-decision-card.md": ["RECOMMENDED", "Why", "下一步承诺"],
+    "templates/v3-mvp-card.md": ["Product", "Must Have", "Do Not Build", "Recommended Stack", "最小验证实验"],
+    "templates/v3-action-plan-card.md": ["机会类型", "今天做什么", "第一笔钱路径"],
+    "templates/v3-report.md": ["MARKET SCOUT V3", "Market Evidence", "Pain Point", "Competition", "MVP Blueprint", "Action Plan"],
+    "examples/v3-decision-run.md": ["Opportunity Score", "Action Plan"],
+    "examples/v3-crowded-market.md": ["切入空间", "Opportunity Score"],
+    "USER_GUIDE.md": ["v3.0.0", "RECOMMENDED", "18 个", "16 个"],
+}
+for _k, _v in V3_REQUIRED_KEYWORDS.items():
+    REQUIRED_KEYWORDS.setdefault(_k, []).extend(_v)
 
 # v2 templates that must follow UI rendering spec (verdict banner + pipeline bar + action)
 UI_SPEC_TEMPLATES = [
@@ -97,6 +140,18 @@ UI_SPEC_CHECKS = {
 }
 
 # v1.1 artifacts that must remain (non-destruction guarantee)
+V3_UI_SPEC_TEMPLATES = [
+    "templates/v3-score-card.md",
+    "templates/v3-decision-card.md",
+    "templates/v3-mvp-card.md",
+    "templates/v3-action-plan-card.md",
+    "templates/v3-report.md",
+]
+V3_UI_SPEC_CHECKS = {
+    "action": lambda t: ("下一步" in t) or ("今天做什么" in t),
+}
+V3_VERDICT_TEMPLATES = ["templates/v3-decision-card.md", "templates/v3-report.md"]
+
 LEGACY_MUST_KEEP = [
     "references/evidence-chain.md", "references/opportunity-state-machine.md",
     "templates/quick-scan.md", "templates/market-report.md",
@@ -104,7 +159,7 @@ LEGACY_MUST_KEEP = [
 ]
 
 REF_PATTERN = re.compile(r"(?:references|templates|examples)/[A-Za-z0-9_\-]+\.md")
-VERSION_TOP = {"SKILL.md": "v2.0.0", "README.md": "v2.0.0", "USER_GUIDE.md": "v2.0.0"}
+VERSION_TOP = {"SKILL.md": "v3.0.0", "USER_GUIDE.md": "v3.0.0", "README.md": "v3.0.0"}
 
 
 def main() -> int:
@@ -201,6 +256,37 @@ def main() -> int:
                 ok(f"{rel} UI spec: {check_name}")
             else:
                 errors.append(f"[ui-spec] {rel} missing '{check_name}' (see references/ui-rendering-spec.md)")
+
+    # 8. UI rendering spec: v3 templates must have action; decision card + report must have verdict banner
+    for rel in V3_UI_SPEC_TEMPLATES:
+        p = root / rel
+        if not p.exists():
+            continue
+        text = p.read_text(encoding="utf-8")
+        for check_name, check_fn in V3_UI_SPEC_CHECKS.items():
+            if check_fn(text):
+                ok(f"{rel} V3 UI spec: {check_name}")
+            else:
+                errors.append(f"[v3-ui-spec] {rel} missing {check_name!r} (see references/ui-rendering-spec.md)")
+    for rel in V3_VERDICT_TEMPLATES:
+        p = root / rel
+        if not p.exists():
+            continue
+        text = p.read_text(encoding="utf-8")
+        if "> **" in text and any(x in text for x in ("RECOMMENDED", "POTENTIAL", "NOT_RECOMMENDED")):
+            ok(f"{rel} V3 UI spec: verdict_banner")
+        else:
+            errors.append(f"[v3-ui-spec] {rel} missing verdict_banner (see references/ui-rendering-spec.md)")
+
+    # 9. weight sanity: v3 opportunity score weights sum to 100%
+    sv = root / "references/v3-scoring.md"
+    if sv.exists():
+        weights = [float(x) for x in re.findall(r"(\d+)%", sv.read_text(encoding="utf-8"))]
+        seven = weights[:7]
+        if len(seven) == 7 and abs(sum(seven) - 100.0) < 1e-9:
+            ok("v3 7-dimension weights sum to 100%")
+        else:
+            errors.append(f"[weights] v3 first-7 weights = {seven}, sum != 100%")
 
     # ---- report ----
     print("=" * 64)

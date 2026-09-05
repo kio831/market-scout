@@ -5,6 +5,54 @@ All notable changes to Market Scout are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-09-05
+
+### Added — V3 决策层（Decision Layer）：Evidence → Score → Decision → MVP → Action
+
+- **Market Evidence 市场证据（`references/v3-evidence.md`）**
+  - 证据三态 Evidence / Inference / Unknown：每个关键结论标注依据类型
+  - 证据充分度三级 Sufficient / Partial / Insufficient；Insufficient 熔断，不评分、不编造
+  - Unknown 子信号按 0 计并显式标注；Inference 最高 7/10
+  - `templates/v3-evidence-board.md` 证据看板
+- **Opportunity Score 机会评分（`references/v3-scoring.md`）**
+  - 统一 7 维加权 0-100（需求 15 / 痛点 15 / 竞争切入空间 15 / 变现 20 / 开发 15 / 获客 10 / AI 优势 10）
+  - 每维拆 3-4 个 1-10 子信号，计算式可手工复算，20 格百分条可视化
+  - 竞争维度 = 切入空间大小（禁止"竞争低=高分"），切入空间四问必答，无切入空间证据封顶 40
+  - 7 条致命红旗一票否决（复用 project-evaluation §6）
+  - `templates/v3-score-card.md` 机会评分卡
+- **Decision 机会决策（`references/v3-decision.md`）**
+  - 三档 RECOMMENDED / POTENTIAL / NOT_RECOMMENDED，由"总分+门槛+红旗+证据充分度"共同决定
+  - 强制编号 Why 列表（每条绑定证据三态）
+  - 与 V2 Verdict 一一对应：GO→RECOMMENDED / VALIDATE_FIRST→POTENTIAL / NO_GO→NOT_RECOMMENDED
+  - `templates/v3-decision-card.md` 机会决策卡
+- **MVP Blueprint（`references/v3-mvp.md`）**
+  - 9 字段统一输出（Product / Target User / Core Problem / Core Value / Must Have≤3 / Nice to Have / Do Not Build / Build Difficulty / Recommended Stack）
+  - 触发条件：RECOMMENDED 或（POTENTIAL 且 score≥65）
+  - 单人最快验证铁律；方法完全复用 V2 BLUEPRINT
+  - `templates/v3-mvp-card.md` MVP 方案卡
+- **Action Plan 行动计划（`references/v3-action-plan.md`）**
+  - 5 种机会类型动态模板（企业工具 / 个人工具 / AI Agent / 本地服务 / 数字产品），每步 5 要素（目标/做什么/成功标准/失败转向）
+  - 与 Decision 联动：执行路径 / 验证优先路径 / 停止路径
+  - `templates/v3-action-plan-card.md` 行动计划卡
+- **V3 编排（`references/v3-overview.md`）**
+  - 9 步主流程（INPUT→DISCOVERY→VALIDATION→EVIDENCE→COMPETITION→SCORING→DECISION→MVP→ACTION）
+  - V2→V3 映射表、V3Input/V3Output 数据契约、四套代码正交、熔断降级、验收清单
+- **最终报告（`templates/v3-report.md`）**：结论先行一屏报告（Score/Decision/Evidence/Pain/Competition/MVP/Action）
+
+### Changed
+
+- `SKILL.md`：版本升为 v3.0.0；新增 V3 决策层章节、V3 触发词路由、参考/模板/示例清单扩展；V2 全部内容保留
+- `USER_GUIDE.md`：更新为 v3.0.0，新增 V3 决策层使用说明与版本验证词
+- `tools/validate_skill.py`：扩展 v3 文件清单与检查项；修复 Windows GBK 控制台输出编码问题；发布整理阶段同步 README/安装包版本锚点（README 顶部版本对齐 v3.0.0、安装包纳入文件清单）
+- `README.md`：重写为 V3 图文主页（V1→V2→V3 演进图、V3 完整闭环图、五大新模块卡片、真实 examples、Download 与安装入口、版本统一为 v3.0.0）
+- 新增 `releases/market-scout-v3.0.0.zip`：V3.0.0 正式安装包（zip 内顶层为 `market-scout/`，与手动安装路径一致）
+
+### Notes
+
+- **v2.0.0 全部能力保留**：五阶段流水线、三种模式、铁律、停止机制、第一笔钱清单、模板与示例均未删除或破坏
+- **决策口径统一**：V3 的 RECOMMENDED/POTENTIAL/NOT_RECOMMENDED 与 V2 的 GO/VALIDATE_FIRST/NO_GO 一一对应，最终报告统一用 V3 代码
+- 仍是纯 Markdown 文档型 Agent Skill，无前端代码/构建链/数据库；`website/index.html` 为 v2 时期落地页，本次发布保留原样、未改写，后续版本再单独更新
+- `examples/v3-decision-run.md` 与 `examples/v3-crowded-market.md` 为演示数据示例
 ## [2.0.0] - 2026-09-03
 
 ### Added — Four new pipeline stages (Find → Validate → Evaluate → Monetize)

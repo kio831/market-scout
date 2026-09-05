@@ -12,7 +12,7 @@ a new pipeline stage.
 
 Open an issue with:
 
-- **Skill version** (e.g. v2.0.0 — check `SKILL.md` heading)
+- **Skill version** (e.g. v3.0.0 — check `SKILL.md` heading)
 - **Agent platform** (豆包 / Claude Desktop / Cursor / other)
 - **What happened** (the output you got)
 - **What you expected**

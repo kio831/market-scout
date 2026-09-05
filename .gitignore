@@ -45,6 +45,9 @@ desktop.ini
 *.skill
 !market-scout.zip
 !market-scout.skill
+# release packages committed under releases/
+!releases/
+!releases/*.zip
 
 # Temporary / scratch
 tmp/

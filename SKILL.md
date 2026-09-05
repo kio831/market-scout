@@ -1,9 +1,9 @@
 ---
 name: market-scout
-description: 市场侦察与商业验证工作流（Market Scout，v2.0.0）。完整链路 Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 机会转项目 → Monetize 商业化与获客（Find → Validate → Evaluate → Monetize）。当用户想做 AI 赚钱副业、找市场需求、发现痛点、分析视频/评论区/帖子隐含商机、判断"某问题/工具能不能用 AI 解决""这件事能不能赚钱、值不值得做"、验证需求是否真实、评估项目可行性与综合机会评分、把机会转成 MVP/项目方案、设计商业模式/定价/获客/第一批客户、寻找竞争对手、做市场调研、拿第一单/第一笔钱、把 AI 能力变现、验证创业点子，或提到"帮我找市场""分析这个视频/评论区""我发现一个问题""这个能不能用 AI""这个能不能赚钱""值不值得做""需求是不是真的""评估一下这个项目""帮我做成产品/MVP""怎么收费/定价""怎么找客户/第一批用户""商业模式怎么设计""帮我拿第一单""继续深挖""寻找类似需求/竞争对手""出一份机会报告/Opportunity Report"时使用。核心原则 Search First（优先实时搜索而非模型记忆），绝不虚构用户、价格与数据；沿用 v1.1 的 Evidence Chain 证据链、Problem/Solution/Payment 三类搜索、Quick/Research/Execution 三模式、Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）与证据绑定评分；v2.0 新增 Demand Validation 需求验证（痛点/目标用户/需求强度/当前方案/付费理由/证据可信度）、Project Evaluation 项目评估（市场潜力/竞争/差异化/AI 可实现度/开发难度/个人适配/风险，加权综合机会评分 0-100，结论三档：值得做 GO/建议验证后再做 VALIDATE FIRST/不建议做 NO-GO）、Project Blueprint 机会转项目（产品形态/核心用户/核心功能/MVP/技术方向/最小验证/差异化切入点）、Monetization & GTM 商业化获客（Target Customer/Offer/Business Model/Pricing/首批客户/渠道/GTM 路径/无产品验证，模块化设计、预留独立成产品的数据契约，当前不开发支付订阅会员），最终输出结论先行的 Opportunity Report/Opportunity Card。证据等级 A/B/C、交付状态名、V2 流水线阶段名三者相互独立，不共用代码。
+description: 市场侦察与商业验证工作流（Market Scout，v3.0.0）。完整链路 Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 机会转项目 → Monetize 商业化与获客（Find → Validate → Evaluate → Monetize）。当用户想做 AI 赚钱副业、找市场需求、发现痛点、分析视频/评论区/帖子隐含商机、判断"某问题/工具能不能用 AI 解决""这件事能不能赚钱、值不值得做"、验证需求是否真实、评估项目可行性与综合机会评分、把机会转成 MVP/项目方案、设计商业模式/定价/获客/第一批客户、寻找竞争对手、做市场调研、拿第一单/第一笔钱、把 AI 能力变现、验证创业点子，或提到"帮我找市场""分析这个视频/评论区""我发现一个问题""这个能不能用 AI""这个能不能赚钱""值不值得做""需求是不是真的""评估一下这个项目""帮我做成产品/MVP""怎么收费/定价""怎么找客户/第一批用户""商业模式怎么设计""帮我拿第一单""继续深挖""寻找类似需求/竞争对手""出一份机会报告/Opportunity Report"时使用。核心原则 Search First（优先实时搜索而非模型记忆），绝不虚构用户、价格与数据；沿用 v1.1 的 Evidence Chain 证据链、Problem/Solution/Payment 三类搜索、Quick/Research/Execution 三模式、Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）与证据绑定评分；v2.0 新增 Demand Validation 需求验证（痛点/目标用户/需求强度/当前方案/付费理由/证据可信度）、Project Evaluation 项目评估（市场潜力/竞争/差异化/AI 可实现度/开发难度/个人适配/风险，加权综合机会评分 0-100，结论三档：值得做 GO/建议验证后再做 VALIDATE FIRST/不建议做 NO-GO）、Project Blueprint 机会转项目（产品形态/核心用户/核心功能/MVP/技术方向/最小验证/差异化切入点）、Monetization & GTM 商业化获客（Target Customer/Offer/Business Model/Pricing/首批客户/渠道/GTM 路径/无产品验证，模块化设计、预留独立成产品的数据契约，当前不开发支付订阅会员），最终输出结论先行的 Opportunity Report/Opportunity Card。证据等级 A/B/C、交付状态名、V2 流水线阶段名三者相互独立，不共用代码。v3.0 新增决策层：证据三态 Evidence/Inference/Unknown、7 维机会评分 0-100（需求/痛点/竞争切入空间/变现/开发/获客/AI 优势，加权可复算）、三档机会决策（值得继续做 RECOMMENDED / 有机会但需先验证 POTENTIAL / 不建议投入 NOT_RECOMMENDED）、MVP Blueprint 九字段与按机会类型动态生成的 Action Plan；当用户说"打个分""值不值得做""帮我决策""机会评分""第一版做什么""MVP""下一步做什么""今天做什么"时进入 V3 决策层。
 ---
 
-# Market Scout (v2.0.0)
+# Market Scout (v3.0.0)
 
 **Find 发现 → Validate 验证 → Evaluate 评估 → Blueprint 转项目 → Monetize 商业化** 的完整市场机会工作台。
 市场侦察 + 需求发现 + 需求验证 + 项目评估 + AI 解决方案/项目设计 + 商业化与获客。
@@ -11,6 +11,7 @@ description: 市场侦察与商业验证工作流（Market Scout，v2.0.0）。�
 
 > **v2.0 增量说明**：v1.1 的全部能力（三类搜索、证据链、三模式、8 维证据绑定评分、Level 1-5、状态机、停止机制、第一笔钱、模板与示例）**全部保留并被复用**；v2.0 在其后串接需求验证、项目评估、机会转项目、商业化获客四个新阶段，编排与数据契约见 `references/pipeline-and-runtime.md`。
 
+> **v3.0 增量说明**：v2.0.0 的全部能力（五阶段流水线、三种模式、铁律、停止机制、第一笔钱清单、模板与示例）**全部保留**；v3.0 在其上新增**决策层**（Evidence 证据三态 → Opportunity Score 7 维 0-100 → Decision 三档 → MVP Blueprint → 动态 Action Plan），让分析结果最终产生"决策"。编排与数据契约见 `references/v3-overview.md`。
 ## 核心定位
 
 先问**"谁遇到了什么问题？为什么愿意付钱解决？"**，再问**"AI 能否让我更低成本、更快地解决它？"**。
@@ -73,6 +74,39 @@ BLUEPRINT 机会转项目 → MONETIZE 商业化获客 → REPORT 机会报告
 - **Pipeline Stage（v2.0 新增）**：分析流水线位置（FIND/VALIDATE/EVALUATE/BLUEPRINT/MONETIZE/REPORT）。
 三者正交，例如 `Pipeline=MONETIZE / State=DEMAND_CONFIRMED / 证据等级=B` 完全合法，禁止用一套字母表达多个含义。
 
+## V3 决策层：Evidence → Score → Decision → MVP → Action（v3.0.0 新增）
+
+V2 把机会分析清楚，V3 把分析压缩成**用户 10 秒能看懂、且能照着行动的决策**。V3 不是重做 Market Scout，而是让 V2 的分析结果最终产生"决策"。主流程九步（编排与数据契约见 `references/v3-overview.md`）：
+
+```
+INPUT 用户输入想法/问题/机会
+  → DISCOVERY 发现用户与痛点（复用 FIND）
+  → VALIDATION 验证需求与市场（复用 VALIDATE）
+  → EVIDENCE 证据归一化（Evidence/Inference/Unknown + 充分度）
+  → COMPETITION 竞品与市场空缺（复用竞争分析 + 切入空间判定）
+  → SCORING 计算 Opportunity Score（7 维 0-100 可复算）
+  → DECISION 判断值不值得做（RECOMMENDED/POTENTIAL/NOT_RECOMMENDED）
+  → MVP 生成 MVP Blueprint（9 字段）
+  → ACTION 生成下一步行动计划（按机会类型动态生成）
+```
+
+### 五个新增能力要点
+
+1. **Market Evidence 市场证据**：每个关键结论标注 Evidence（找到的公开信息）/ Inference（推导判断）/ Unknown（信息不足）；证据充分度三级；Unknown 按 0 计并显式标注，不编造、不虚高（`v3-evidence.md`）。
+2. **Opportunity Score 机会评分**：7 维加权 0-100（需求 15 / 痛点 15 / 竞争切入空间 15 / 变现 20 / 开发 15 / 获客 10 / AI 优势 10），每维拆 3-4 个 1-10 子信号，计算式必须可手工复算；**竞争维度禁止"竞争低=高分"**，分数=切入空间大小，四问必答（`v3-scoring.md`）。
+3. **Decision 机会决策**：三档 RECOMMENDED（值得继续做）/ POTENTIAL（有机会但需先验证）/ NOT_RECOMMENDED（不建议投入），由"总分+门槛+红旗+证据充分度"共同决定，必须带编号 Why 列表；与 V2 的 GO/VALIDATE_FIRST/NO_GO 一一对应（`v3-decision.md`）。
+4. **MVP Blueprint**：RECOMMENDED 或（POTENTIAL 且 ≥65 分）时生成；9 字段（Product / Target User / Core Problem / Core Value / Must Have≤3 / Nice to Have / Do Not Build / Build Difficulty / Recommended Stack）；只回答"一个人最快怎么验证这个想法"（`v3-mvp.md`）。
+5. **Action Plan 行动计划**：按机会类型动态生成（企业工具/个人工具/AI Agent/本地服务/数字产品），每步 5 要素（目标/做什么/成功标准/失败转向），结尾必有"今天做什么"（`v3-action-plan.md`）。
+
+### 第四套代码（防混淆）
+
+V3 新增 Decision Code（RECOMMENDED/POTENTIAL/NOT_RECOMMENDED），与证据等级 A/B/C、Opportunity State、Pipeline Stage 正交，禁止共用一套字母表达多个含义（`v3-overview.md` §5）。
+
+### V3 与 V2 的关系
+
+- V2 五阶段流水线、三种模式、铁律、停止机制、第一笔钱清单**全部不变**，继续作为 V3 的分析引擎。
+- V3 只新增决策层与统一口径：V2 的五张卡照常产出，V3 把它们压缩成一张结论先行的 `templates/v3-report.md`。
+- V2 的 GO/VALIDATE_FIRST/NO_GO 与 V3 的 RECOMMENDED/POTENTIAL/NOT_RECOMMENDED 一一对应，最终报告统一用 V3 代码。
 ## 铁律（必须遵守）
 
 1. **Search First（三类搜索）**：只要具备搜索/浏览器能力，必须优先实时搜索。按三类分别验证（详见 `references/market-research.md` §三类搜索）：
@@ -99,6 +133,7 @@ BLUEPRINT 机会转项目 → MONETIZE 商业化获客 → REPORT 机会报告
 - 出现"深挖 / 市场研究 / 找竞争 / 找类似需求 / 分析评论区 / 全面验证"等明确意图 → **Research Mode**。
 - 出现"我准备做 / 我想试一下 / 帮我拿第一单 / 开始执行 / 这个可以做" → **Execution Mode**（不再继续研究）。
 - 无方向长期找机会 → 30 天侦察或 Market Scan（Research Mode）。
+- 出现"打个分 / 值不值得做 / 帮我决策 / 机会评分 / 第一版做什么 / MVP / 下一步做什么"等 V3 决策意图 → **V3 决策层**（Evidence → Score → Decision → MVP → Action，见 `references/v3-overview.md`）。
 
 ## 模式路由（细粒度）
 
@@ -118,13 +153,16 @@ BLUEPRINT 机会转项目 → MONETIZE 商业化获客 → REPORT 机会报告
 | 方案太复杂 | "这个方案太复杂" "有没有更简单的" | 自动降级解决方案 | `references/ai-solution-patterns.md` §降级规则 |
 | 无明确项目，想长期找 | "我想做副业但没方向" | 30 天市场侦察 | `references/market-research.md` §30 天侦察模式 |
 | 验证需求真假/强度（v2.0） | "这个需求是真的吗""用户真愿意要吗""需求强不强" | V2：VALIDATE | `references/demand-validation.md` |
-| 评估项目值不值得做（v2.0） | "评估一下这个项目""值不值得做""可行性分析""打个分" | V2：EVALUATE | `references/project-evaluation.md` |
+| 评估项目值不值得做（v3.0） | "评估一下这个项目""值不值得做""可行性分析""打个分""机会评分" | **V3 决策层**：SCORING→DECISION（内部复用 EVALUATE） | `templates/v3-report.md`、`references/v3-scoring.md` |
 | 机会转成项目/MVP（v2.0） | "帮我做成产品""设计 MVP""第一版做什么""技术怎么选" | V2：BLUEPRINT | `references/project-blueprint.md` |
 | 商业模式/定价/获客（v2.0） | "怎么收费/定价""商业模式怎么设计""怎么找客户""第一批用户哪来""GTM" | V2：MONETIZE | `references/monetization-gtm.md` |
-| 完整机会报告（v2.0） | "从头到尾分析一遍""出一份机会报告/Opportunity Report""发现→验证→评估→商业化" | V2：全流水线 | `templates/opportunity-report.md` |
+| 完整机会报告（v3.0） | "从头到尾分析一遍""出一份机会报告/Opportunity Report""发现→验证→评估→商业化" | V3：全流程（内部复用 V2 五阶段） | `templates/v3-report.md` |
+| 机会决策（v3.0） | "帮我决策""值不值得做""这个想法能做吗" | V3：DECISION | `references/v3-decision.md` |
+| MVP 与下一步行动（v3.0） | "第一版做什么""MVP 怎么设计""下一步做什么""今天做什么" | V3：MVP→ACTION | `templates/v3-mvp-card.md`、`templates/v3-action-plan-card.md` |
 
 若输入同时命中多模式（例如"这个视频能赚钱吗"），按链式推进：Reverse Engineering → Payment Validation → 需要时到 AI Solution Design，不要在中间停。
 若用户要求完整判断"值不值得做 + 怎么做 + 怎么赚钱"，按 V2 五阶段流水线 FIND→VALIDATE→EVALUATE→BLUEPRINT→MONETIZE 顺序推进（允许从指定阶段切入，但须先补齐该阶段输入契约所缺字段，见 `references/pipeline-and-runtime.md`）。
+若用户只要求"打个分 / 值不值得做 / 下一步做什么"这类决策，走 V3 决策层九步主流程（`references/v3-overview.md` §1），V2 五阶段照常复用为分析引擎。
 
 ## 标准工作流（v1.1 九步 = V2 流水线 FIND 阶段的内部细化；v2.0 在其后衔接四阶段）
 
@@ -307,6 +345,13 @@ AI 能明显降低成本/时间/技能门槛？
 - `references/pipeline-and-runtime.md` — **【v2.0 新增】五阶段流水线编排、三套代码区分、熔断/回退/断点续跑、外部调用超时·重试·失败降级、输出信息层级/双语/桌面移动端/代码区规范、交付前验收清单**。
 - `references/ui-rendering-spec.md` — **【v2.0.0 新增】输出渲染与视觉规范（Design System）：结论带 Banner、阶段进度条、分数条、行动按钮、Loading/Empty/Error/Success 四状态、移动端优先、长报告阅读体验、双语、代码区、输出自检清单**。
 
+- `references/v3-overview.md` — **【v3.0 新增】V3 决策层总览：9 步主流程、V2→V3 映射、V3Input/V3Output 契约、四套代码正交、熔断降级、验收清单**。
+- `references/v3-evidence.md` — **【v3.0 新增】市场证据层：Evidence/Inference/Unknown 三态、证据充分度 Sufficient/Partial/Insufficient、Unknown 计分、不编造铁律**。
+- `references/v3-scoring.md` — **【v3.0 新增】机会评分：7 维 0-100 加权（需求/痛点/竞争切入空间/变现/开发/获客/AI 优势）、子信号、可复算公式、切入空间四问、致命红旗**。
+- `references/v3-decision.md` — **【v3.0 新增】机会决策：RECOMMENDED/POTENTIAL/NOT_RECOMMENDED 三档判定、强制 Why、与 V2 Verdict 映射、证据不足处理、各档下一步承诺**。
+- `references/v3-mvp.md` — **【v3.0 新增】MVP Blueprint：9 字段输出、触发条件、单人最快验证铁律、最小验证实验（复用 BLUEPRINT）**。
+- `references/v3-action-plan.md` — **【v3.0 新增】行动计划：5 种机会类型判定、动态步骤模板（每步 5 要素）、Decision 联动、今天做什么、第一笔钱路径**。
+
 ## 模板（直接填充）
 
 - `templates/problem-card.md` — 问题卡片（含证据链字段）。
@@ -320,12 +365,22 @@ AI 能明显降低成本/时间/技能门槛？
 - `templates/monetization-gtm-card.md` — **【v2.0 新增】商业化与获客卡（MONETIZE，含 MonetizationPlan 契约）**。
 - `templates/opportunity-report.md` — **【v2.0 新增】最终机会报告（五阶段汇总，结论先行）**。
 
+- `templates/v3-evidence-board.md` — **【v3.0 新增】证据看板（三态 + 充分度 + 缺失清单）**。
+- `templates/v3-score-card.md` — **【v3.0 新增】机会评分卡（7 维 + 计算式 + 百分条 + 切入空间四问 + 红旗）**。
+- `templates/v3-decision-card.md` — **【v3.0 新增】机会决策卡（结论带 + Why + 下一步承诺）**。
+- `templates/v3-mvp-card.md` — **【v3.0 新增】MVP 方案卡（9 字段 + MVP 五项 + 最小验证实验）**。
+- `templates/v3-action-plan-card.md` — **【v3.0 新增】行动计划卡（类型化步骤 + 今天做什么 + 第一笔钱）**。
+- `templates/v3-report.md` — **【v3.0 新增】V3 最终机会决策报告（一屏：Score/Decision/Evidence/Pain/Competition/MVP/Action，结论先行）**。
+
 ## 示例（演示流程，数据为示意）
 
 - `examples/video-analysis.md` — 视频反向市场分析（含证据链）。
 - `examples/comment-analysis.md` — 评论区需求挖掘（含三类搜索）。
 - `examples/real-world-problem.md` — **完整 v1.1 运行示例：Quick → Research（三类搜索+证据链）→ Execution（第一笔钱）+ 状态机推进**。
 - `examples/full-pipeline-v2.md` — **【v2.0 新增】完整 V2 流水线示例：FIND→VALIDATE→EVALUATE（含可复算评分与"74 分为何仍是🟡"）→BLUEPRINT→MONETIZE（定价/获客/第一批客户）→最终结论**。
+
+- `examples/v3-decision-run.md` — **【v3.0 新增】完整 V3 决策链示例：Evidence 看板 → 7 维评分（可复算）→ Decision → MVP 9 字段 → 动态 Action Plan**。
+- `examples/v3-crowded-market.md` — **【v3.0 新增】红海市场示例：竞争激烈但切入空间存在时如何评分与决策（禁止"竞争高=不值得做"）**。
 
 ## 用户使用说明
 

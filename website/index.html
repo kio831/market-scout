@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Market Scout — AI-powered opportunity discovery, validation & commercialization</title>
-<meta name="description" content="把一个模糊想法，跑成"是否值得做的结论 + 可执行项目 + 第一笔收入路径"。Find → Validate → Evaluate → Monetize.">
+<title>Market Scout — AI 市场侦察 · 机会决策 Agent（v3.0.0）</title>
+<meta name="description" content="把一个模糊想法，跑成"是否值得做的结论 + 可执行项目 + 第一笔收入路径"。Find → Validate → Evaluate → Monetize → Decide：证据三态、0-100 机会评分、三档决策、MVP 九字段、类型化行动计划。">
 <style>
   :root {
     --bg: #0f1115;
@@ -25,6 +25,8 @@
     --cyan-soft: rgba(6,182,212,0.12);
     --red: #ef4444;
     --red-soft: rgba(239,68,68,0.12);
+    --violet: #8b5cf6;
+    --violet-soft: rgba(139,92,246,0.12);
     --radius: 14px;
     --radius-sm: 8px;
     --maxw: 1120px;
@@ -87,8 +89,8 @@
 
   /* Pipeline flow */
   .pipeline {
-    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
-    max-width:900px; margin:0 auto; position:relative;
+    display:grid; grid-template-columns:repeat(5,1fr); gap:14px;
+    max-width:1100px; margin:0 auto; position:relative;
   }
   @media(max-width:820px){ .pipeline{ grid-template-columns:1fr 1fr; } }
   @media(max-width:480px){ .pipeline{ grid-template-columns:1fr; } }
@@ -108,6 +110,8 @@
   .stage.s3 .stage-num { color:var(--accent); }
   .stage.s4 { border-top:3px solid var(--green); }
   .stage.s4 .stage-num { color:var(--green); }
+  .stage.s5 { border-top:3px solid var(--violet); }
+  .stage.s5 .stage-num { color:var(--violet); }
   .arrow { position:absolute; right:-10px; top:50%; transform:translateY(-50%); color:var(--text-faint); font-size:18px; z-index:2; }
   @media(max-width:820px){ .arrow{ display:none; } }
 
@@ -222,7 +226,7 @@
     <div class="logo"><span class="logo-dot"></span>Market Scout</div>
     <div class="nav-links">
       <a href="#problem">解决什么</a>
-      <a href="#features">四大能力</a>
+      <a href="#features">V3 决策层</a>
       <a href="#workflow">工作流</a>
       <a href="#usage">使用方法</a>
       <a href="#roadmap">Roadmap</a>
@@ -234,13 +238,13 @@
 <header class="hero">
   <div class="container">
     <div class="badge-row">
-      <span class="badge"><span class="dot" style="background:var(--green)"></span>v2.0.0 已发布</span>
+      <span class="badge"><span class="dot" style="background:var(--green)"></span>v3.0.0 已发布</span>
       <span class="badge"><span class="dot" style="background:var(--accent)"></span>MIT License</span>
       <span class="badge"><span class="dot" style="background:var(--blue)"></span>Agent Skill</span>
       <span class="badge"><span class="dot" style="background:var(--cyan)"></span>纯 Markdown</span>
     </div>
     <h1>把一个模糊想法，<br>跑成<span class="accent">第一笔收入</span>的路径</h1>
-    <p class="hero-sub">AI-powered opportunity discovery, validation and commercialization analysis.<br>不是"AI 赚钱项目生成器"，而是用真实证据回答"值不值得做、做成什么、怎么收钱"。</p>
+    <p class="hero-sub">AI-powered opportunity discovery, validation and commercialization analysis.<br>不是"AI 赚钱项目生成器"，而是用真实证据回答"值不值得做、做成什么、怎么收钱、今天先做什么"。</p>
     <div class="cta-row">
       <a href="#usage" class="btn btn-primary">快速开始 →</a>
       <a href="#workflow" class="btn btn-ghost">查看工作流</a>
@@ -270,6 +274,12 @@
         <div class="stage-num">Stage 04 · MONETIZE</div>
         <div class="stage-title">商业化获客</div>
         <div class="stage-desc">定价、商业模式、获客渠道、第一批 10 客户获取法，直达第一笔钱</div>
+        <span class="arrow">→</span>
+      </div>
+      <div class="stage s5">
+        <div class="stage-num">V3 · DECIDE &amp; EXECUTE</div>
+        <div class="stage-title">决策与行动</div>
+        <div class="stage-desc">Evidence 三态 → 0-100 机会评分 → 三档决策 → MVP 九字段 → 类型化行动计划</div>
       </div>
     </div>
   </div>
@@ -317,93 +327,106 @@
 <!-- Features -->
 <section id="features" style="background:var(--bg-soft)">
   <div class="container">
-    <div class="section-label">v2.0.0 Core Capabilities</div>
-    <h2>四大新增能力，串成完整闭环</h2>
-    <p class="section-sub">v1.x 的发现与初步验证能力全部保留，v2.0.0 在其后串接需求验证、项目评估、机会转项目、商业化获客。</p>
-    <div class="feature-grid">
+    <div class="section-label">v3.0.0 · Decision Layer</div>
+    <h2>V3 新增决策层，V2 能力全部保留</h2>
+    <p class="section-sub">V3 在 V2 五阶段流水线之上新增决策层：证据三态 → 机会评分 → 三档决策 → MVP → 行动计划。V2 的需求验证、项目评估、机会转项目、商业化获客全部保留为分析引擎。</p>
+        <div class="feature-grid">
       <div class="feature-card">
-        <span class="feature-tag" style="background:var(--cyan-soft);color:var(--cyan)">Demand Validation</span>
-        <h3>需求验证</h3>
+        <span class="feature-tag" style="background:var(--violet-soft);color:var(--violet)">Market Evidence</span>
+        <h3>01 · 市场证据</h3>
         <ul>
-          <li>用户痛点 + 三层目标用户（核心/扩展/非用户）</li>
-          <li>需求强度 6 信号合成 1-10 分，每分绑定证据</li>
-          <li>当前解决方案与替代成本（定价锚）</li>
-          <li>付费理由链 JTBD：Job→Cost→Trigger→Reason→Authority</li>
-          <li>需求证据可信度矩阵</li>
+          <li>每个关键结论强制三态：Evidence / Inference / Unknown</li>
+          <li>证据充分度三级；Unknown 按 0 计，不编造、不虚高</li>
+          <li>证据不足直接熔断，说明缺什么、去哪补</li>
         </ul>
       </div>
       <div class="feature-card">
-        <span class="feature-tag" style="background:var(--accent-soft);color:var(--accent)">Project Evaluation</span>
-        <h3>项目评估</h3>
+        <span class="feature-tag" style="background:var(--violet-soft);color:var(--violet)">Opportunity Score</span>
+        <h3>02 · 机会评分 0-100</h3>
         <ul>
-          <li>7 维加权：需求20% / 市场20% / 竞争差异15% / AI可实现15% / 开发难度10% / 个人适配15% / 风险5%</li>
-          <li>综合机会评分 0-100，计算式必须可手工复算</li>
+          <li>7 维加权：需求 15 · 痛点 15 · 竞争切入 15 · 变现 20 · 开发 15 · 获客 10 · AI 优势 10</li>
+          <li>计算式必须可手工复算，每分绑定证据</li>
+          <li>竞争维度评"切入空间"，禁止"竞品少=高分"</li>
           <li>7 条致命红旗一票否决</li>
-          <li>三档结论：🟢 值得做 / 🟡 验证后再做 / 🔴 不建议做</li>
         </ul>
       </div>
       <div class="feature-card">
-        <span class="feature-tag" style="background:var(--blue-soft);color:var(--blue)">Opportunity → Project</span>
-        <h3>机会转项目</h3>
+        <span class="feature-tag" style="background:var(--violet-soft);color:var(--violet)">Decision</span>
+        <h3>03 · 三档决策</h3>
         <ul>
-          <li>推荐产品形态（对齐 Level 1-5，默认 L1 先卖结果）</li>
-          <li>MoSCoW 核心功能优先级（Must-have ≤ 3）</li>
-          <li>MVP 五项：做什么/不做什么/验证什么/继续条件/放弃条件</li>
-          <li>推荐技术方向 + 最小验证实验 + 差异化切入点</li>
+          <li>🟢 RECOMMENDED 值得继续做</li>
+          <li>🟡 POTENTIAL 有机会但需先验证</li>
+          <li>🔴 NOT_RECOMMENDED 不建议投入</li>
+          <li>每条结论强制编号 Why，绑定证据</li>
         </ul>
       </div>
       <div class="feature-card">
-        <span class="feature-tag" style="background:var(--green-soft);color:var(--green)">Monetization & GTM</span>
-        <h3>商业化与获客</h3>
+        <span class="feature-tag" style="background:var(--violet-soft);color:var(--violet)">MVP Blueprint</span>
+        <h3>04 · MVP 方案</h3>
         <ul>
-          <li>Target Customer（区分使用者与付费方）</li>
-          <li>Offer 三档阶梯（引流/主力/增值）+ 商业模式库</li>
-          <li>可解释 Pricing：价值锚/市场锚/成本底线/首单价/提价路径</li>
-          <li>首批 10 客户获取法 + 渠道矩阵（主渠道≤2）+ GTM 三阶段</li>
-          <li>7 种不开发产品的验证方式（Concierge/落地页/预售/Fake Door…）</li>
-          <li>模块化数据契约，未来可独立成产品</li>
+          <li>9 字段：定位 / 用户 / 问题 / 价值 / Must≤3 / 以后再做 / 不做 / 难度 / 技术栈</li>
+          <li>只回答"一个人最快怎么验证这个想法"</li>
+          <li>默认 L1 人工+AI 先卖结果，再产品化</li>
         </ul>
       </div>
-    </div>
-
-    <!-- Verdict demo -->
+      <div class="feature-card">
+        <span class="feature-tag" style="background:var(--violet-soft);color:var(--violet)">Action Plan</span>
+        <h3>05 · 行动计划</h3>
+        <ul>
+          <li>按机会类型动态生成（企业工具 / 个人工具 / AI Agent / 本地服务 / 数字产品）</li>
+          <li>每步 5 要素：目标 / 做什么 / 成功标准 / 失败转向</li>
+          <li>结尾必有"今天做什么" + 第一笔钱路径</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="feature-tag" style="background:var(--green-soft);color:var(--green)">V2 Engine（保留）</span>
+        <h3>V2 分析引擎，全部保留</h3>
+        <ul>
+          <li>需求验证（6 信号 + JTBD 付费理由链）</li>
+          <li>项目评估（7 维加权 + 三档 GO / VALIDATE_FIRST / NO_GO）</li>
+          <li>机会转项目（Level 1-5 + MoSCoW + MVP 五项）</li>
+          <li>商业化获客（定价锚 + 首批 10 客户 + GTM 三阶段）</li>
+          <li>三类搜索、证据链、状态机、停止机制</li>
+        </ul>
+      </div>
+    </div><!-- Verdict demo -->
     <div style="margin-top:48px">
       <h3 style="font-size:20px;margin-bottom:6px">三档结论，明确不模糊</h3>
       <p style="color:var(--text-dim);font-size:14px;margin-bottom:20px">不是"看起来不错"，而是有阈值、有红旗、有下一步的明确判断。</p>
       <div class="verdict-grid">
         <div class="verdict-card go">
           <div class="verdict-signal">🟢</div>
-          <h4>值得做 GO</h4>
-          <p>综合分≥75 + 需求强度≥7 + 明确付费证据 + 无致命红旗。可以投入，按报告行动。</p>
+          <h4>值得继续做 RECOMMENDED</h4>
+          <p>综合分 ≥75 + 需求/痛点/变现门槛全过 + 无致命红旗。可以投入，按 MVP 与行动计划推进。</p>
         </div>
         <div class="verdict-card wait">
           <div class="verdict-signal">🟡</div>
-          <h4>建议验证后再做</h4>
-          <p>分数够但关键假设（通常是付费意愿）未证实。先做最小实验，达标转🟢，不达标转🔴。</p>
+          <h4>有机会但需先验证 POTENTIAL</h4>
+          <p>分数够或差一点，但付费等关键假设未证实。先做最小验证实验，达标转 🟢，不达标转 🔴。</p>
         </div>
         <div class="verdict-card no">
           <div class="verdict-signal">🔴</div>
-          <h4>不建议做 NO_GO</h4>
-          <p>综合分&lt;50 或触发致命红旗。给出停止原因、导致停止的证据、以及什么新证据可重启。</p>
+          <h4>不建议投入 NOT_RECOMMENDED</h4>
+          <p>综合分 &lt;55 或触发致命红旗。给出停止原因、导致停止的证据、以及什么新证据可重启。</p>
         </div>
       </div>
     </div>
 
     <!-- Score demo -->
-    <div class="score-demo">
-      <div style="font-size:13px;color:var(--text-dim);margin-bottom:14px">示例：7 维加权评分（每分绑定证据，综合分可手工复算）</div>
-      <div class="score-row"><span class="score-label">需求强度</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--cyan)"></div></div><span class="score-val">7.0</span></div>
-      <div class="score-row"><span class="score-label">市场潜力</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--blue)"></div></div><span class="score-val">7.0</span></div>
-      <div class="score-row"><span class="score-label">竞争差异</span><div class="score-bar"><div class="score-fill" style="width:60%;background:var(--accent)"></div></div><span class="score-val">6.0</span></div>
-      <div class="score-row"><span class="score-label">AI 可实现</span><div class="score-bar"><div class="score-fill" style="width:80%;background:var(--green)"></div></div><span class="score-val">8.0</span></div>
-      <div class="score-row"><span class="score-label">开发难度</span><div class="score-bar"><div class="score-fill" style="width:90%;background:var(--green)"></div></div><span class="score-val">9.0</span></div>
-      <div class="score-row"><span class="score-label">个人适配</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--blue)"></div></div><span class="score-val">7.0</span></div>
-      <div class="score-row"><span class="score-label">风险可控</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--accent)"></div></div><span class="score-val">7.0</span></div>
+        <div class="score-demo">
+      <div style="font-size:13px;color:var(--text-dim);margin-bottom:14px">示例：V3 七维机会评分（每分绑定证据，综合分可手工复算）</div>
+      <div class="score-row"><span class="score-label">需求强度</span><div class="score-bar"><div class="score-fill" style="width:80%;background:var(--cyan)"></div></div><span class="score-val">80</span></div>
+      <div class="score-row"><span class="score-label">痛点强度</span><div class="score-bar"><div class="score-fill" style="width:77%;background:var(--blue)"></div></div><span class="score-val">77</span></div>
+      <div class="score-row"><span class="score-label">竞争与切入空间</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--accent)"></div></div><span class="score-val">70</span></div>
+      <div class="score-row"><span class="score-label">变现潜力</span><div class="score-bar"><div class="score-fill" style="width:80%;background:var(--green)"></div></div><span class="score-val">80</span></div>
+      <div class="score-row"><span class="score-label">开发可行性</span><div class="score-bar"><div class="score-fill" style="width:88%;background:var(--green)"></div></div><span class="score-val">88</span></div>
+      <div class="score-row"><span class="score-label">获客难度</span><div class="score-bar"><div class="score-fill" style="width:70%;background:var(--blue)"></div></div><span class="score-val">70</span></div>
+      <div class="score-row"><span class="score-label">AI 优势</span><div class="score-bar"><div class="score-fill" style="width:78%;background:var(--accent)"></div></div><span class="score-val">78</span></div>
       <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:13px;color:var(--text-dim)">加权综合分（计算式可复算）</span>
-        <span style="font-size:22px;font-weight:800;color:var(--accent)">74 / 100</span>
+        <span style="font-size:13px;color:var(--text-dim)">机会评分（计算式可复算）</span>
+        <span style="font-size:22px;font-weight:800;color:var(--accent)">78 / 100</span>
       </div>
-      <div style="margin-top:8px;font-size:12px;color:var(--text-faint);font-family:ui-monospace,monospace">Score = (7×.20+7×.20+6×.15+8×.15+9×.10+8×.15+7×.05)×10 = 74 → 🟡 VALIDATE_FIRST</div>
+      <div style="margin-top:8px;font-size:12px;color:var(--text-faint);font-family:ui-monospace,monospace">Score = 80×.15+77×.15+70×.15+80×.20+88×.15+70×.10+78×.10 = 78 → 🟢 RECOMMENDED</div>
     </div>
   </div>
 </section>
@@ -413,7 +436,7 @@
   <div class="container">
     <div class="section-label">How It Works</div>
     <h2>从想法到第一笔钱的完整工作流</h2>
-    <p class="section-sub">五个顺序阶段，每阶段产出结构化卡片，支持断点续跑。伪需求和 NO_GO 会在对应阶段熔断，不硬造机会。</p>
+    <p class="section-sub">V2 五阶段流水线照常跑通，V3 决策层把分析压缩成"值不值得做 + 今天先做什么"的结论。伪需求和 NOT_RECOMMENDED 会在对应阶段熔断，不硬造机会。</p>
     <div class="workflow">
       <div class="wf-step">
         <div class="wf-dot" style="background:var(--blue);color:#fff">1</div>
@@ -445,6 +468,11 @@
         <h4><span class="wf-tag" style="color:var(--text-dim)">REPORT</span>机会报告</h4>
         <p>五阶段汇总为最终 Opportunity Report，结论先行：10 秒看懂"在分析什么 → 得到了什么 → 下一步做什么"。含目录、每阶段小结、行动路线（今天/本周/2-4 周）、最终判定。</p>
       </div>
+      <div class="wf-step">
+        <div class="wf-dot" style="background:var(--violet);color:#fff">V3</div>
+        <h4><span class="wf-tag" style="color:var(--violet)">DECIDE</span>决策层（v3.0.0 新增）</h4>
+        <p>Evidence/Inference/Unknown 证据三态 → Opportunity Score 7 维 0-100（可复算）→ Decision 三档（值得继续做 / 有机会但需先验证 / 不建议投入）→ MVP Blueprint 九字段 → 按机会类型动态生成 Action Plan。V2 五阶段照常复用为分析引擎。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -454,7 +482,7 @@
   <div class="container">
     <div class="section-label">Quick Start</div>
     <h2>安装后，直接说一句话就能用</h2>
-    <p class="section-sub">把 <code>market-scout.skill</code> 拖入支持 Skill 的 AI 客户端，或手动放入技能目录。验证：打开 SKILL.md 能搜到 <code>Monetization & GTM</code> 和 <code>值得做 GO</code> 即为 v2.0.0。</p>
+    <p class="section-sub">把 <code>market-scout-v3.0.0.zip</code>（或 .skill）拖入支持 Skill 的 AI 客户端，或解压后把 <code>market-scout/</code> 文件夹放入技能目录。验证：打开 SKILL.md 能搜到 <code>Opportunity Score</code> 和 <code>值得继续做 RECOMMENDED</code> 即为 v3.0.0。</p>
     <div class="table-wrap">
       <table class="usage-table">
         <thead><tr><th>你想做什么</th><th>示例触发词</th></tr></thead>
@@ -467,6 +495,8 @@
           <tr><td>找第一批客户</td><td>"第一批用户/客户从哪来？怎么获客？"</td></tr>
           <tr><td>完整分析</td><td>"从发现到商业化帮我完整分析一遍，出一份机会报告"</td></tr>
           <tr><td>准备开干</td><td>"帮我拿第一单" / "我准备做了"</td></tr>
+          <tr><td>打分与决策</td><td>"这个想法值不值得做" / "打个分" / "帮我决策"</td></tr>
+          <tr><td>MVP 与下一步</td><td>"第一版做什么" / "下一步做什么" / "今天做什么"</td></tr>
         </tbody>
       </table>
     </div>
@@ -507,19 +537,30 @@
           <li>评分绑定证据、停止机制</li>
         </ul>
       </div>
-      <div class="road-card current">
+      <div class="road-card">
         <div class="road-ver">v2.0.0</div>
-        <span class="road-status" style="background:var(--accent-soft);color:var(--accent)">当前版本</span>
+        <span class="road-status" style="background:var(--green-soft);color:var(--green)">已发布</span>
         <ul>
           <li>四大阶段闭环（Validate/Evaluate/Blueprint/Monetize）</li>
           <li>7 维加权综合评分 + 三档结论</li>
           <li>Monetization 模块化数据契约</li>
           <li>运行时健壮性（超时/重试/降级）</li>
-          <li>统一 UI 渲染规范 + 产品落地页</li>
+          <li>统一 UI 渲染规范</li>
+        </ul>
+      </div>
+      <div class="road-card current">
+        <div class="road-ver">v3.0.0</div>
+        <span class="road-status" style="background:var(--accent-soft);color:var(--accent)">当前版本</span>
+        <ul>
+          <li>V3 决策层：Evidence → Score → Decision → MVP → Action</li>
+          <li>7 维机会评分 0-100（可复算）+ 切入空间判定</li>
+          <li>三档决策 RECOMMENDED / POTENTIAL / NOT_RECOMMENDED</li>
+          <li>MVP 九字段 + 类型化 Action Plan</li>
+          <li>证据不足熔断（不编造）</li>
         </ul>
       </div>
       <div class="road-card">
-        <div class="road-ver">v2.1+</div>
+        <div class="road-ver">v3.1+</div>
         <span class="road-status" style="background:var(--blue-soft);color:var(--blue)">规划中</span>
         <ul>
           <li>交互式 HTML 报告生成器</li>
@@ -536,7 +577,7 @@
 <footer>
   <div class="container">
     <p style="margin-bottom:8px"><strong>Market Scout</strong> · AI-powered opportunity discovery, validation & commercialization</p>
-    <p>MIT License · 可自由使用、修改、分发 · <a href="https://github.com/" style="color:var(--text-dim)">GitHub</a> · <a href="../CHANGELOG.md" style="color:var(--text-dim)">Changelog</a> · <a href="../CONTRIBUTING.md" style="color:var(--text-dim)">Contributing</a></p>
+    <p>MIT License · 可自由使用、修改、分发 · <a href="https://github.com/kio831/market-scout" style="color:var(--text-dim)">GitHub</a> · <a href="../CHANGELOG.md" style="color:var(--text-dim)">Changelog</a> · <a href="../CONTRIBUTING.md" style="color:var(--text-dim)">Contributing</a></p>
     <p style="margin-top:12px;font-size:12px">如果这个工具帮你拿到了第一笔钱，欢迎回来分享你的故事 💪</p>
   </div>
 </footer>
