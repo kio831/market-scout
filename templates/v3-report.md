@@ -1,4 +1,4 @@
-# Opportunity Report V3 机会决策报告（v3.0.0）
+# Opportunity Report V3 机会决策报告（v3.1.0）
 
 > V3 最终出口：Evidence → Score → Decision → MVP → Action 五段汇总，结论先行，10 秒看懂。
 > 方法编排见 `references/v3-overview.md`；渲染规范见 `references/ui-rendering-spec.md`。
@@ -28,7 +28,7 @@
 └──────────────────────────────┘
 ```
 
-> **🟢 RECOMMENDED 值得继续做 / 🟡 POTENTIAL 有机会但需先验证 / 🔴 NOT_RECOMMENDED 不建议投入**｜机会评分 **<NN>/100**｜Opportunity **<MS-###>**
+> **🟢 RECOMMENDED 值得继续做 / 🟡 POTENTIAL 有机会但需先验证 / 🔴 NOT_RECOMMENDED 不建议投入**｜机会评分 **<NN>/100**｜Confidence **<High/Medium/Low>**｜Coverage **<NN>%**｜Hard Gates **<PASS/CEILING/FAIL>**｜Opportunity **<MS-###>**
 > 一句话结论：<...>
 
 `FIND ✅ → VALIDATE ✅ → EVIDENCE ✅ → SCORING ✅ → DECISION ✅ → MVP ✅ → ACTION ✅`
@@ -72,13 +72,21 @@
 
 最强两项 / 最弱两项 + 红旗检查（详见 `templates/v3-score-card.md`）
 
+## 4A. Confidence / Evidence Coverage / Hard Gates（v3.1）
+
+- **Confidence**：<High/Medium/Low>（score <NN>）——限制因素：<...>
+- **Evidence Coverage**：overall <NN>%（计算式：<...>）；critical_gaps：<...>
+- **Hard Gates**：G1-G5 <PASS/FAIL>，C1-C4 <命中/未命中>，Red Flags <无/R#>
+- 解释：Score=<NN> 表示<机会本身>；Confidence=<...> 表示<判断可靠性>；两者独立的含义：<一句说明>
+
 ## 5. MVP Blueprint 第一版应该怎么做
 
 9 字段表 + MVP 五项 + 最小验证实验（详见 `templates/v3-mvp-card.md`）
 
-## 6. Action Plan 下一步应该做什么
+## 6. Action Plan 下一步应该做什么（Evidence-driven，v3.1）
 
-步骤表 + 今天做什么 + 第一笔钱路径（详见 `templates/v3-action-plan-card.md`）
+Evidence Basis：<target_user / channel / payment_signal / unknowns / hard_gates>
+步骤表 + 今天做什么（动词+对象+数量+成功标准）+ 第一笔钱路径（详见 `templates/v3-action-plan-card.md`；每步必须有具体 Fallback）
 
 ## 最终判定
 

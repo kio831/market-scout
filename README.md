@@ -7,7 +7,7 @@
 
 把一个模糊想法，跑成 **「是否值得做的结论 + 最小可行方案 + 下一步行动」**。
 
-[![Version](https://img.shields.io/badge/version-v3.0.0-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v3.1.0-blue)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 ![Type](https://img.shields.io/badge/type-Agent%20Skill-orange)
 ![Platform](https://img.shields.io/badge/platform-Any%20Markdown%20Agent-lightgrey)
@@ -15,7 +15,7 @@
 
 **Evidence → Score → Decision → MVP → Action**
 
-[⬇ 下载 V3.0.0](./releases/market-scout-v3.0.0.zip) · [🚀 安装](#-安装-v3) · [⚡ 快速开始](#-快速开始) · [🗺 版本演进](#-v1--v2--v3-版本演进) · [📁 项目结构](#-项目结构)
+[⬇ 下载 V3.1.0](./releases/market-scout-v3.1.0.zip) · [🚀 安装](#-安装-v3) · [⚡ 快速开始](#-快速开始) · [🗺 版本演进](#-v1--v2--v3-版本演进) · [📁 项目结构](#-项目结构)
 
 </div>
 
@@ -61,7 +61,7 @@ flowchart TB
         direction LR
         B1["Validate<br/>需求验证"] --> B2["Evaluate<br/>项目评估"] --> B3["Blueprint<br/>方案设计"] --> B4["Monetize<br/>商业化获客"]
     end
-    subgraph V3["V3 · DECIDE & EXECUTE 决策与行动（当前版本）"]
+    subgraph V3["V3.x · DECIDE & EXECUTE 决策与行动（当前版本）"]
         direction LR
         C1["Evidence<br/>证据归一"] --> C2["Score<br/>0-100 评分"] --> C3["Decision<br/>三档决策"] --> C4["MVP<br/>最小方案"] --> C5["Action<br/>下一步行动"]
     end
@@ -108,6 +108,19 @@ flowchart LR
 
 > **V2 帮你把机会分析清楚；V3 帮你决定这个机会到底值不值得做，以及下一步具体怎么做。**
 
+### V3.1 — Determinism Layer 确定性强化层（v3.1.0 新增）
+
+> **V3 回答「值不值得做、下一步做什么」；V3.1 回答「这份判断有多可信、为什么可信、缺什么才更可信」。**
+
+五个能力，全部不新增决策阶段、只约束已有链路：
+
+1. **Score Rubric**：26 个子信号全部五档可观察标准——每个 7 分都能回答"为什么不是 8"。
+2. **Confidence**：与机会评分分离的决策置信度（固定公式、可复算）；可以出现 `Score 85 / Confidence Low / 结论 POTENTIAL`。
+3. **Hard Gates**：Hard Gate（核心维度过低 → 直接不建议做）／ Score Ceiling（关键证据不足 → 最高"先验证"）／ Red Flag（既有致命红旗）三层，总分不能再掩盖短板。
+4. **Evidence Coverage**：六维（问题/方案/付费/竞争/获客/可开发）覆盖度 + 关键缺口，回答"到底研究了多少"。
+5. **Evidence-driven Action**：每一步行动继承证据（找谁、去哪找、拿什么 Offer、验证哪个假设），失败路径给具体转向，而不是"再努力"。
+
+> **V3 把"有规则的判断"变成"更可复现、更可信、更行动导向的判断"。所有旧版本能力原样保留。**
 ## ✨ V3 核心升级（5 个新模块）
 
 | 模块 | 能力说明 |
@@ -174,9 +187,9 @@ flowchart TB
 
 ## ⬇ Download
 
-### Latest Version：Market Scout V3.0.0（当前版本）
+### Latest Version：Market Scout V3.1.0（当前版本）
 
-- 📦 **[market-scout-v3.0.0.zip](./releases/market-scout-v3.0.0.zip)**（仓库内正式安装包，解压后顶层为 `market-scout/` 目录）
+- 📦 **[market-scout-v3.1.0.zip](./releases/market-scout-v3.1.0.zip)**（仓库内正式安装包，解压后顶层为 `market-scout/` 目录）
 - 历史版本变更见 [CHANGELOG.md](./CHANGELOG.md)
 - 推送到 GitHub 后，也可以在仓库的 **Releases** 页面基于同一文件创建正式 Release（当前仓库内安装包以 `releases/` 目录为准）。
 
@@ -186,7 +199,7 @@ flowchart TB
 
 **方式一：拖拽一键安装（推荐）**
 
-1. 下载并解压 `market-scout-v3.0.0.zip`，取出其中的 `market-scout` 文件夹（部分客户端也支持直接拖 zip）。
+1. 下载并解压 `market-scout-v3.1.0.zip`，取出其中的 `market-scout` 文件夹（部分客户端也支持直接拖 zip）。
 2. 拖入 AI 客户端的「技能 / 一键安装」入口；提示格式不支持时改用方式二。
 3. 按下方「验证安装」确认版本。
 
@@ -199,7 +212,7 @@ flowchart TB
 
 > 装过 v1.1 / v2.0.0：V3 向下兼容、旧能力全部保留；部分平台同名目录不会自动覆盖，建议先删除旧 `market-scout` 文件夹再安装。
 
-**验证安装**：打开安装后的 `SKILL.md`，同时搜到 `Opportunity Score` 和 `值得继续做 RECOMMENDED` = V3.0.0；只搜到 `值得做 GO` = 还是 V2。
+**验证安装**：打开安装后的 `SKILL.md`，同时搜到 `Opportunity Score` 和 `值得继续做 RECOMMENDED` = V3.1.0；同时搜到 `v3-confidence.md` 与 `v3-hard-gates.md` = V3.1 强化层就位；只搜到 `值得做 GO` = 旧版。
 
 ## ⚡ 快速开始
 
@@ -225,7 +238,7 @@ market-scout/
 ├── SKILL.md                    # 核心入口：铁律、V2 五阶段流水线、V3 决策层、模式路由
 ├── README.md                   # 本文件（GitHub 项目主页）
 ├── USER_GUIDE.md               # 面向最终用户的安装与使用说明
-├── CHANGELOG.md                # 版本变更记录（v1.0 → v1.1 → v2.0.0 → v3.0.0）
+├── CHANGELOG.md                # 版本变更记录（v1.0 → v1.1 → v2.0.0 → v3.0.0 → v3.1.0）
 ├── CONTRIBUTING.md / LICENSE / .gitignore
 ├── references/  (18)           # 方法论文档
 │   ├── * v1 基础（6）：problem-framework / market-research / payment-validation
@@ -239,7 +252,7 @@ market-scout/
 ├── tools/
 │   └── validate_skill.py       # 自检脚本：文件清单/交叉引用/版本一致/权重合计，无第三方依赖
 ├── releases/
-│   └── market-scout-v3.0.0.zip # ✅ V3.0.0 正式安装包
+│   └── market-scout-v3.1.0.zip # ✅ V3.1.0 正式安装包
 └── website/
     └── index.html              # 项目落地页（可挂 GitHub Pages）
 ```
@@ -253,7 +266,8 @@ market-scout/
 | v1.0 | ✅ 已发布 | Market Scan、Problem Card、三类搜索、Level 1-5 |
 | v1.1 | ✅ 已发布 | Evidence Chain、三种模式、Opportunity 状态机、停止机制 |
 | v2.0.0 | ✅ 已发布 | Validate / Evaluate / Blueprint / Monetize 四阶段、0-100 评分、UI 规范 |
-| **v3.0.0** | **🚀 当前版本** | **Decision Layer：证据三态、7 维评分、三档决策、MVP Blueprint、类型化 Action Plan** |
+| **v3.1.0** | **🚀 当前版本** | **确定性强化层：Score Rubric、Confidence、Hard Gates、Evidence Coverage、Evidence-driven Action** |
+| v3.0.0 | ✅ 已发布 | Decision Layer：证据三态、7 维评分、三档决策、MVP Blueprint、类型化 Action Plan |
 | 后续设想 | 📋 规划中（非当前功能） | 交互式 HTML 报告、多机会对比看板、评分历史追踪 |
 | 远期设想 | 🔮 探索中（非当前功能） | 商业化模块独立为可调用服务、真实市场数据源接入、Web 化 |
 

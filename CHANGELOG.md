@@ -5,6 +5,35 @@ All notable changes to Market Scout are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2026-09-06
+
+### Added — 决策确定性五层强化（不新增决策阶段）
+
+- **Score Rubric（`references/v3-scoring-rubric.md`）**：26 个子信号全部五档（1-2/3-4/5-6/7-8/9-10）可观察标准；子信号输出六要素（分/档位/理由/证据 ID/证据态/置信度）；同一证据稳定落档，可复算。
+- **Confidence（`references/v3-confidence.md`）**：决策置信度与 Opportunity Score 分离；固定公式 0.35×Coverage + 0.25×(1−Unknown)+ 0.25×min(Payment,Demand) + 0.15×独立来源；High ≥70 / Medium 40-69 / Low <40；覆盖规则（Payment 缺失强制降级）；Unknown 与 Low 显式分离。
+- **Hard Gates（`references/v3-hard-gates.md`）**：三层——Hard Gate（Demand<45 / Pain<40 / Monetization<45 / Distribution<35 / Buildability<30 → NOT_RECOMMENDED）、Score Ceiling（付费/需求/渠道/切入空间证据不足 → 最高 POTENTIAL）、Red Flag（沿用 R1-R7）。输出可解释。
+- **Evidence Coverage（`references/v3-evidence-coverage.md`）**：六维（Problem/Solution/Payment/Competition/Distribution/Buildability）0-100 + overall 等权平均；来源独立性与去重规则；critical_gaps（Payment/Demand 关键缺口优先）。
+- **Evidence-driven Action（`references/v3-action-plan.md` §6）**：行动继承 target_user/channel/payment_signal/unknowns/hard_gates；每步 Success/Fallback 具体化（If <量化> Then <转向>）；Today = 动词+对象+数量+成功标准。
+
+### Improved
+
+- Score reproducibility：子信号分数可追溯 Rubric 档位与证据 ID
+- Decision explainability：每份报告同时显示 Score / Confidence / Coverage / Hard Gates，并解释三者关系
+- Evidence traceability：Coverage 每维可追溯到独立来源去重后的证据
+- Action specificity：禁止泛化步骤与"继续研究"式空话
+
+### Safety / Reliability
+
+- 高分 + 低置信 + POTENTIAL 成为合法状态（Score 85 / Confidence Low / Decision POTENTIAL）
+- 核心短板不再被总分掩盖（Hard Gate 一票 NOT_RECOMMENDED）
+- 关键证据缺失（Payment 覆盖 <30）→ Score Ceiling ≤ POTENTIAL
+- 防调规则：单个机会分析期间禁止修改 rubric/权重/公式/阈值；同源转载不重复计分
+- `tools/test_v31_cases.py`：数学用例 A-F 的参照实现与回归测试
+
+### Compatibility
+
+- V2/V3 既有流水线、模板、示例全部保留；V1.1 概念（A/B/C、状态机、三模式）不变
+- 版本号统一 v3.1.0（SKILL / USER_GUIDE / README / CHANGELOG / website / 安装包）
 ## [3.0.0] - 2026-09-05
 
 ### Added — V3 决策层（Decision Layer）：Evidence → Score → Decision → MVP → Action

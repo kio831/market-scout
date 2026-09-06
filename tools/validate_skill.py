@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Market Scout skill package self-check (v3.0.0 release).
+Market Scout skill package self-check (v3.1.0 release).
 
 Usage:
     python tools/validate_skill.py [skill_dir]
@@ -12,7 +12,7 @@ Checks:
   3. Cross references: every `references|templates|examples/<file>.md`
      cited in any markdown actually exists.
   4. Required sections/fields inside v2 + v3 cards/templates.
-  5. Version consistency on top-level docs (v3.0.0 across SKILL/USER_GUIDE/README; website landing page is a v2-era asset kept as-is).
+  5. Version consistency on top-level docs (v3.1.0 across SKILL/USER_GUIDE/README).
   6. UI rendering spec anchors in v2 templates (verdict banner / pipeline bar / action).
   7. Open-source release assets (CHANGELOG / LICENSE / CONTRIBUTING / .gitignore / website).
 Exit code 0 = all passed; 1 = errors found.
@@ -69,8 +69,16 @@ EXPECTED = [
     "templates/v3-report.md",
     "examples/v3-decision-run.md",
     "examples/v3-crowded-market.md",
+    "references/v3-scoring-rubric.md",
+    "references/v3-evidence-coverage.md",
+    "references/v3-confidence.md",
+    "references/v3-hard-gates.md",
+    "examples/v3-1-high-score-low-confidence.md",
+    "examples/v3-1-hard-gate-score-ceiling.md",
+    "examples/v3-1-evidence-driven-action.md",
     "tools/validate_skill.py",
-    "releases/market-scout-v3.0.0.zip",
+    "tools/test_v31_cases.py",
+    "releases/market-scout-v3.1.0.zip",
 ]
 
 # ---- Required keywords per v2 artifact (must ALL appear) ---------------------
@@ -96,9 +104,9 @@ REQUIRED_KEYWORDS = {
     "templates/opportunity-report.md": ["FIND", "VALIDATE", "EVALUATE", "BLUEPRINT", "MONETIZE", "Verdict"],
     "templates/opportunity-card.md": ["Pipeline Stage", "Opportunity Score", "值得做 GO"],
     "examples/full-pipeline-v2.md": ["74", "VALIDATE", "EVALUATE", "BLUEPRINT", "MONETIZE", "MonetizationPlan"],
-    "README.md": ["v3.0.0", "Find", "Validate", "Evaluate", "Monetize", "Decision",
+    "README.md": ["v3.1.0", "Find", "Validate", "Evaluate", "Monetize", "Decision",
                   "RECOMMENDED", "POTENTIAL", "NOT_RECOMMENDED", "Roadmap", "License",
-                  "validate_skill.py", "releases/market-scout-v3.0.0.zip"],
+                  "validate_skill.py", "releases/market-scout-v3.1.0.zip", "Determinism Layer"],
     "USER_GUIDE.md": ["v2.0.0", "值得做 GO", "Monetization & GTM"],
 }
 
@@ -123,6 +131,30 @@ V3_REQUIRED_KEYWORDS = {
     "USER_GUIDE.md": ["v3.0.0", "RECOMMENDED", "18 个", "16 个"],
 }
 for _k, _v in V3_REQUIRED_KEYWORDS.items():
+    REQUIRED_KEYWORDS.setdefault(_k, []).extend(_v)
+
+# ---- Required keywords for v3.1 artifacts ------------------------------------
+V3_1_REQUIRED_KEYWORDS = {
+    "SKILL.md": ["v3.1.0", "Score Rubric", "Confidence", "Hard Gates", "Evidence Coverage",
+                 "Evidence-driven Action", "v3-scoring-rubric.md", "v3-hard-gates.md"],
+    "references/v3-scoring-rubric.md": ["rubric_band", "1-2", "9-10", "防调规则", "D1 需求真实性", "A4 相对替代方案的优势"],
+    "references/v3-evidence-coverage.md": ["Problem", "Solution", "Payment", "Competition", "Distribution", "Buildability",
+                                            "overall", "critical_gaps", "来源独立性", "去重"],
+    "references/v3-confidence.md": ["Confidence Score", "0.30", "0.20", "0.35", "0.15", "High", "Medium", "Low", "可复算", "Unknown 与 Low"],
+    "references/v3-hard-gates.md": ["Hard Gate", "Score Ceiling", "Red Flag", "< 45", "< 40", "< 35", "< 30", "score_ceiling"],
+    "references/v3-action-plan.md": ["Evidence-driven Action", "Evidence Basis", "Fallback", "动词 + 对象 + 数量"],
+    "references/v3-overview.md": ["evidence_coverage", "hard_gates", "4.5", "V3.1 强化层"],
+    "CHANGELOG.md": ["3.1.0", "Score Rubric", "决策置信度", "Hard Gates", "Evidence Coverage", "Evidence-driven Action"],
+    "templates/v3-score-card.md": ["档 <1-2/3-4/5-6/7-8/9-10>", "Evidence Coverage", "Confidence", "Hard Gates"],
+    "templates/v3-decision-card.md": ["Confidence", "Coverage", "Hard Gates", "score_ceiling"],
+    "templates/v3-action-plan-card.md": ["Evidence Basis", "动词 + 对象 + 数量 + 成功标准", "Fallback"],
+    "templates/v3-report.md": ["Confidence", "Coverage", "Hard Gates", "Evidence Basis"],
+    "examples/v3-1-high-score-low-confidence.md": ["85", "Confidence", "Low", "POTENTIAL"],
+    "examples/v3-1-hard-gate-score-ceiling.md": ["Score Ceiling", "POTENTIAL", "Monetization"],
+    "examples/v3-1-evidence-driven-action.md": ["Evidence-driven", "失败转向", "Today", "Evidence Basis", "payment_signal"],
+    "USER_GUIDE.md": ["v3.1.0", "五层强化", "22)"],
+}
+for _k, _v in V3_1_REQUIRED_KEYWORDS.items():
     REQUIRED_KEYWORDS.setdefault(_k, []).extend(_v)
 
 # v2 templates that must follow UI rendering spec (verdict banner + pipeline bar + action)
@@ -159,7 +191,7 @@ LEGACY_MUST_KEEP = [
 ]
 
 REF_PATTERN = re.compile(r"(?:references|templates|examples)/[A-Za-z0-9_\-]+\.md")
-VERSION_TOP = {"SKILL.md": "v3.0.0", "USER_GUIDE.md": "v3.0.0", "README.md": "v3.0.0"}
+VERSION_TOP = {"SKILL.md": "v3.1.0", "USER_GUIDE.md": "v3.1.0", "README.md": "v3.1.0"}
 
 
 def main() -> int:
@@ -228,7 +260,7 @@ def main() -> int:
     for rel, ver in VERSION_TOP.items():
         p = root / rel
         if p.exists():
-            head_text = p.read_text(encoding="utf-8")[:400]
+            head_text = p.read_text(encoding="utf-8")
             if ver in head_text:
                 ok(f"{rel} version {ver}")
             else:
@@ -278,7 +310,51 @@ def main() -> int:
         else:
             errors.append(f"[v3-ui-spec] {rel} missing verdict_banner (see references/ui-rendering-spec.md)")
 
-    # 9. weight sanity: v3 opportunity score weights sum to 100%
+    # 10. v3.1 rubric: 26 sub-signal sections present
+    rb = root / "references/v3-scoring-rubric.md"
+    if rb.exists():
+        text = rb.read_text(encoding="utf-8")
+        codes = ["D1","D2","D3","D4","P1","P2","P3","C1","C2","C3","C4",
+                 "M1","M2","M3","M4","B1","B2","B3","B4",
+                 "D1 渠道可触达","D2 用户聚集度","D3 内容","D4 获客成本",
+                 "A1","A2","A3","A4"]
+        missing = [c for c in codes if ("### " + c) not in text]
+        if missing:
+            errors.append(f"[v3.1-rubric] missing sub-signal sections: {missing}")
+        else:
+            ok("v3.1 rubric 26 sub-signal sections present")
+
+    # 11. v3.1 confidence formula tokens
+    cf = root / "references/v3-confidence.md"
+    if cf.exists():
+        text = cf.read_text(encoding="utf-8")
+        for token in ("0.30 × coverage", "0.20 × (1 − U) × 100", "0.35 × CC", "0.15 × independent_ok", "High ≥ 70"):
+            if token in text:
+                ok(f"v3.1 confidence formula token: {token}")
+            else:
+                errors.append(f"[v3.1-confidence] missing formula token: {token!r}")
+
+    # 12. v3.1 hard gate thresholds
+    hg = root / "references/v3-hard-gates.md"
+    if hg.exists():
+        text = hg.read_text(encoding="utf-8")
+        for token in ("< 45", "< 40", "< 35", "< 30", "score_ceiling"):
+            if token in text:
+                ok(f"v3.1 hard gate token: {token}")
+            else:
+                errors.append(f"[v3.1-hard-gates] missing token: {token!r}")
+
+    # 13. v3.1 coverage dimensions
+    cv = root / "references/v3-evidence-coverage.md"
+    if cv.exists():
+        text = cv.read_text(encoding="utf-8")
+        for d in ("problem", "solution", "payment", "competition", "distribution", "buildability"):
+            if d in text:
+                ok(f"v3.1 coverage dimension: {d}")
+            else:
+                errors.append(f"[v3.1-coverage] missing dimension: {d}")
+
+    # 14. weight sanity: v3 opportunity score weights sum to 100%
     sv = root / "references/v3-scoring.md"
     if sv.exists():
         weights = [float(x) for x in re.findall(r"(\d+)%", sv.read_text(encoding="utf-8"))]

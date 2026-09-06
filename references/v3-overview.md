@@ -1,4 +1,4 @@
-# V3 决策层总览 — 从"分析"到"决定"（v3.0.0 新增）
+# V3/V3.1 决策层总览 — 从"分析"到"决定"（v3.0.0 新增，v3.1.0 强化）
 
 > 本文件定义 V3 新增的**决策层**如何叠加在 V2 五阶段流水线之上。
 > V2 负责把机会分析清楚（Find → Validate → Evaluate → Blueprint → Monetize）；
@@ -84,12 +84,27 @@ V3Output:
     items: [{claim, status: Evidence|Inference|Unknown, source, confidence}]
     sufficiency: Sufficient|Partial|Insufficient
     missing: [string]             # 缺什么证据、去哪补
-  opportunity_score:              # v3-scoring.md
+  opportunity_score:              # v3-scoring.md + v3-scoring-rubric.md
     dimensions: {demand, pain, competition, monetization, buildability, distribution, ai_advantage}
     per_dimension: {score, weight, subscores, rationale, evidence_tag}
+    subscores: [{code: D1..A4, score: 1-10, rubric_band: 1-2|3-4|5-6|7-8|9-10,
+                 rationale, evidence_ids, evidence_state, confidence}]   # v3.1 rubric 契约
     formula: string               # 可复算计算式
     total: 0-100
     red_flags: [string]           # 逐条 命中/未命中
+  evidence_coverage:              # v3-evidence-coverage.md（v3.1）
+    dimensions: {problem, solution, payment, competition, distribution, buildability: {status, score}}
+    overall: 0-100
+    critical_gaps: [string]
+  confidence:                     # v3-confidence.md（v3.1）
+    level: High | Medium | Low
+    score: 0-100                  # 可复算
+    rationale: string
+    limiting_factors: [string]
+  hard_gates:                     # v3-hard-gates.md（v3.1）
+    checks: [{name, status: PASS|CEILING|FAIL, reason}]
+    triggered: [string]
+    score_ceiling: null | POTENTIAL
   decision:                       # v3-decision.md
     code: RECOMMENDED|POTENTIAL|NOT_RECOMMENDED
     why: [string]                 # 编号理由，每条绑定证据三态
@@ -99,14 +114,33 @@ V3Output:
     must_have: [string], nice_to_have: [string], do_not_build: [string],
     build_difficulty: string, recommended_stack: string,
     validation_experiment: {hypothesis, method, success_rule, fail_rule}
-  action_plan:                    # v3-action-plan.md
+  action_plan:                    # v3-action-plan.md（§6 v3.1 evidence-driven）
     opportunity_type: B2B_TOOL|CONSUMER_TOOL|AI_AGENT|LOCAL_SERVICE|DIGITAL_PRODUCT
+    evidence_basis: {target_user, channel, payment_signal, unknowns, hard_gates}   # v3.1 继承字段
     steps: [{n, goal, do, success, fallback}]
-    today: [string]               # 今天就能做的 1-3 个动作
-  confidence: string              # 本次结论整体置信度（高/中/低）
+    today: [string]               # 动词+对象+数量+成功标准
   open_questions: [string]
 ```
 
+
+
+## 4.5 V3.1 强化层（v3.1.0 新增）
+
+V3.1 不新增决策阶段，只给 V3 链路加五层约束，核心关系：
+
+> **Score = 机会本身有多好；Confidence = 我们有多确定；Hard Gates = 关键变量不能被总分掩盖。**
+
+```text
+EVIDENCE → Evidence Coverage（v3-evidence-coverage.md：6 维覆盖度 + critical gaps + 来源去重）
+SCORING  → Score Rubric（v3-scoring-rubric.md：26 子信号五档可观察标准）
+          → Confidence（v3-confidence.md：规则化可信度，与 Score 分离）
+DECISION → Hard Gates（v3-hard-gates.md：Hard Gate → NOT_RECOMMENDED / Score Ceiling → POTENTIAL / Red Flag → NOT_RECOMMENDED）
+ACTION   → Evidence-driven Action（v3-action-plan.md §6：继承证据字段，Fallback 具体化）
+```
+
+- V3.1 全部输入来自 V3 既有阶段的结构化输出，不新增搜索负担。
+- Quick Mode 仍走轻量版本（轻量 Evidence → Rubric → Score → Confidence → Hard Gate → Decision → Today），不因 V3.1 变长。
+- Execution Mode 已有结论时只读（Evidence/Decision/Unknown）→ 直接 Evidence-driven Action，不重复研究。
 ## 5. 四套"代码"正交（防混淆扩展）
 
 | 代码 | 含义 | 例子 |
@@ -154,3 +188,4 @@ V3 触发词见 `SKILL.md` §模式路由。
 - [ ] RECOMMENDED /（POTENTIAL 且 score≥65）有 9 字段 MVP Blueprint？
 - [ ] Action Plan 按机会类型生成，每步 5 要素，结尾有"今天做什么"？
 - [ ] 未破坏 V2：五张 V2 卡、12 篇方法论文档、10 张模板、4 个示例全部保留可用？
+- [ ] V3.1：26 个子信号均有 rubric 档位？Confidence 含公式+阈值+可复算 rationale？Hard Gates 三层不混淆、输出可解释？Coverage 六维+critical_gaps？Action 继承字段且 Fallback 具体？

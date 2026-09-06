@@ -1,6 +1,6 @@
-# Opportunity Score Card 机会评分卡（v3.0.0）
+# Opportunity Score Card 机会评分卡（v3.1.0）
 
-> 方法见 `references/v3-scoring.md`。每分四要素 + 证据徽标；计算式必须可复算。
+> 方法见 `references/v3-scoring.md` + `references/v3-scoring-rubric.md`。每分子信号六要素（分/档位/理由/证据/状态/置信度）；计算式必须可复算。
 
 **Opportunity ID**：<MS-###>
 
@@ -8,7 +8,7 @@
 
 | 维度 | 权重 | 维度分 | 子信号（1-10：分 / 理由 / 证据徽标 / 不确定性） |
 |---|---|---|---|
-| Demand 需求强度 | 15% | <0-100> | D1 <分>：<理由>（Evidence/Inference/Unknown，<不确定性>）｜D2…｜D3…｜D4… |
+| Demand 需求强度 | 15% | <0-100> | D1 <分>（档 <1-2/3-4/5-6/7-8/9-10>）：<理由>（<Evidence/Inference/Unknown>，conf <高/中/低>，<不确定性>）｜D2…｜D3…｜D4… |
 | Pain 痛点强度 | 15% | | P1…｜P2…｜P3… |
 | Competition 竞争与切入空间 | 15% | | C1…｜C2…｜C3…｜C4… |
 | Monetization 变现潜力 | 20% | | M1…｜M2…｜M3…｜M4… |
@@ -58,5 +58,38 @@ Opportunity Score    <NN>/100
 ## 七、低可信标注
 
 - <哪些维度低可信、为什么、如何补证据重算>
+
+## 八、Evidence Coverage（v3.1）
+
+| 维度 | 覆盖分 | status | 独立来源（去重后） | 缺口 |
+|---|---|---|---|---|
+| Problem / Solution / Payment / Competition / Distribution / Buildability | <0-100> | covered / partial / insufficient | <N> | <缺什么子问题> |
+
+- overall：<round(六维均值)>（计算式：<...>）
+- critical_gaps：<如 payment evidence>
+
+## 九、Confidence（v3.1）
+
+```yaml
+confidence:
+  level: Medium
+  score: 61
+  rationale: "coverage 66；U=0.23；CC=min(90,30)=30；independent_ok=1"
+  limiting_factors: []
+```
+
+（公式与覆盖规则见 `references/v3-confidence.md`；分数必须可复算）
+
+## 十、Hard Gates（v3.1）
+
+| Gate | 维度/条件 | 结果 |
+|---|---|---|
+| G1-G5 | <维度分> | PASS / FAIL（任一 FAIL → NOT_RECOMMENDED） |
+| C1-C4 | <证据条件> | 未命中 / 命中（命中 → score_ceiling: POTENTIAL） |
+| Red Flags | R1-R7 | 未命中 / 命中 R<#> |
+
+```text
+Reason: <一句话为什么>
+```
 
 **👉 下一步**：把本卡交给 DECISION 阶段生成 `templates/v3-decision-card.md`，得出三档决策与 Why。

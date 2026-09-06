@@ -85,3 +85,65 @@
 ## 5. 输出
 
 - 使用 `templates/v3-action-plan-card.md`：类型判定 + 步骤表（每步 5 要素）+ 今天做什么 + 第一笔钱路径 + 状态机对齐。
+
+
+## 6. Evidence-driven Action（v3.1.0 新增，行动层升级）
+
+> V3 的行动由"机会类型 → 模板"驱动；V3.1 必须升级为 **Evidence + Score + Decision + User + Channel + Payment Signal + Unknown + Failure Condition → Evidence-driven Action**。
+> 本节规则与 §1-§5 全量兼容：类型模板仍是起点，但每一步都必须用证据实例化，禁止输出泛化步骤。
+
+### 6.1 继承契约（Action 必须继承的字段）
+
+| 字段 | 来源 | 用途 |
+|---|---|---|
+| target_user | VALIDATE 核心用户 | "找谁" |
+| problem / pain | VALIDATE 痛点、P1/P2 证据 | "为什么找他们" |
+| distribution_channel | FIND/MONETIZE 渠道证据 或 v3-scoring D1 证据 | "去哪找"（禁止假设不存在的渠道） |
+| payment_signal | MONETIZE/Payment 覆盖 | "拿什么 Offer、报多少价" |
+| competition_gap | EVALUATE 差异化切入点 | Offer 的差异化话术 |
+| decision | v3-decision | 路径形态（执行/验证/停止） |
+| unknowns | v3-evidence 看板 Unknown 项 | 每步要验证的假设 |
+| hard_gates | v3-hard-gates | 触发条件（如 Payment CEILING → 前两步必须是付费验证） |
+
+### 6.2 每步五要素（Success 与 Fallback 必须具体）
+
+```text
+Step N 目标：验证哪个假设 / 推进哪个未知
+做什么：动词 + 对象 + 数量 + 渠道（全部来自证据或显式标注）
+成功标准：可量化（几人在几天内做到什么）
+失败转向：If <量化条件> Then <具体决策>（禁止"继续努力/换个渠道/继续研究"）
+```
+
+Fallback 示例（合法）：
+
+```text
+If 10 个目标用户中 <2 个有效回应       → 修改 Offer（换引流价/换承诺结果），不开发产品
+If 5 个目标用户全部拒绝付费             → 暂停开发，重查 Payment Hypothesis（M1/M2 证据）
+```
+
+Fallback 反例（禁止）："不行就继续努力 / 换个渠道试试 / 再深入研究"。
+
+### 6.3 Today 动作格式（Evidence-driven Today）
+
+每个 Today 动作 = 动词 + 对象 + 数量 + 成功标准：
+
+```text
+1. 搜索[渠道关键词]，收集 20 条真实用户表达     → 成功标准：≥5 条与假设痛点同类的记录
+2. 按[目标用户画像]筛选 5 个高意向对象           → 成功标准：名单可联系
+3. 用[当前 Offer]验证 3 个付费意愿               → 成功标准：≥1 个"愿意付费"明确回复
+```
+
+禁止："今天：研究市场 / 做竞品分析 / 写 MVP"这类不可执行动作。
+
+### 6.4 与 Decision 的联动（在 §3 基础上细化）
+
+- RECOMMENDED：执行路径，但 Step 1-2 仍是低成本验证（先拿钱再加大投入）。
+- POTENTIAL：验证优先路径，**第一行必须写"在验证通过前，不开发任何产品"**；
+  前两步 = 针对 `unknowns` 的最小验证实验（优先付费假设）。
+- NOT_RECOMMENDED：停止路径（停止三要素），不生成常规步骤。
+- 命中 Score Ceiling（v3-hard-gates C1-C4）→ 前两步必须补对应证据（如 Payment 覆盖 < 30 → Step 1 = 获取付费证据）。
+
+### 6.5 输出
+
+- `templates/v3-action-plan-card.md` 新增 `Evidence Basis` 区：列出继承字段（target_user / channel / payment_signal / unknowns / hard_gates），供用户核对每一步都来自证据。
+- 步骤表格式不变（每步 5 要素），但所有内容按 6.1-6.3 实例化。
