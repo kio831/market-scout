@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.0.0] - 2026-09-07
 
+> V4 是在 V3.1 基础上的 **Validation Layer**：不新增评分体系，把"判断机会"延伸为"判断 → 最低成本验证 → 读真实结果 → 重新判断"。
+
 ### Added — Validation Engine（验证引擎，第一阶段核心最终版）
 
 - **V4 Validation（`references/v4-validation.md`）**：从"判断机会"升级为"判断 + 最低成本验证 + 读真实结果 + 重新判断"
