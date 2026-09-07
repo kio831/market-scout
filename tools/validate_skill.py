@@ -244,6 +244,20 @@ def main() -> int:
         else:
             ok("frontmatter name/description present")
 
+    # 2b. template placeholder residue scan (v4.0.0 cleanup rule)
+    placeholder_tokens = ("__BT__", "__XX__")
+    for pf in list(root.rglob("*.md")) + list(root.rglob("*.py")) + list(root.rglob("*.html")):
+        if pf.name == "validate_skill.py":   # 检查器自身包含关键词定义，跳过
+            continue
+        try:
+            pt = pf.read_text(encoding="utf-8")
+        except Exception:
+            continue
+        for tok in placeholder_tokens:
+            if tok in pt:
+                errors.append(f"[placeholder] {pf.relative_to(root).as_posix()} contains {tok!r} (residue, must fix)")
+    ok("placeholder residue scan done")
+
     # 3. cross references across all markdown
     md_files = list(root.rglob("*.md"))
     for p in md_files:
