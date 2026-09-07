@@ -1,9 +1,9 @@
 ---
 name: market-scout
-description: 市场侦察与商业验证工作流（Market Scout，v3.1.0）。完整链路 Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 机会转项目 → Monetize 商业化与获客（Find → Validate → Evaluate → Monetize）。当用户想做 AI 赚钱副业、找市场需求、发现痛点、分析视频/评论区/帖子隐含商机、判断"某问题/工具能不能用 AI 解决""这件事能不能赚钱、值不值得做"、验证需求是否真实、评估项目可行性与综合机会评分、把机会转成 MVP/项目方案、设计商业模式/定价/获客/第一批客户、寻找竞争对手、做市场调研、拿第一单/第一笔钱、把 AI 能力变现、验证创业点子，或提到"帮我找市场""分析这个视频/评论区""我发现一个问题""这个能不能用 AI""这个能不能赚钱""值不值得做""需求是不是真的""评估一下这个项目""帮我做成产品/MVP""怎么收费/定价""怎么找客户/第一批用户""商业模式怎么设计""帮我拿第一单""继续深挖""寻找类似需求/竞争对手""出一份机会报告/Opportunity Report"时使用。核心原则 Search First（优先实时搜索而非模型记忆），绝不虚构用户、价格与数据；沿用 v1.1 的 Evidence Chain 证据链、Problem/Solution/Payment 三类搜索、Quick/Research/Execution 三模式、Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）与证据绑定评分；v2.0 新增 Demand Validation 需求验证（痛点/目标用户/需求强度/当前方案/付费理由/证据可信度）、Project Evaluation 项目评估（市场潜力/竞争/差异化/AI 可实现度/开发难度/个人适配/风险，加权综合机会评分 0-100，结论三档：值得做 GO/建议验证后再做 VALIDATE FIRST/不建议做 NO-GO）、Project Blueprint 机会转项目（产品形态/核心用户/核心功能/MVP/技术方向/最小验证/差异化切入点）、Monetization & GTM 商业化获客（Target Customer/Offer/Business Model/Pricing/首批客户/渠道/GTM 路径/无产品验证，模块化设计、预留独立成产品的数据契约，当前不开发支付订阅会员），最终输出结论先行的 Opportunity Report/Opportunity Card。证据等级 A/B/C、交付状态名、V2 流水线阶段名三者相互独立，不共用代码。v3.0 新增决策层：证据三态 Evidence/Inference/Unknown、7 维机会评分 0-100（需求/痛点/竞争切入空间/变现/开发/获客/AI 优势，加权可复算）、三档机会决策（值得继续做 RECOMMENDED / 有机会但需先验证 POTENTIAL / 不建议投入 NOT_RECOMMENDED）、MVP Blueprint 九字段与按机会类型动态生成的 Action Plan；当用户说"打个分""值不值得做""帮我决策""机会评分""第一版做什么""MVP""下一步做什么""今天做什么"时进入 V3 决策层。v3.1 新增五层强化：子信号 Rubric 五档评分细则、决策置信度 Confidence（与评分分离，规则可复算）、硬门槛 Hard Gates（Hard Gate / Score Ceiling / Red Flag 三层）、证据覆盖度 Evidence Coverage（六维+关键缺口）、证据驱动行动计划（继承证据字段，Fallback 具体化）；让判断更可复现、更可信、更难自我欺骗。
+description: 市场侦察与商业验证工作流（Market Scout，v3.1.0）。完整链路 Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 机会转项目 → Monetize 商业化与获客（Find → Validate → Evaluate → Monetize）。当用户想做 AI 赚钱副业、找市场需求、发现痛点、分析视频/评论区/帖子隐含商机、判断"某问题/工具能不能用 AI 解决""这件事能不能赚钱、值不值得做"、验证需求是否真实、评估项目可行性与综合机会评分、把机会转成 MVP/项目方案、设计商业模式/定价/获客/第一批客户、寻找竞争对手、做市场调研、拿第一单/第一笔钱、把 AI 能力变现、验证创业点子，或提到"帮我找市场""分析这个视频/评论区""我发现一个问题""这个能不能用 AI""这个能不能赚钱""值不值得做""需求是不是真的""评估一下这个项目""帮我做成产品/MVP""怎么收费/定价""怎么找客户/第一批用户""商业模式怎么设计""帮我拿第一单""继续深挖""寻找类似需求/竞争对手""出一份机会报告/Opportunity Report"时使用。核心原则 Search First（优先实时搜索而非模型记忆），绝不虚构用户、价格与数据；沿用 v1.1 的 Evidence Chain 证据链、Problem/Solution/Payment 三类搜索、Quick/Research/Execution 三模式、Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）与证据绑定评分；v2.0 新增 Demand Validation 需求验证（痛点/目标用户/需求强度/当前方案/付费理由/证据可信度）、Project Evaluation 项目评估（市场潜力/竞争/差异化/AI 可实现度/开发难度/个人适配/风险，加权综合机会评分 0-100，结论三档：值得做 GO/建议验证后再做 VALIDATE FIRST/不建议做 NO-GO）、Project Blueprint 机会转项目（产品形态/核心用户/核心功能/MVP/技术方向/最小验证/差异化切入点）、Monetization & GTM 商业化获客（Target Customer/Offer/Business Model/Pricing/首批客户/渠道/GTM 路径/无产品验证，模块化设计、预留独立成产品的数据契约，当前不开发支付订阅会员），最终输出结论先行的 Opportunity Report/Opportunity Card。证据等级 A/B/C、交付状态名、V2 流水线阶段名三者相互独立，不共用代码。v3.0 新增决策层：证据三态 Evidence/Inference/Unknown、7 维机会评分 0-100（需求/痛点/竞争切入空间/变现/开发/获客/AI 优势，加权可复算）、三档机会决策（值得继续做 RECOMMENDED / 有机会但需先验证 POTENTIAL / 不建议投入 NOT_RECOMMENDED）、MVP Blueprint 九字段与按机会类型动态生成的 Action Plan；当用户说"打个分""值不值得做""帮我决策""机会评分""第一版做什么""MVP""下一步做什么""今天做什么"时进入 V3 决策层。v3.1 新增五层强化：子信号 Rubric 五档评分细则、决策置信度 Confidence（与评分分离，规则可复算）、硬门槛 Hard Gates（Hard Gate / Score Ceiling / Red Flag 三层）、证据覆盖度 Evidence Coverage（六维+关键缺口）、证据驱动行动计划（继承证据字段，Fallback 具体化）；让判断更可复现、更可信、更难自我欺骗。v4.0 新增 Validation Engine 验证引擎：从最大未知开始设计最低成本验证（Validation Plan / Experiment / Success·Failure Criteria / Decision Rule），读取真实验证结果（Observed/Inference/Unknown 分级），按规则重新计算 Score / Confidence / Coverage / Decision，形成"判断→验证→读结果→重新判断"的闭环（Validate before Build）；当用户说"帮我验证""验证一下这个想法""设计验证实验""我验证了 N 个人，结果…""把验证结果交回""重新评估"时进入 V4 Validation。
 ---
 
-# Market Scout (v3.1.0)
+# Market Scout (v4.0.0)
 
 **Find 发现 → Validate 验证 → Evaluate 评估 → Blueprint 转项目 → Monetize 商业化** 的完整市场机会工作台。
 市场侦察 + 需求发现 + 需求验证 + 项目评估 + AI 解决方案/项目设计 + 商业化与获客。
@@ -13,6 +13,7 @@ description: 市场侦察与商业验证工作流（Market Scout，v3.1.0）。�
 
 > **v3.0 增量说明**：v2.0.0 的全部能力（五阶段流水线、三种模式、铁律、停止机制、第一笔钱清单、模板与示例）**全部保留**；v3.0 在其上新增**决策层**（Evidence 证据三态 → Opportunity Score 7 维 0-100 → Decision 三档 → MVP Blueprint → 动态 Action Plan），让分析结果最终产生"决策"。编排与数据契约见 `references/v3-overview.md`。
 > **v3.1 增量说明**：v3.0.0 的决策层（证据三态、7 维评分、三档决策、MVP、行动计划）**全部保留**；v3.1 只补强确定性，不新增决策阶段：Score Rubric 让每个子信号的分数可解释、可复现；Confidence 把"机会有多好"和"我们有多确定"分开；Hard Gates 阻止总分掩盖致命短板；Evidence Coverage 量化"研究了多少"；Evidence-driven Action 让每一步都继承证据。编排见 `references/v3-overview.md` §4.5。
+> **v4.0 增量说明**：v3.1.0 的确定性强化层（Rubric / Confidence / Hard Gates / Coverage / Evidence-driven Action）**全部保留**；v4.0 在其后接 **Validation Engine**：不新增评分体系，只做"最低成本验证 → 读真实结果 → 重新判断"。编排见 `references/v3-overview.md` §4.6。
 ## 核心定位
 
 先问**"谁遇到了什么问题？为什么愿意付钱解决？"**，再问**"AI 能否让我更低成本、更快地解决它？"**。
@@ -122,6 +123,25 @@ V3 新增 Decision Code（RECOMMENDED/POTENTIAL/NOT_RECOMMENDED），与证据�
 - Quick Mode 保持轻量：轻量 Evidence → Rubric → Score → Confidence → Hard Gate → Decision → Today，不得变成长报告。
 - Research Mode 执行完整 V3.1；Execution Mode 已有结论时只读已有 Evidence/Decision/Unknown，直接 Evidence-driven Action，不重复研究。
 - 防调规则：分析单个机会期间禁止修改 rubric/权重/公式/阈值（SOP Anti-Gaming）。
+### V4 Validation Engine（v4.0.0 新增，最终版核心能力）
+
+> **V3.1 回答「这个机会怎么样？」；V4 回答「怎么用最低成本证明它？」以及验证后「真实结果出来了，继续、修改还是放弃？」**
+> 主链路：FIND → PROVE → SCORE → DECIDE → **VALIDATE → RESULT → LEARN → DECIDE AGAIN**
+
+1. **Validation Plan**（`references/v4-validation.md` §2）：验证什么 / 为什么 / 谁 / 怎么 / 在哪 / 样本 / 时长 / 成本 / 成功 / 失败 / 下一状态，11 问齐全。
+2. **从最大未知开始**（§1）：先读 V3.1 的 Unknowns / Critical Gaps / Coverage / Confidence / Hard Gates / Decision，锁定最影响决策的 Unknown（通常是付费意愿）。
+3. **Lowest-Cost Validation**（§3）：方法映射（访谈 / 落地页 / 报价预售 / 人工试交付 / 小试点 / MVP）+ 成本时间排序；禁止机械套用，必须说明理由。
+4. **禁止默认 MVP**（§4）：Payment / Problem 证据不足或关键 Unknown 未解 → 输出 **Validation Experiment**，不输出 Build MVP（**Validate before Build**）。
+5. **Success / Failure Criteria**（§5-6）：量化且对称；无依据时 Threshold=Unknown + 校准说明（No Fake Precision）。
+6. **Validation Result**（§8）：用户回填真实结果，区分 Observed / Inference / Unknown；禁止"8 人感兴趣 = 市场已验证"。
+7. **Re-evaluation / Learn Loop**（§9-10）：按固定规则重算 Coverage → Score → Confidence → Decision（Reality > Prediction），形成闭环。
+
+状态机扩展：MARKET_CONFIRMED → **VALIDATING → VALIDATED / REVISE**（`opportunity-state-machine.md`）。
+
+运行要求：
+- Quick Mode：轻量 Evidence → Score → Confidence → Hard Gate → Decision → **Today（含最小验证动作）**，不变长。
+- 用户说"帮我验证 / 验证一下 / 我验证了…结果…"→ 进入 V4 Validation（从第一个缺卡的步骤开始）。
+- NOT_RECOMMENDED 默认不再投入验证成本，除非用户明确要求重新验证某个核心假设。
 ## 铁律（必须遵守）
 
 1. **Search First（三类搜索）**：只要具备搜索/浏览器能力，必须优先实时搜索。按三类分别验证（详见 `references/market-research.md` §三类搜索）：
@@ -148,6 +168,7 @@ V3 新增 Decision Code（RECOMMENDED/POTENTIAL/NOT_RECOMMENDED），与证据�
 - 出现"深挖 / 市场研究 / 找竞争 / 找类似需求 / 分析评论区 / 全面验证"等明确意图 → **Research Mode**。
 - 出现"我准备做 / 我想试一下 / 帮我拿第一单 / 开始执行 / 这个可以做" → **Execution Mode**（不再继续研究）。
 - 无方向长期找机会 → 30 天侦察或 Market Scan（Research Mode）。
+- 出现"帮我验证 / 验证一下这个想法 / 设计验证实验 / 我验证了…结果… / 重新评估"等验证意图 → **V4 Validation Layer**（设计最低成本验证 → 读结果 → 重新判断，见 __BT__references/v4-validation.md__BT__）。
 - 出现"打个分 / 值不值得做 / 帮我决策 / 机会评分 / 第一版做什么 / MVP / 下一步做什么"等 V3 决策意图 → **V3 决策层**（Evidence → Score → Decision → MVP → Action，见 `references/v3-overview.md`）。
 
 ## 模式路由（细粒度）
@@ -174,6 +195,7 @@ V3 新增 Decision Code（RECOMMENDED/POTENTIAL/NOT_RECOMMENDED），与证据�
 | 完整机会报告（v3.0） | "从头到尾分析一遍""出一份机会报告/Opportunity Report""发现→验证→评估→商业化" | V3：全流程（内部复用 V2 五阶段） | `templates/v3-report.md` |
 | 机会决策（v3.0） | "帮我决策""值不值得做""这个想法能做吗" | V3：DECISION | `references/v3-decision.md` |
 | MVP 与下一步行动（v3.0） | "第一版做什么""MVP 怎么设计""下一步做什么""今天做什么" | V3：MVP→ACTION | `templates/v3-mvp-card.md`、`templates/v3-action-plan-card.md` |
+| 验证与重新判断（v4.0） | "帮我验证一下这个想法""设计一个验证实验""我验证了 N 个人，结果…""把验证结果交回""重新评估" | **V4：VALIDATE→RESULT→LEARN** | `references/v4-validation.md`、`templates/v4-validation-card.md` |
 
 若输入同时命中多模式（例如"这个视频能赚钱吗"），按链式推进：Reverse Engineering → Payment Validation → 需要时到 AI Solution Design，不要在中间停。
 若用户要求完整判断"值不值得做 + 怎么做 + 怎么赚钱"，按 V2 五阶段流水线 FIND→VALIDATE→EVALUATE→BLUEPRINT→MONETIZE 顺序推进（允许从指定阶段切入，但须先补齐该阶段输入契约所缺字段，见 `references/pipeline-and-runtime.md`）。
@@ -372,6 +394,8 @@ AI 能明显降低成本/时间/技能门槛？
 - `references/v3-confidence.md` — **【v3.1 新增】决策置信度：固定公式可复算、High/Medium/Low、覆盖规则、Unknown 与 Low 分离**。
 - `references/v3-hard-gates.md` — **【v3.1 新增】硬门槛：Hard Gate→NOT_RECOMMENDED / Score Ceiling→POTENTIAL / Red Flag→NOT_RECOMMENDED**。
 
+- `references/v4-validation.md` — **【v4.0 新增】验证引擎：Validation Plan 11 问、从最大未知开始、Lowest-Cost 方法映射、Validate before Build、Success/Failure Criteria、Validation Result 分级、Re-evaluation 规则化重算、Learn Loop**。
+
 ## 模板（直接填充）
 
 - `templates/problem-card.md` — 问题卡片（含证据链字段）。
@@ -392,6 +416,8 @@ AI 能明显降低成本/时间/技能门槛？
 - `templates/v3-action-plan-card.md` — **【v3.0 新增】行动计划卡（类型化步骤 + 今天做什么 + 第一笔钱）**。
 - `templates/v3-report.md` — **【v3.0 新增】V3 最终机会决策报告（一屏：Score/Decision/Evidence/Pain/Competition/MVP/Action，结论先行）**。
 
+- `templates/v4-validation-card.md` — **【v4.0 新增】验证卡：计划 → 实验 → 结果 → 重新判断（Validation Output / Report 一体化）**。
+
 ## 示例（演示流程，数据为示意）
 
 - `examples/video-analysis.md` — 视频反向市场分析（含证据链）。
@@ -405,6 +431,11 @@ AI 能明显降低成本/时间/技能门槛？
 - `examples/v3-1-high-score-low-confidence.md` — **【v3.1 新增】高分低置信示例：Score 85 + Confidence Low → 仍判 POTENTIAL**。
 - `examples/v3-1-hard-gate-score-ceiling.md` — **【v3.1 新增】高总分被 Score Ceiling 示例：Monetization 证据不足时最高 POTENTIAL**。
 - `examples/v3-1-evidence-driven-action.md` — **【v3.1 新增】证据驱动行动示例：证据→评分→决策→定制行动计划全链**。
+
+- `examples/v4-validation-plan.md` — **【v4.0 新增】Validation Plan 示例：从最大未知开始设计最低成本验证**。
+- `examples/v4-lowest-cost-validation.md` — **【v4.0 新增】最低成本验证选择示例：Manual Test 优先于 MVP**。
+- `examples/v4-validation-result.md` — **【v4.0 新增】Validation Result 示例：回填真实结果并分级 Observed/Inference/Unknown**。
+- `examples/v4-re-evaluation.md` — **【v4.0 新增】Re-evaluation 示例：验证后 Score/Confidence/Coverage/Decision 按规则重算**。
 
 ## 用户使用说明
 

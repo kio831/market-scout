@@ -8,7 +8,7 @@
 > 把一个模糊的想法，变成有证据支撑的判断，和可以直接执行的下一步。
 > Turn a vague idea into an evidence-backed decision and actionable next steps.
 
-[![Version](https://img.shields.io/badge/version-v3.1.0-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v4.0.0-blue)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 ![Type](https://img.shields.io/badge/type-Agent%20Skill-orange)
 ![Platform](https://img.shields.io/badge/platform-Any%20Markdown%20Agent-lightgrey)
@@ -16,9 +16,11 @@
 
 ### FIND → PROVE → SCORE → DECIDE → ACT → LEARN
 
-**V3.1.0 · Evidence-driven Decision System（Determinism Layer）**
+**V4.0.0 · Validation Engine（验证引擎）**
 
-[⬇ 下载 V3.1.0](./releases/market-scout-v3.1.0.zip) · [安装](#-安装) · [快速开始](#-快速开始) · [版本演进](#-版本演进) · [V3.1 深度](#-v31--从分析到可靠决策) · [项目结构](#-项目结构)
+**V3.1.0 · Evidence-driven Decision System（Determinism Layer，已发布）**
+
+[⬇ 下载 V4.0.0](./releases/market-scout-v4.0.0.zip) · [安装](#-安装) · [快速开始](#-快速开始) · [版本演进](#-版本演进) · [V3.1 深度](#-v31--从分析到可靠决策) · [项目结构](#-项目结构)
 
 *English / 中文 — 中英结合，关键概念双语呈现*
 
@@ -68,7 +70,9 @@ V2    Structured Evaluation   结构化评估
  ↓
 V3    Evidence-driven Pipeline 完整决策 Pipeline
  ↓
-V3.1  Reliable Decision System 提高可靠性（当前版本 ⭐）
+V3.1  Reliable Decision System 提高可靠性
+ ↓
+V4.0  Validation Engine 验证与重新判断（当前版本 ⭐）
 `BT`
 
 `BT`mermaid
@@ -76,10 +80,11 @@ flowchart TB
     V1["V1 · Market Discovery<br/>发现机会"] --> V11["V1.1 · Problem Discovery<br/>深化问题"]
     V11 --> V2["V2 · Structured Evaluation<br/>结构化评估"]
     V2 --> V3["V3 · Evidence-driven Pipeline<br/>完整决策 Pipeline"]
-    V3 ==> V31["V3.1 · Reliable Decision System<br/>可靠性强化（当前版本）"]
+    V3 ==> V31["V3.1 · Reliable Decision System<br/>可靠性强化"]
+    V31 ==> V4["V4.0 · Validation Engine<br/>验证与重新判断（当前版本）"]
 `BT`
 
-> 历史版本解释「Market Scout 是怎么成长起来的」；**V3.1 是本次发布的核心。**
+> 历史版本解释「Market Scout 是怎么成长起来的」；**V4 完成第一阶段核心闭环：判断 → 验证 → 重新判断。**
 
 ### V1 — Market Discovery（发现机会）
 
@@ -276,6 +281,28 @@ Fallback        失败转向（If 条件 Then 具体决策，禁止"再努力"�
 
 ---
 
+
+
+## 🧪 V4 — Validation Engine 验证引擎（当前版本 ⭐）
+
+> **V3.1 回答「这个机会怎么样？」；V4 回答「怎么用最低成本证明它？」，并读取真实结果重新判断。**
+> 判断 → 验证 → 读结果 → 重新判断（FIND → PROVE → SCORE → DECIDE → VALIDATE → LEARN → DECIDE AGAIN）
+
+- **Validation Plan**：验证什么 / 为什么 / 谁 / 怎么 / 在哪 / 样本 / 时长 / 成本 / 成功 / 失败 / 下一状态（11 问）
+- **从最大未知开始**：先读 Unknowns / Critical Gaps / Coverage / Confidence / Hard Gates，锁定最影响决策的未知（通常是付费意愿）
+- **Lowest-Cost Validation**：访谈 → 落地页 → 报价/预售 → 人工试交付 → 小试点（成本最低优先，禁止机械套用）
+- **Validate before Build**：Payment / Problem 证据不足或关键 Unknown 未解 → 输出验证实验，不默认 Build MVP
+- **Success / Failure Criteria**：量化且对称；没有依据的阈值 = 实验设计假设，需首轮校准（No Fake Precision）
+- **Validation Result → Re-evaluation**：真实结果回填，按固定规则重算 Score / Confidence / Coverage / Decision（Reality > Prediction）
+
+```text
+Before                Validation              After
+Score 82              20 users / 8 interested Score 86
+Confidence Low        / 3 trial / 2 paid      Confidence Medium
+Decision POTENTIAL                            Decision RECOMMENDED
+```
+
+（示例数字，仅演示流程；真实运行按 v4-validation.md 规则计算）
 ## 🧭 使用场景 / Use Cases
 
 ### AI Product
@@ -355,7 +382,7 @@ Fallback               失败后改什么
 
 **方式一：拖拽一键安装（推荐）**
 
-1. 下载并解压 [market-scout-v3.1.0.zip](./releases/market-scout-v3.1.0.zip)，取出其中的 market-scout 文件夹（部分客户端支持直接拖 zip）。
+1. 下载并解压 [market-scout-v4.0.0.zip](./releases/market-scout-v4.0.0.zip)，取出其中的 market-scout 文件夹（部分客户端支持直接拖 zip）。
 2. 拖入 AI 客户端的「技能 / 一键安装」入口；不支持时改用方式二。
 3. 按「验证安装」确认版本。
 
@@ -370,7 +397,7 @@ Fallback               失败后改什么
 
 > 装过旧版：V3.1 向下兼容、旧能力全部保留；部分平台同名目录不覆盖，建议先删除旧 market-scout 文件夹再安装。
 
-**验证安装**：打开安装后的 SKILL.md，同时搜到 Opportunity Score 和 值得继续做 RECOMMENDED = V3.1.0；再搜到 v3-confidence.md 与 v3-hard-gates.md = V3.1 强化层就位。
+**验证安装**：打开安装后的 SKILL.md，同时搜到 Opportunity Score 和 值得继续做 RECOMMENDED = V4.0.0；再搜到 v4-validation.md 与 v4-validation-card.md = V4 验证引擎就位。
 
 ## ⚡ 快速开始 / Quick Start
 
@@ -415,7 +442,7 @@ market-scout/
 ├── USER_GUIDE.md               # 用户安装与使用说明
 ├── CHANGELOG.md                # 版本变更记录（v1.0 → v1.1 → v2.0.0 → v3.0.0 → v3.1.0）
 ├── CONTRIBUTING.md / LICENSE / .gitignore
-├── references/  (22)           # 方法论文档
+├── references/  (23)           # 方法论文档（含 `v4-validation.md`）
 │   ├── v1 基础（6）：problem-framework / market-research / payment-validation
 │   │                     ai-solution-patterns / evidence-chain / opportunity-state-machine
 │   ├── v2 流水线（6）：demand-validation / project-evaluation / project-blueprint
@@ -425,12 +452,13 @@ market-scout/
 │   └── v3.1 强化层（4）：v3-scoring-rubric / v3-evidence-coverage
 │                         v3-confidence / v3-hard-gates
 ├── templates/   (16)           # 可直接填充的卡片/报告模板
-├── examples/    (9)            # 流程示例（全部为演示数据，含 3 个 V3.1 示例）
+├── examples/    (13)           # 流程示例（全部为演示数据，含 4 个 V4 验证示例）
 ├── tools/
-│   ├── validate_skill.py       # 自检脚本（382 项检查，无第三方依赖）
-│   └── test_v31_cases.py       # V3.1 规则用例测试（A-F + 矩阵）
+│   ├── validate_skill.py       # 自检脚本（无第三方依赖）
+│   ├── test_v31_cases.py       # V3.1 规则用例测试（A-F + 矩阵）
+│   └── test_v4_validation.py   # V4 验证引擎用例测试（A-G）
 ├── releases/
-│   └── market-scout-v3.1.0.zip # ✅ V3.1.0 正式安装包
+│   └── market-scout-v4.0.0.zip # ✅ V4.0.0 正式安装包
 └── website/
     └── index.html              # 项目落地页（可挂 GitHub Pages）
 `BT`
@@ -443,7 +471,8 @@ market-scout/
 | v1.1 | ✅ 已发布 | Problem Discovery：Evidence Chain、三模式、状态机、停止机制 |
 | v2.0.0 | ✅ 已发布 | Structured Evaluation：四阶段、0-100 评分、UI 规范 |
 | v3.0.0 | ✅ 已发布 | Evidence-driven Pipeline：证据三态、三档决策、MVP、行动计划 |
-| **v3.1.0** | **🚀 当前版本** | **Reliable Decision System：Rubric / Confidence / Hard Gates / Coverage / Evidence-driven Action** |
+| **v4.0.0** | **🚀 当前版本** | **Validation Engine：最低成本验证 → 读真实结果 → 重新判断（Validate before Build）** |
+| v3.1.0 | ✅ 已发布 | Reliable Decision System：Rubric / Confidence / Hard Gates / Coverage / Evidence-driven Action |
 | 后续设想 | 📋 规划中 | 交互式 HTML 报告、多机会对比看板、评分历史追踪 |
 | 远期设想 | 🔮 探索中 | 商业化模块独立服务、真实市场数据源接入、Web 化 |
 

@@ -5,7 +5,33 @@ All notable changes to Market Scout are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.1.0] - 2026-09-06
+## [4.0.0] - 2026-09-07
+
+### Added — Validation Engine（验证引擎，第一阶段核心最终版）
+
+- **V4 Validation（`references/v4-validation.md`）**：从"判断机会"升级为"判断 + 最低成本验证 + 读真实结果 + 重新判断"
+- **Validation Plan**：11 问（验证什么/为什么/谁/怎么/在哪/样本/时长/成本/成功/失败/下一状态）；从最大未知（Critical Gap / Unknown）开始设计
+- **Lowest-Cost Validation**：方法映射（访谈/落地页/报价预售/人工试交付/小试点/MVP）+ 成本时间排序；禁止机械套用
+- **Validate before Build**：Payment/Problem 证据不足或关键 Unknown 未解 → 输出 Validation Experiment，不默认 Build MVP
+- **Success / Failure Criteria**：量化且对称；无依据时 Threshold=Unknown + 校准说明（No Fake Precision）
+- **Validation Result**：用户回填真实结果（sample/interested/trial/paid/revenue/cost），按 Observed/Inference/Unknown 分级
+- **Re-evaluation**：按固定规则重算 Coverage → Score → Confidence → Decision（Reality > Prediction，可复算）
+- **Learn Loop**：FIND → PROVE → SCORE → DECIDE → VALIDATE → LEARN → DECIDE AGAIN
+- **状态机扩展**：MARKET_CONFIRMED → VALIDATING → VALIDATED / REVISE（`opportunity-state-machine.md`，复用不新建）
+- **模板**：`templates/v4-validation-card.md`（计划→实验→结果→重新判断一体化）
+- **测试**：`tools/test_v4_validation.py`（Case A-G）
+
+### Improved
+
+- 决策闭环完整化：判断之后可用最低成本走向"真实世界验证"，并让真实结果回灌判断
+- 行动可执行性：验证动作（样本/渠道/Offer/时长/成本/标准）全部实例化
+- 抗自我欺骗：结果分级 + 阈值校准 + Reality > Prediction
+
+### Compatibility
+
+- V1.1 / V2 / V3 / V3.1 全部能力保留；V3.1 的 Rubric / Confidence / Hard Gates / Coverage / Evidence-driven Action 零改动
+- 版本号统一 v4.0.0（SKILL / README / USER_GUIDE / CHANGELOG / website / 安装包 / 校验脚本）
+
 
 ### Added — 决策确定性五层强化（不新增决策阶段）
 

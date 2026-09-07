@@ -1,4 +1,4 @@
-# Opportunity State Machine — 机会状态机（P1）
+# Opportunity State Machine — 机会状态机（P1；v4.0.0 扩展 VALIDATING / VALIDATED / REVISE）
 
 本文件定义如何为每个机会建立唯一 ID、跟踪状态、推进瓶颈、跨会话续研。目的是防止"反复研究同一个机会却永远不推进"。
 
@@ -19,6 +19,10 @@ DEMAND_CONFIRMED（已有需求证据）
   ↓
 MARKET_CONFIRMED（已有市场/付费证据）
   ↓
+VALIDATING（v4：已设计并开始最低成本验证）
+  ↓
+VALIDATED（v4：达到成功标准）
+  ↓（partial → REVISE 后回 VALIDATING；failure → 回 HYPOTHESIS / 停止机制）
 PAYMENT_VALIDATION（已进行付费验证）
   ↓
 CUSTOMER_FOUND（已找到真实用户）
@@ -42,7 +46,10 @@ PRODUCTIZED（已产品化）
 |---|---|---|
 | HYPOTHESIS | 仅有观察/猜测，无足够来源 | 出现 2+ 个独立来源的同类问题/求助 → DEMAND_CONFIRMED |
 | DEMAND_CONFIRMED | 有重复需求、抱怨或求助 | 出现付费迹象（在售服务/询价/成交/公开价格）→ MARKET_CONFIRMED |
-| MARKET_CONFIRMED | 存在类似产品/服务收费或公开价格 | 开始面向真实用户做报价/测试 → PAYMENT_VALIDATION |
+| MARKET_CONFIRMED | 存在类似产品/服务收费或公开价格 | 设计并开始最低成本验证（Validation Plan）→ VALIDATING |
+| VALIDATING（v4 新增） | 已生成 Validation Plan 并开始执行（方法/样本/标准已定） | Observed 结果达到 Success Criteria → VALIDATED；Partial → REVISE；Failure → 回 HYPOTHESIS 或停止机制 |
+| VALIDATED（v4 新增） | 真实验证 Observed 达到成功标准 | 进入真实付费验证 → PAYMENT_VALIDATION / CUSTOMER_FOUND |
+| REVISE（v4 新增） | Partial Success：假设/Offer/人群/渠道需修改 | 修改后重新设计验证 → 回到 VALIDATING |
 | PAYMENT_VALIDATION | 已向真实用户展示并尝试收费 | 确认存在明确需求的真实潜在客户 → CUSTOMER_FOUND |
 | CUSTOMER_FOUND | 已找到**明确存在需求的真实潜在客户** | **实际收到真实付款** → FIRST_PAYMENT |
 | FIRST_PAYMENT | **已实际收到真实付款**（转账/定金/成交） | 再次交付并收款 → REPEATED_DELIVERY |
@@ -50,6 +57,12 @@ PRODUCTIZED（已产品化）
 | STANDARDIZED | 交付流程/报价/模板已固定 | 把重复环节脚本化 → AUTOMATED |
 | AUTOMATED | 核心重复环节已自动化，人工只质检 | 多用户在线产品/规模运营 → PRODUCTIZED |
 | PRODUCTIZED | 形成可复用产品/服务 | —（终点，转滚动寻找新机会） |
+
+### V4 验证三态说明（与既有状态正交）
+
+- VALIDATING / VALIDATED / REVISE 描述**验证环节的推进**，是既有状态机的增量扩展（不建第二套）。
+- VALIDATED 只代表"验证实验达到成功标准"，**不等于已验证整个市场**：规模化、留存、复购仍可能是 Unknown。
+- VALIDATED 之后仍需真实付款（FIRST_PAYMENT）才算拿到第一笔钱（见下）。
 
 ### CUSTOMER_FOUND 与 FIRST_PAYMENT 的严格区分（重要）
 
