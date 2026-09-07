@@ -238,7 +238,7 @@
 <header class="hero">
   <div class="container">
     <div class="badge-row">
-      <span class="badge"><span class="dot" style="background:var(--green)"></span>v3.1.0 已发布</span>
+      <span class="badge"><span class="dot" style="background:var(--green)"></span>v4.0.0 已发布</span>
       <span class="badge"><span class="dot" style="background:var(--accent)"></span>MIT License</span>
       <span class="badge"><span class="dot" style="background:var(--blue)"></span>Agent Skill</span>
       <span class="badge"><span class="dot" style="background:var(--cyan)"></span>纯 Markdown</span>
@@ -327,7 +327,7 @@
 <!-- Features -->
 <section id="features" style="background:var(--bg-soft)">
   <div class="container">
-    <div class="section-label">v3.1.0 · Decision Layer + Determinism</div>
+    <div class="section-label">v4.0.0 · Decision + Validation Engine</div>
     <h2>V3 新增决策层，V2 能力全部保留</h2>
     <p class="section-sub">V3 在 V2 五阶段流水线之上新增决策层：证据三态 → 机会评分 → 三档决策 → MVP → 行动计划。V2 的需求验证、项目评估、机会转项目、商业化获客全部保留为分析引擎。</p>
         <div class="feature-grid">
@@ -482,7 +482,7 @@
   <div class="container">
     <div class="section-label">Quick Start</div>
     <h2>安装后，直接说一句话就能用</h2>
-    <p class="section-sub">把 <code>market-scout-v3.0.0.zip</code>（或 .skill）拖入支持 Skill 的 AI 客户端，或解压后把 <code>market-scout/</code> 文件夹放入技能目录。验证：打开 SKILL.md 能搜到 <code>Opportunity Score</code> 和 <code>值得继续做 RECOMMENDED</code> = v3.1.0；再搜到 <code>v3-confidence.md</code> 与 <code>v3-hard-gates.md</code> = V3.1 强化层就位。</p>
+    <p class="section-sub">把 <code>market-scout-v3.0.0.zip</code>（或 .skill）拖入支持 Skill 的 AI 客户端，或解压后把 <code>market-scout/</code> 文件夹放入技能目录。验证：打开 SKILL.md 能搜到 <code>Opportunity Score</code> 和 <code>值得继续做 RECOMMENDED</code> = v4.0.0；再搜到 <code>v4-validation.md</code> 与 <code>v4-validation-card.md</code> = V4 验证引擎就位。</p>
     <div class="table-wrap">
       <table class="usage-table">
         <thead><tr><th>你想做什么</th><th>示例触发词</th></tr></thead>
@@ -557,19 +557,28 @@
           <li>三档决策 RECOMMENDED / POTENTIAL / NOT_RECOMMENDED</li>
         </ul>
       </div>
-      <div class="road-card current">
+      <div class="road-card">
         <div class="road-ver">v3.1.0</div>
-        <span class="road-status" style="background:var(--accent-soft);color:var(--accent)">当前版本</span>
+        <span class="road-status" style="background:var(--green-soft);color:var(--green)">已发布</span>
         <ul>
           <li>Score Rubric：26 子信号五档可观察标准</li>
-          <li>Confidence：与评分分离的决策置信度（可复算）</li>
+          <li>Confidence：与评分分离的决策置信度</li>
           <li>Hard Gates：门槛 / 分数天花板 / 红旗三层</li>
-          <li>Evidence Coverage：六维覆盖度 + 关键缺口</li>
-          <li>Evidence-driven Action：证据驱动、失败可转向</li>
+        </ul>
+      </div>
+      <div class="road-card current">
+        <div class="road-ver">v4.0.0</div>
+        <span class="road-status" style="background:var(--accent-soft);color:var(--accent)">当前版本</span>
+        <ul>
+          <li>Validation Engine：判断 → 验证 → 重新判断</li>
+          <li>Validation Plan：从最大未知开始（11 问）</li>
+          <li>Lowest-Cost Validation：成本最低优先</li>
+          <li>Validate before Build：不默认开发 MVP</li>
+          <li>Result → Re-evaluation：真实结果回填重算</li>
         </ul>
       </div>
       <div class="road-card">
-        <div class="road-ver">v3.2+</div>
+        <div class="road-ver">v4.1+</div>
         <span class="road-status" style="background:var(--blue-soft);color:var(--blue)">规划中</span>
         <ul>
           <li>交互式 HTML 报告生成器</li>

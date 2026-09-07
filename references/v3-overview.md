@@ -1,4 +1,4 @@
-# V3/V3.1 决策层总览 — 从"分析"到"决定"（v3.0.0 新增，v3.1.0 强化）
+# V3/V3.1/V4 决策层总览 — 从"分析"到"验证"（v3.0.0 新增，v3.1.0 强化，v4.0.0 扩展验证层）
 
 > 本文件定义 V3 新增的**决策层**如何叠加在 V2 五阶段流水线之上。
 > V2 负责把机会分析清楚（Find → Validate → Evaluate → Blueprint → Monetize）；
@@ -40,6 +40,9 @@ DECISION     判断值不值得做            （v3-decision.md：Recommended/Po
 MVP          若值得：生成 MVP Blueprint（v3-mvp.md：9 字段，复用 V2 BLUEPRINT）
   ↓
 ACTION       生成下一步行动计划        （v3-action-plan.md：按机会类型动态生成）
+VALIDATE     设计最低成本验证            （v4-validation.md：从最大未知开始，Validate before Build）
+RESULT       读取真实验证结果            （v4-validation.md：Observed/Inference/Unknown 分级）
+LEARN        重新判断                    （v4-validation.md：Re-evaluation 规则化重算）
 ```
 
 ## 2. V2 → V3 映射（复用优先，禁止重写）
@@ -119,6 +122,12 @@ V3Output:
     evidence_basis: {target_user, channel, payment_signal, unknowns, hard_gates}   # v3.1 继承字段
     steps: [{n, goal, do, success, fallback}]
     today: [string]               # 动词+对象+数量+成功标准
+  validation:                    # v4-validation.md（v4.0.0）
+    status, core_hypothesis, critical_unknown, method, why_method,
+    target_user, channel, experiment, sample_size, duration, estimated_cost,
+    success_criteria, failure_criteria, decision_rule, next_state,
+    result: null | {sample_n, interested, trial, paid, revenue, cost, duration_days, notes},
+    re_evaluation: null | {updated_coverage, updated_score, updated_confidence, updated_decision, reality_note}
   open_questions: [string]
 ```
 
@@ -141,6 +150,24 @@ ACTION   → Evidence-driven Action（v3-action-plan.md §6：继承证据字段
 - V3.1 全部输入来自 V3 既有阶段的结构化输出，不新增搜索负担。
 - Quick Mode 仍走轻量版本（轻量 Evidence → Rubric → Score → Confidence → Hard Gate → Decision → Today），不因 V3.1 变长。
 - Execution Mode 已有结论时只读（Evidence/Decision/Unknown）→ 直接 Evidence-driven Action，不重复研究。
+
+
+## 4.6 V4 Validation Layer（v4.0.0 新增）
+
+> **V3.1 判断机会；V4 用最低成本验证，并读取真实结果重新判断。** 完整方法见 `references/v4-validation.md`。
+
+```text
+DECISION → VALIDATION（从最大未知开始，Validate before Build）
+         → Validation Plan（11 问）+ Lowest-Cost Method
+         → Experiment（Hypothesis/Target/Channel/Offer/Sample/Duration/Cost/Success/Failure/Decision Rule）
+         → Validation Result（用户回填，Observed/Inference/Unknown 分级）
+         → Re-evaluation（规则化重算 Score/Confidence/Coverage/Decision，Reality > Prediction）
+         → LEARN → DECIDE AGAIN
+```
+
+- 禁止默认 MVP：Payment/Problem 证据不足或关键 Unknown 未解 → 输出 Validation Experiment，不输出 Build MVP。
+- 状态机扩展：MARKET_CONFIRMED → VALIDATING → VALIDATED / REVISE（见 `opportunity-state-machine.md`）。
+- V4 不新增评分体系，全部复用 V3.1 的 Score/Rubric/Confidence/Hard Gates/Coverage 机制。
 ## 5. 四套"代码"正交（防混淆扩展）
 
 | 代码 | 含义 | 例子 |
@@ -189,3 +216,4 @@ V3 触发词见 `SKILL.md` §模式路由。
 - [ ] Action Plan 按机会类型生成，每步 5 要素，结尾有"今天做什么"？
 - [ ] 未破坏 V2：五张 V2 卡、12 篇方法论文档、10 张模板、4 个示例全部保留可用？
 - [ ] V3.1：26 个子信号均有 rubric 档位？Confidence 含公式+阈值+可复算 rationale？Hard Gates 三层不混淆、输出可解释？Coverage 六维+critical_gaps？Action 继承字段且 Fallback 具体？
+- [ ] V4：能生成 Validation Plan（11 问）？从最大未知开始？最低成本优先？不默认 Build MVP？Success/Failure 量化对称？能读 Validation Result 并分级？能按规则重算 Score/Confidence/Coverage/Decision？闭环（LEARN → DECIDE AGAIN）？

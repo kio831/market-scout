@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Market Scout skill package self-check (v3.1.0 release).
+Market Scout skill package self-check (v4.0.0 release).
 
 Usage:
     python tools/validate_skill.py [skill_dir]
@@ -12,7 +12,7 @@ Checks:
   3. Cross references: every `references|templates|examples/<file>.md`
      cited in any markdown actually exists.
   4. Required sections/fields inside v2 + v3 cards/templates.
-  5. Version consistency on top-level docs (v3.1.0 across SKILL/USER_GUIDE/README).
+  5. Version consistency on top-level docs (v4.0.0 across SKILL/USER_GUIDE/README).
   6. UI rendering spec anchors in v2 templates (verdict banner / pipeline bar / action).
   7. Open-source release assets (CHANGELOG / LICENSE / CONTRIBUTING / .gitignore / website).
 Exit code 0 = all passed; 1 = errors found.
@@ -78,7 +78,14 @@ EXPECTED = [
     "examples/v3-1-evidence-driven-action.md",
     "tools/validate_skill.py",
     "tools/test_v31_cases.py",
-    "releases/market-scout-v3.1.0.zip",
+    "references/v4-validation.md",
+    "templates/v4-validation-card.md",
+    "examples/v4-validation-plan.md",
+    "examples/v4-lowest-cost-validation.md",
+    "examples/v4-validation-result.md",
+    "examples/v4-re-evaluation.md",
+    "tools/test_v4_validation.py",
+    "releases/market-scout-v4.0.0.zip",
 ]
 
 # ---- Required keywords per v2 artifact (must ALL appear) ---------------------
@@ -96,7 +103,7 @@ REQUIRED_KEYWORDS = {
     "references/pipeline-and-runtime.md": ["超时", "重试", "降级", "断点续跑", "双语"],
     "references/ui-rendering-spec.md": ["结论带", "阶段进度条", "Loading", "Empty", "Error", "Success", "移动端", "分数条"],
     "CHANGELOG.md": ["2.0.0", "Added", "Demand Validation", "Project Evaluation", "Monetization"],
-    "website/index.html": ["Market Scout", "Find", "Validate", "Evaluate", "Monetize", "v2.0.0"],
+    "website/index.html": ["Market Scout", "Find", "Validate", "Evaluate", "Monetize", "v4.0.0", "Validation"],
     "templates/demand-validation-card.md": ["需求强度", "付费理由链", "VALIDATE"],
     "templates/project-evaluation-card.md": ["综合机会评分", "权重", "计算式", "红旗", "GO"],
     "templates/project-blueprint-card.md": ["MoSCoW", "MVP", "BLUEPRINT"],
@@ -104,9 +111,9 @@ REQUIRED_KEYWORDS = {
     "templates/opportunity-report.md": ["FIND", "VALIDATE", "EVALUATE", "BLUEPRINT", "MONETIZE", "Verdict"],
     "templates/opportunity-card.md": ["Pipeline Stage", "Opportunity Score", "值得做 GO"],
     "examples/full-pipeline-v2.md": ["74", "VALIDATE", "EVALUATE", "BLUEPRINT", "MONETIZE", "MonetizationPlan"],
-    "README.md": ["v3.1.0", "Find", "Validate", "Evaluate", "Monetize", "Decision",
+    "README.md": ["v4.0.0", "Find", "Validate", "Evaluate", "Monetize", "Decision",
                   "RECOMMENDED", "POTENTIAL", "NOT_RECOMMENDED", "Roadmap", "License",
-                  "validate_skill.py", "releases/market-scout-v3.1.0.zip", "Determinism Layer"],
+                  "validate_skill.py", "releases/market-scout-v4.0.0.zip", "Validation Engine"],
     "USER_GUIDE.md": ["v2.0.0", "值得做 GO", "Monetization & GTM"],
 }
 
@@ -152,10 +159,12 @@ V3_1_REQUIRED_KEYWORDS = {
     "examples/v3-1-high-score-low-confidence.md": ["85", "Confidence", "Low", "POTENTIAL"],
     "examples/v3-1-hard-gate-score-ceiling.md": ["Score Ceiling", "POTENTIAL", "Monetization"],
     "examples/v3-1-evidence-driven-action.md": ["Evidence-driven", "失败转向", "Today", "Evidence Basis", "payment_signal"],
-    "USER_GUIDE.md": ["v3.1.0", "五层强化", "22)"],
+    "USER_GUIDE.md": ["v3.1.0", "五层强化", "23)"],
 }
 for _k, _v in V3_1_REQUIRED_KEYWORDS.items():
     REQUIRED_KEYWORDS.setdefault(_k, []).extend(_v)
+
+
 
 # v2 templates that must follow UI rendering spec (verdict banner + pipeline bar + action)
 UI_SPEC_TEMPLATES = [
@@ -191,7 +200,7 @@ LEGACY_MUST_KEEP = [
 ]
 
 REF_PATTERN = re.compile(r"(?:references|templates|examples)/[A-Za-z0-9_\-]+\.md")
-VERSION_TOP = {"SKILL.md": "v3.1.0", "USER_GUIDE.md": "v3.1.0", "README.md": "v3.1.0"}
+VERSION_TOP = {"SKILL.md": "v4.0.0", "USER_GUIDE.md": "v4.0.0", "README.md": "v4.0.0"}
 
 
 def main() -> int:
@@ -354,7 +363,24 @@ def main() -> int:
             else:
                 errors.append(f"[v3.1-coverage] missing dimension: {d}")
 
-    # 14. weight sanity: v3 opportunity score weights sum to 100%
+    # 15. v4 validation structure: 11-plan fields + R1-R5 rules present
+    vv = root / "references/v4-validation.md"
+    if vv.exists():
+        text = vv.read_text(encoding="utf-8")
+        fields = ["core_hypothesis", "target_user", "channel", "sample_size", "duration",
+                  "estimated_cost", "success_criteria", "failure_criteria", "decision_rule", "next_state"]
+        missing = [f for f in fields if f not in text]
+        for tok in ("R1 ", "R2 ", "R3 ", "R4 ", "R5 "):
+            if tok in text:
+                ok(f"v4 re-eval rule: {tok.strip()}")
+            else:
+                errors.append(f"[v4-validation] missing rule token: {tok!r}")
+        if missing:
+            errors.append(f"[v4-validation] missing plan fields: {missing}")
+        else:
+            ok("v4 validation plan fields present")
+
+    # 16. weight sanity: v3 opportunity score weights sum to 100%
     sv = root / "references/v3-scoring.md"
     if sv.exists():
         weights = [float(x) for x in re.findall(r"(\d+)%", sv.read_text(encoding="utf-8"))]
