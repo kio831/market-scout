@@ -117,6 +117,7 @@ EXPECTED = [
     "examples/v5-mid-entry-scoring.md",
     "tools/test_v5_orchestrator.py",
     "tools/test_v5_e2e.py",
+    "tools/verify_source_sync.py",
 ]
 
 # Release-phase artifacts (only required in --release mode; publish stage)
@@ -252,7 +253,10 @@ V5_REQUIRED_KEYWORDS = {
                              "case_e2e03_problem_exists", "case_e2e04_evidence_exists",
                              "case_e2e05_score_only", "case_e2e06_validation_only",
                              "case_e2e07_continue_last", "case_e2e08_low_quality",
-                             "case_r1_context_write_back"],
+                             "case_r1_context_write_back", "case_r2_priority_and_backfill",
+                             "case_r3_boundaries", "case_r4_mode_boundary"],
+    "tools/verify_source_sync.py": ["verify_source_sync", "worktree", "package",
+                                    "PASS", "FAIL", "releases/"],
 }
 for _k, _v in V5_REQUIRED_KEYWORDS.items():
     REQUIRED_KEYWORDS.setdefault(_k, []).extend(_v)

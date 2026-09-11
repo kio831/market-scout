@@ -404,6 +404,7 @@ market-scout/
 ├── examples/       (16)        # 流程示例（全部为演示数据）
 ├── tools/
 │   ├── validate_skill.py       # 自检脚本（--dev 开发模式 / --release 发布模式）
+│   ├── verify_source_sync.py   # 发布防线：仓库 vs 发布包一致性校验
 │   ├── test_v31_cases.py       # V3.1 规则用例测试（A-F + 矩阵）
 │   ├── test_v4_validation.py   # V4 验证引擎用例测试（A-G）
 │   ├── test_v5_orchestrator.py # V5 架构测试（A-G）

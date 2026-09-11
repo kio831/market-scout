@@ -38,6 +38,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 打包链自检：打包脚本内置 pre-build self-check（断言 tools/test_v5_e2e.py 存在、validate_skill.py 含 --dev/--release/RELEASE_EXPECTED，不满足即中止构建），从机制上杜绝"源码新版 / 安装包旧版"
 - 全链路验证：旧安装包先隔离归档，再重建 zip/skill（1,047,021 字节，83 文件）；从全新解压目录独立运行全部测试（validate --dev / test_v3.1 / test_v4 / test_v5_orchestrator / test_v5_e2e 全 PASS）；故意破坏测试 3 组（删 E2E 文件 / 删 reference / 删 SKILL 关键词）均 FAIL、恢复后 PASS；源码 ↔ ZIP 逐文件 MD5 零差异
 
+### Fixed（第四轮·发布后修复，2026-09-11）
+
+- **仓库源码同步**：V5 发布提交（e35b584）曾遗漏源码树（SKILL.md/orchestrator/specialists/模板/示例/测试共 19 项停留在 V4）；已由 commit 4b07365 全量同步，仓库工作树与发布包逐文件一致（85 文件，规范化行尾后哈希零差异）
+- **发布防线**：新增 tools/verify_source_sync.py——发布前校验"仓库工作树 == 发布包内容"，出现 MISSING/DIFF/EXTRA 即退出码 1，阻止发布
+- **CHANGELOG 结构修复**：V3.1.0 内容正式拆分为独立条目 [3.1.0]（此前并入 4.0.0 小节之下，无独立标题）
+
 ### Compatibility
 
 - V1.1 / V2 / V3 / V3.1 / V4 全部能力保留，零删除、零重写；references/templates/examples 原样保留
@@ -74,6 +80,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 版本号统一 v4.0.0（SKILL / README / USER_GUIDE / CHANGELOG / website / 安装包 / 校验脚本）
 
 
+## [3.1.0] - 2026-09-06
+
+> V3.1 是在 V3.0 基础上的 **决策确定性强化层**：不新增决策阶段，只解决"分数可解释、判断可复现、短板不被总分掩盖"。
+
 ### Added — 决策确定性五层强化（不新增决策阶段）
 
 - **Score Rubric（`references/v3-scoring-rubric.md`）**：26 个子信号全部五档（1-2/3-4/5-6/7-8/9-10）可观察标准；子信号输出六要素（分/档位/理由/证据 ID/证据态/置信度）；同一证据稳定落档，可复算。
@@ -101,6 +111,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - V2/V3 既有流水线、模板、示例全部保留；V1.1 概念（A/B/C、状态机、三模式）不变
 - 版本号统一 v3.1.0（SKILL / USER_GUIDE / README / CHANGELOG / website / 安装包）
+
 ## [3.0.0] - 2026-09-05
 
 ### Added — V3 决策层（Decision Layer）：Evidence → Score → Decision → MVP → Action
