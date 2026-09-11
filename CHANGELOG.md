@@ -5,6 +5,45 @@ All notable changes to Market Scout are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0] - 2026-09-11
+
+> V5 是在 V4 基础上的 **Orchestrator + Specialist 架构升级**：不重写任何核心逻辑，把验证过的流程封装成"总控 + 专家"能力层。
+
+### Added — Orchestrator 能力层（架构升级，非新决策阶段）
+
+- **Main Orchestrator**（SKILL.md + `orchestrator/architecture.md`）：状态检测、意图识别、路由、调度；Decision + Action 与停手权（BUILD / VALIDATE / RESEARCH / PARK / KILL）保留在主控层
+- **Routing Engine**（`orchestrator/routing.md`）：输入预处理（空/模糊/超长/冲突/重复）、State Detection、Intent Detection、Full / Focused / Mid-workflow Entry / Independent 四模式、Specialist 选择表、降级与日志
+- **Unified State**（`orchestrator/state.md`）：九态状态机 IDEA→OBSERVATION→PROBLEM→EVIDENCE→OPPORTUNITY→SCORED→VALIDATION→DECISION→ACTION；跳步/受控回退/State Recovery/四套代码正交
+- **Unified Context**（`orchestrator/context.md` + `templates/v5-context-card.md`）：MarketScoutContext 字段契约与 V4 产物一一映射；Evidence/State/Context/Source/User Input 五类复用规则
+- **六个 Specialist**（`specialists/`目录）：Idea Observer / Problem Scout / Evidence Hunter / Opportunity Scout / Opportunity Score / Validation Scout；每个均可被 Main 调度或独立调用，方法复用 V4 references/templates
+- **测试**：`tools/test_v5_orchestrator.py`（Case A-G：完整流程/中途进入/聚焦模式/独立契约/停手权/异常处理/V4 非破坏）；validate_skill.py 扩展 V5 清单与专项检查
+
+### Improved
+
+- 不再机械执行完整流程：按状态与意图路由，跳过已完成阶段、复用已有证据
+- 每个 Specialist 双向兼容：被 Main 调用（读 Context 不重复询问）或独立调用（自带输入契约）
+- 跨会话续跑：Context 状态卡 + State Recovery，丢失材料时明确 Unknown 而非猜测
+
+### Fixed（第二轮修正，2026-09-11 开发期）
+
+- 校验模式化：validate_skill.py 增加 --dev（默认）/ --release 两种模式；开发验证不再要求发布资产 releases/*.zip，发布阶段用 --release 强制检查（Release Artifact 检查与开发验证解绑，但未删除）
+- 路由优先级落实：routing.md 新增 P0 优先级链 Explicit Focused Intent > Existing Context / State > Full Workflow（第 5 节）；"继续 / 接着上次 / 续上"等续跑意图显式化；SKILL.md 状态路由节同步
+- 补位闭环强化：补位只由 Main Orchestrator 发起，Specialist 缺输入只返回 MISSING_INPUT，禁止 Specialist 自行互调（routing.md 第 7 节）
+- 机会判断续接链：机会判断类意图（判断/评估机会）按需续接 Opportunity Score → Main，对齐 SKILL.md 模式路由 V3 决策层
+- 行为验证：新增 tools/test_v5_e2e.py（E2E-01..08 + R1 Context 写回一致性 + R2 优先级/补位禁令 + R3 Evidence/Validation 边界与不虚构机制）；路由规则以可执行参照实现复现
+
+### Fixed（第三轮修正，2026-09-11 开发期）
+
+- Mode 边界明确：V4 Mode（Quick / Research / Execution，工作方式）与 V5 Orchestration Mode（Full / Focused / Mid-entry / Independent，进入与调度方式）确认为两个正交维度；context.md 新增 orchestration_mode 字段（第 4.5 节语义），routing.md 新增 6.5 节两层路由关系，SKILL.md / v5-context-card.md 同步
+- 打包链自检：打包脚本内置 pre-build self-check（断言 tools/test_v5_e2e.py 存在、validate_skill.py 含 --dev/--release/RELEASE_EXPECTED，不满足即中止构建），从机制上杜绝"源码新版 / 安装包旧版"
+- 全链路验证：旧安装包先隔离归档，再重建 zip/skill（1,047,021 字节，83 文件）；从全新解压目录独立运行全部测试（validate --dev / test_v3.1 / test_v4 / test_v5_orchestrator / test_v5_e2e 全 PASS）；故意破坏测试 3 组（删 E2E 文件 / 删 reference / 删 SKILL 关键词）均 FAIL、恢复后 PASS；源码 ↔ ZIP 逐文件 MD5 零差异
+
+### Compatibility
+
+- V1.1 / V2 / V3 / V3.1 / V4 全部能力保留，零删除、零重写；references/templates/examples 原样保留
+- 四套代码（证据等级 A/B/C / Opportunity State / Pipeline State / Decision Code）继续正交；V4 评分公式、Confidence、Hard Gates、Validation R1-R5 规则不变
+- 版本号统一 v5.0.0（SKILL / CHANGELOG / 安装包 / 校验脚本）；README / USER_GUIDE / website 口径在发布阶段更新
+
 ## [4.0.0] - 2026-09-07
 
 > V4 是在 V3.1 基础上的 **Validation Layer**：不新增评分体系，把"判断机会"延伸为"判断 → 最低成本验证 → 读真实结果 → 重新判断"。

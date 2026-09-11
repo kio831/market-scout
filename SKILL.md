@@ -1,9 +1,10 @@
 ---
 name: market-scout
-description: 市场侦察与商业验证工作流（Market Scout，v4.0.0）。完整链路 Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 机会转项目 → Monetize 商业化与获客（Find → Validate → Evaluate → Monetize）。当用户想做 AI 赚钱副业、找市场需求、发现痛点、分析视频/评论区/帖子隐含商机、判断"某问题/工具能不能用 AI 解决""这件事能不能赚钱、值不值得做"、验证需求是否真实、评估项目可行性与综合机会评分、把机会转成 MVP/项目方案、设计商业模式/定价/获客/第一批客户、寻找竞争对手、做市场调研、拿第一单/第一笔钱、把 AI 能力变现、验证创业点子，或提到"帮我找市场""分析这个视频/评论区""我发现一个问题""这个能不能用 AI""这个能不能赚钱""值不值得做""需求是不是真的""评估一下这个项目""帮我做成产品/MVP""怎么收费/定价""怎么找客户/第一批用户""商业模式怎么设计""帮我拿第一单""继续深挖""寻找类似需求/竞争对手""出一份机会报告/Opportunity Report"时使用。核心原则 Search First（优先实时搜索而非模型记忆），绝不虚构用户、价格与数据；沿用 v1.1 的 Evidence Chain 证据链、Problem/Solution/Payment 三类搜索、Quick/Research/Execution 三模式、Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）与证据绑定评分；v2.0 新增 Demand Validation 需求验证（痛点/目标用户/需求强度/当前方案/付费理由/证据可信度）、Project Evaluation 项目评估（市场潜力/竞争/差异化/AI 可实现度/开发难度/个人适配/风险，加权综合机会评分 0-100，结论三档：值得做 GO/建议验证后再做 VALIDATE FIRST/不建议做 NO-GO）、Project Blueprint 机会转项目（产品形态/核心用户/核心功能/MVP/技术方向/最小验证/差异化切入点）、Monetization & GTM 商业化获客（Target Customer/Offer/Business Model/Pricing/首批客户/渠道/GTM 路径/无产品验证，模块化设计、预留独立成产品的数据契约，当前不开发支付订阅会员），最终输出结论先行的 Opportunity Report/Opportunity Card。证据等级 A/B/C、交付状态名、V2 流水线阶段名三者相互独立，不共用代码。v3.0 新增决策层：证据三态 Evidence/Inference/Unknown、7 维机会评分 0-100（需求/痛点/竞争切入空间/变现/开发/获客/AI 优势，加权可复算）、三档机会决策（值得继续做 RECOMMENDED / 有机会但需先验证 POTENTIAL / 不建议投入 NOT_RECOMMENDED）、MVP Blueprint 九字段与按机会类型动态生成的 Action Plan；当用户说"打个分""值不值得做""帮我决策""机会评分""第一版做什么""MVP""下一步做什么""今天做什么"时进入 V3 决策层。v3.1 新增五层强化：子信号 Rubric 五档评分细则、决策置信度 Confidence（与评分分离，规则可复算）、硬门槛 Hard Gates（Hard Gate / Score Ceiling / Red Flag 三层）、证据覆盖度 Evidence Coverage（六维+关键缺口）、证据驱动行动计划（继承证据字段，Fallback 具体化）；让判断更可复现、更可信、更难自我欺骗。v4.0 新增 Validation Engine 验证引擎：从最大未知开始设计最低成本验证（Validation Plan / Experiment / Success·Failure Criteria / Decision Rule），读取真实验证结果（Observed/Inference/Unknown 分级），按规则重新计算 Score / Confidence / Coverage / Decision，形成"判断→验证→读结果→重新判断"的闭环（Validate before Build）；当用户说"帮我验证""验证一下这个想法""设计验证实验""我验证了 N 个人，结果…""把验证结果交回""重新评估"时进入 V4 Validation。
+description: 市场侦察与商业验证工作流（Market Scout，v5.0.0）。完整链路 Find 发现 → Validate 需求验证 → Evaluate 项目评估 → Blueprint 机会转项目 → Monetize 商业化与获客（Find → Validate → Evaluate → Monetize）。当用户想做 AI 赚钱副业、找市场需求、发现痛点、分析视频/评论区/帖子隐含商机、判断"某问题/工具能不能用 AI 解决""这件事能不能赚钱、值不值得做"、验证需求是否真实、评估项目可行性与综合机会评分、把机会转成 MVP/项目方案、设计商业模式/定价/获客/第一批客户、寻找竞争对手、做市场调研、拿第一单/第一笔钱、把 AI 能力变现、验证创业点子，或提到"帮我找市场""分析这个视频/评论区""我发现一个问题""这个能不能用 AI""这个能不能赚钱""值不值得做""需求是不是真的""评估一下这个项目""帮我做成产品/MVP""怎么收费/定价""怎么找客户/第一批用户""商业模式怎么设计""帮我拿第一单""继续深挖""寻找类似需求/竞争对手""出一份机会报告/Opportunity Report"时使用。核心原则 Search First（优先实时搜索而非模型记忆），绝不虚构用户、价格与数据；沿用 v1.1 的 Evidence Chain 证据链、Problem/Solution/Payment 三类搜索、Quick/Research/Execution 三模式、Opportunity 交付状态机（HYPOTHESIS→…→PRODUCTIZED）与证据绑定评分；v2.0 新增 Demand Validation 需求验证（痛点/目标用户/需求强度/当前方案/付费理由/证据可信度）、Project Evaluation 项目评估（市场潜力/竞争/差异化/AI 可实现度/开发难度/个人适配/风险，加权综合机会评分 0-100，结论三档：值得做 GO/建议验证后再做 VALIDATE FIRST/不建议做 NO-GO）、Project Blueprint 机会转项目（产品形态/核心用户/核心功能/MVP/技术方向/最小验证/差异化切入点）、Monetization & GTM 商业化获客（Target Customer/Offer/Business Model/Pricing/首批客户/渠道/GTM 路径/无产品验证，模块化设计、预留独立成产品的数据契约，当前不开发支付订阅会员），最终输出结论先行的 Opportunity Report/Opportunity Card。证据等级 A/B/C、交付状态名、V2 流水线阶段名三者相互独立，不共用代码。v3.0 新增决策层：证据三态 Evidence/Inference/Unknown、7 维机会评分 0-100（需求/痛点/竞争切入空间/变现/开发/获客/AI 优势，加权可复算）、三档机会决策（值得继续做 RECOMMENDED / 有机会但需先验证 POTENTIAL / 不建议投入 NOT_RECOMMENDED）、MVP Blueprint 九字段与按机会类型动态生成的 Action Plan；当用户说"打个分""值不值得做""帮我决策""机会评分""第一版做什么""MVP""下一步做什么""今天做什么"时进入 V3 决策层。v3.1 新增五层强化：子信号 Rubric 五档评分细则、决策置信度 Confidence（与评分分离，规则可复算）、硬门槛 Hard Gates（Hard Gate / Score Ceiling / Red Flag 三层）、证据覆盖度 Evidence Coverage（六维+关键缺口）、证据驱动行动计划（继承证据字段，Fallback 具体化）；让判断更可复现、更可信、更难自我欺骗。v4.0 新增 Validation Engine 验证引擎：从最大未知开始设计最低成本验证（Validation Plan / Experiment / Success·Failure Criteria / Decision Rule），读取真实验证结果（Observed/Inference/Unknown 分级），按规则重新计算 Score / Confidence / Coverage / Decision，形成"判断→验证→读结果→重新判断"的闭环（Validate before Build）；当用户说"帮我验证""验证一下这个想法""设计验证实验""我验证了 N 个人，结果…""把验证结果交回""重新评估"时进入 V4 Validation。
+v5.0.0 升级 Orchestrator 能力层：Main Skill 总控（State Detection + Routing + Workflow Control），六个专家子技能（Idea Observer / Problem Scout / Evidence Hunter / Opportunity Scout / Opportunity Score / Validation Scout），统一 MarketScoutContext 与九态状态机（IDEA→OBSERVATION→PROBLEM→EVIDENCE→OPPORTUNITY→SCORED→VALIDATION→DECISION→ACTION），支持 Full / Focused / 中途进入 / 独立调用四种模式，决策与停手权保留在主控层（BUILD / VALIDATE / RESEARCH / PARK / KILL）。当用户说"继续分析""从证据开始""只要找证据""重新评分""帮我验证""先看看值不值得"时先做状态检测再路由。
 ---
 
-# Market Scout (v4.0.0)
+# Market Scout (v5.0.0)
 
 **Find 发现 → Validate 验证 → Evaluate 评估 → Blueprint 转项目 → Monetize 商业化** 的完整市场机会工作台。
 市场侦察 + 需求发现 + 需求验证 + 项目评估 + AI 解决方案/项目设计 + 商业化与获客。
@@ -14,6 +15,8 @@ description: 市场侦察与商业验证工作流（Market Scout，v4.0.0）。�
 > **v3.0 增量说明**：v2.0.0 的全部能力（五阶段流水线、三种模式、铁律、停止机制、第一笔钱清单、模板与示例）**全部保留**；v3.0 在其上新增**决策层**（Evidence 证据三态 → Opportunity Score 7 维 0-100 → Decision 三档 → MVP Blueprint → 动态 Action Plan），让分析结果最终产生"决策"。编排与数据契约见 `references/v3-overview.md`。
 > **v3.1 增量说明**：v3.0.0 的决策层（证据三态、7 维评分、三档决策、MVP、行动计划）**全部保留**；v3.1 只补强确定性，不新增决策阶段：Score Rubric 让每个子信号的分数可解释、可复现；Confidence 把"机会有多好"和"我们有多确定"分开；Hard Gates 阻止总分掩盖致命短板；Evidence Coverage 量化"研究了多少"；Evidence-driven Action 让每一步都继承证据。编排见 `references/v3-overview.md` §4.5。
 > **v4.0 增量说明**：v3.1.0 的确定性强化层（Rubric / Confidence / Hard Gates / Coverage / Evidence-driven Action）**全部保留**；v4.0 在其后接 **Validation Engine**：不新增评分体系，只做"最低成本验证 → 读真实结果 → 重新判断"。编排见 `references/v3-overview.md` §4.6。
+> **v5.0.0 增量说明**：v4.0.0 的 Validation Engine 与 V3/V3.1 决策确定性层**全部保留**；v5.0.0 **不重写任何核心逻辑**，只做架构能力层升级：把既有流程封装为 Orchestrator（SKILL.md 主控）+ 六个 Specialist（specialists/ 目录）+ 统一 Context/State（orchestrator/ 目录），新增路由、状态检测、中途进入、独立调用与跨会话续跑。编排见 orchestrator/architecture.md、orchestrator/routing.md、orchestrator/state.md、orchestrator/context.md。
+
 ## 核心定位
 
 先问**"谁遇到了什么问题？为什么愿意付钱解决？"**，再问**"AI 能否让我更低成本、更快地解决它？"**。
@@ -33,6 +36,28 @@ description: 市场侦察与商业验证工作流（Market Scout，v4.0.0）。�
 → 设计最小解决方案 → MVP → 找真实用户 → 交付 → 获得第一笔钱
 → 复盘 → 标准化 → 自动化 → 产品化
 ```
+
+## V5 Orchestrator（v5.0.0 新增）
+
+V4 已经跑通"判断机会 → 最低成本验证 → 重新判断"的完整闭环；V5 在**不重写 V4** 的前提下，把已有能力封装成"总控 + 专家"架构：
+Main 负责路由、状态检测、调度与最终决策；六个 Specialist 各管一段专业能力；统一 Context 与九个 State 贯穿全程。
+
+主链路不变：
+    Idea → Observation → Problem → Evidence → Opportunity → Score → Validation → Decision → Action
+
+新增四件能力（细则见 orchestrator/ 与 specialists/ 目录）：
+1. **Orchestrator 总控**（orchestrator/architecture.md）：Main 调度六个 Specialist，决策与停手权保留在主控层；动作裁决 BUILD / VALIDATE / RESEARCH / PARK / KILL 与 V4 三档决策码一一对应。
+2. **Routing 路由**（orchestrator/routing.md）：先做 State Detection 与 Intent Detection，再决定 Full / Focused / Mid-workflow Entry / Independent 四种模式；禁止每次都从头机械跑完整流程。
+3. **Specialist 专家子技能**（specialists/ 目录）：Idea Observer、Problem Scout、Evidence Hunter、Opportunity Scout、Opportunity Score、Validation Scout。每个可被 Main 调度，也可独立调用；方法全部复用 V4 references/templates，不重复定义概念。
+4. **统一 Context / State**（orchestrator/context.md、orchestrator/state.md）：MarketScoutContext 承载 idea/observation/problem/evidence/opportunity/score/validation/decision/action + assumptions/unknowns/sources/confidence；九态状态机支持中途进入与跨会话续跑；证据与状态强制复用（Evidence Reuse / State Reuse），禁止重复搜索、重复询问。
+
+兼容性承诺：V4 的三种工作模式、细粒度路由表、标准工作流 1-10 步、铁律、评分公式、验证规则原样保留；Specialist 只是执行这些步骤的模块化封装。冲突时按"V4 已验证功能 > 使用效果 > 兼容性 > 模块化架构 > 结构美观"处理。
+
+使用方式：
+- 完整分析（Full Mode）：默认按主链路走完，每步由一个 Specialist 执行。
+- 聚焦调用（Focused Mode）：用户点名能力（"只要证据""重新评分""怎么验证"）时只派对应 Specialist。
+- 中途进入（Mid-entry）：用户已有 Problem/Evidence/Score 时从对应状态继续，不重跑已完成阶段。
+- 独立调用（Independent）：直接触发某 Specialist 只做该段工作。
 
 ## V2 主链路：Find → Validate → Evaluate → Monetize（P0）
 
@@ -200,6 +225,34 @@ V3 新增 Decision Code（RECOMMENDED/POTENTIAL/NOT_RECOMMENDED），与证据�
 若输入同时命中多模式（例如"这个视频能赚钱吗"），按链式推进：Reverse Engineering → Payment Validation → 需要时到 AI Solution Design，不要在中间停。
 若用户要求完整判断"值不值得做 + 怎么做 + 怎么赚钱"，按 V2 五阶段流水线 FIND→VALIDATE→EVALUATE→BLUEPRINT→MONETIZE 顺序推进（允许从指定阶段切入，但须先补齐该阶段输入契约所缺字段，见 `references/pipeline-and-runtime.md`）。
 若用户只要求"打个分 / 值不值得做 / 下一步做什么"这类决策，走 V3 决策层九步主流程（`references/v3-overview.md` §1），V2 五阶段照常复用为分析引擎。
+
+### 状态路由（v5.0.0）：意图 → 状态 → Specialist
+
+在上一张意图路由表之上，V5 增加状态维度。收到输入后先执行 State Detection（orchestrator/state.md 第 3 节）：
+依据 Context 已有字段与用户输入判断当前 State（IDEA→OBSERVATION→PROBLEM→EVIDENCE→OPPORTUNITY→SCORED→VALIDATION→DECISION→ACTION），取最高已满足状态，得出缺失状态清单。
+
+| 检测到的状态 | 下一步调度 |
+|---|---|
+| IDEA | Idea Observer |
+| OBSERVATION | Problem Scout |
+| PROBLEM | Evidence Hunter |
+| EVIDENCE | Opportunity Scout |
+| OPPORTUNITY | Opportunity Score |
+| SCORED | Main 决策门（需要验证 → Validation Scout；否则直接 Action） |
+| VALIDATION | Main 读验证结果重判（v4 R1-R5） |
+| DECISION | Main Action |
+| ACTION | 闭环完成，输出自检 |
+
+模式判定与优先级（详见 orchestrator/routing.md 第 5、6 节）：
+- **Full Mode**：用户只有一个想法 → 依次调度六个 Specialist。
+- **Focused Mode**：用户点名能力 → 只派对应 Specialist；输入缺失时只补最小缺失阶段，补完即回。
+- **Mid-workflow Entry**：用户已有部分成果 → 从最高已完成 State 续跑；禁止重跑已完成阶段、禁止重复搜索已有证据。
+- **Independent**：用户直接触发某 Specialist 独立运行，按该 Specialist 输入契约执行。
+- **优先级（P0）**：Explicit Focused Intent（用户点名能力）> Existing Context / State（含"继续""接着上次"续跑）> Full Workflow；只按此链裁决，禁止并行猜测。
+
+> **两层 Mode 边界**：V4 的三种工作模式（Quick / Research / Execution）与 V5 的调度模式（Full / Focused / Mid-entry / Independent）是两个维度——前者决定"用什么方式做"，后者决定"从哪进、调谁"；V5 Routing 先定调度模式，再按 V4 Mode 决定工作方式，二者正交并存（详见 orchestrator/routing.md 第 6.5 节与 orchestrator/context.md 第 4.5 节）。
+
+所有 Specialist 写入统一 MarketScoutContext（契约见 orchestrator/context.md，工作文件见 templates/v5-context-card.md），主控层据此决策。
 
 ## 标准工作流（v1.1 九步 = V2 流水线 FIND 阶段的内部细化；v2.0 在其后衔接四阶段）
 
@@ -396,6 +449,18 @@ AI 能明显降低成本/时间/技能门槛？
 
 - `references/v4-validation.md` — **【v4.0 新增】验证引擎：Validation Plan 11 问、从最大未知开始、Lowest-Cost 方法映射、Validate before Build、Success/Failure Criteria、Validation Result 分级、Re-evaluation 规则化重算、Learn Loop**。
 
+- `orchestrator/architecture.md` — **【v5.0 新增】总控架构：组件职责、依赖方向、Full Mode 流程、Decision+Action 五态裁决、错误降级、兼容性承诺**。
+- `orchestrator/routing.md` — **【v5.0 新增】路由引擎：输入预处理（空/模糊/超长/冲突）、State Detection、Intent Detection、四种模式判定、Specialist 选择表、降级与日志**。
+- `orchestrator/state.md` — **【v5.0 新增】九态状态机：状态定义与转移规则、状态查询表、四套代码正交、State Recovery、边界条件处理**。
+- `orchestrator/context.md` — **【v5.0 新增】MarketScoutContext 统一上下文：字段契约、与 V4 产物映射、复用规则（Evidence/State/Context/Source/User Input）、读写与持久化**。
+
+- `specialists/idea-observer.md` — **【v5.0 新增】专家子技能：Idea → Observation（六信号拆解、观察与空想区分；可独立调用）**。
+- `specialists/problem-scout.md` — **【v5.0 新增】专家子技能：Observation → Problem Definition（Problem Card + 证据等级 A/B/C + 首次停手检查）**。
+- `specialists/evidence-hunter.md` — **【v5.0 新增】专家子技能：三类搜索 → 证据链 → Evidence Board + Coverage（唯一被授权搜索的 Specialist；已有证据只做缺口搜索）**。
+- `specialists/opportunity-scout.md` — **【v5.0 新增】专家子技能：需求验证（三选一）+ 竞争切入空间四问 → Opportunity Card（复用证据，不重复研究）**。
+- `specialists/opportunity-score.md` — **【v5.0 新增】专家子技能：7 维评分 + Confidence + Hard Gates（26 子信号 Rubric、可复算、防调规则）**。
+- `specialists/validation-scout.md` — **【v5.0 新增】专家子技能：最低成本验证设计（11 问）+ 结果分级 Observed/Inference/Unknown（禁止默认 MVP，Validate before Build）**。
+
 ## 模板（直接填充）
 
 - `templates/problem-card.md` — 问题卡片（含证据链字段）。
@@ -418,6 +483,8 @@ AI 能明显降低成本/时间/技能门槛？
 
 - `templates/v4-validation-card.md` — **【v4.0 新增】验证卡：计划 → 实验 → 结果 → 重新判断（Validation Output / Report 一体化）**。
 
+- `templates/v5-context-card.md` — **【v5.0 新增】MarketScoutContext 状态卡：State 头 + 九段字段 + 全局清单（跨会话续跑工作文件）**。
+
 ## 示例（演示流程，数据为示意）
 
 - `examples/video-analysis.md` — 视频反向市场分析（含证据链）。
@@ -436,6 +503,10 @@ AI 能明显降低成本/时间/技能门槛？
 - `examples/v4-lowest-cost-validation.md` — **【v4.0 新增】最低成本验证选择示例：Manual Test 优先于 MVP**。
 - `examples/v4-validation-result.md` — **【v4.0 新增】Validation Result 示例：回填真实结果并分级 Observed/Inference/Unknown**。
 - `examples/v4-re-evaluation.md` — **【v4.0 新增】Re-evaluation 示例：验证后 Score/Confidence/Coverage/Decision 按规则重算**。
+
+- `examples/v5-orchestrator-full-run.md` — **【v5.0 新增】V5 完整流程示例：Full Mode 从 IDEA 到 ACTION，六个 Specialist 依次调度 + 路由日志 + 闭环自检**。
+- `examples/v5-focused-evidence-hunter.md` — **【v5.0 新增】V5 聚焦模式示例：独立 Evidence Hunter（三类搜索 + 证据链 + 覆盖度，不下决策）**。
+- `examples/v5-mid-entry-scoring.md` — **【v5.0 新增】V5 中途进入示例：已有 Problem + Evidence → 直接评分，验证不重复搜索**。
 
 ## 用户使用说明
 

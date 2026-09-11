@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Market Scout skill package self-check (v4.0.0 release).
+Market Scout skill package self-check (v5.0.0).
 
 Usage:
-    python tools/validate_skill.py [skill_dir]
+    python tools/validate_skill.py [skill_dir] [--dev|--release]
+
+Modes:
+    --dev       (default) development validation: skill files, specialists,
+                context, routing, state, schemas, scripts, local tests.
+                Release artifact (releases/*.zip) is NOT required in dev mode.
+    --release   release validation: everything in dev mode PLUS the release
+                artifact must exist in releases/.
+
+Note: the release zip is a publish-phase artifact; it lives in releases/ of
+the source tree and is intentionally NOT nested inside the install package.
+Running the check on an extracted package is therefore only meaningful in
+dev mode (package content is verified by byte-exact comparison instead).
 
 Checks:
   1. File manifest completeness (all expected files exist, incl. release assets).
@@ -15,6 +27,10 @@ Checks:
   5. Version consistency on top-level docs (v4.0.0 across SKILL/USER_GUIDE/README).
   6. UI rendering spec anchors in v2 templates (verdict banner / pipeline bar / action).
   7. Open-source release assets (CHANGELOG / LICENSE / CONTRIBUTING / .gitignore / website).
+  8. V5 Orchestrator layer (orchestrator/* + specialists/* + v5 template/examples/tests).
+  9. V5 state machine (9 states) & unified context contract fields.
+  10. V5 routing modes & priority chain (Focused Intent > Existing State > Full Workflow).
+  11. Release artifact check only in --release mode.
 Exit code 0 = all passed; 1 = errors found.
 """
 import re
@@ -85,7 +101,27 @@ EXPECTED = [
     "examples/v4-validation-result.md",
     "examples/v4-re-evaluation.md",
     "tools/test_v4_validation.py",
-    "releases/market-scout-v4.0.0.zip",
+    "orchestrator/architecture.md",
+    "orchestrator/routing.md",
+    "orchestrator/state.md",
+    "orchestrator/context.md",
+    "specialists/idea-observer.md",
+    "specialists/problem-scout.md",
+    "specialists/evidence-hunter.md",
+    "specialists/opportunity-scout.md",
+    "specialists/opportunity-score.md",
+    "specialists/validation-scout.md",
+    "templates/v5-context-card.md",
+    "examples/v5-orchestrator-full-run.md",
+    "examples/v5-focused-evidence-hunter.md",
+    "examples/v5-mid-entry-scoring.md",
+    "tools/test_v5_orchestrator.py",
+    "tools/test_v5_e2e.py",
+]
+
+# Release-phase artifacts (only required in --release mode; publish stage)
+RELEASE_EXPECTED = [
+    "releases/market-scout-v5.0.0.zip",
 ]
 
 # ---- Required keywords per v2 artifact (must ALL appear) ---------------------
@@ -164,6 +200,63 @@ V3_1_REQUIRED_KEYWORDS = {
 for _k, _v in V3_1_REQUIRED_KEYWORDS.items():
     REQUIRED_KEYWORDS.setdefault(_k, []).extend(_v)
 
+# ---- Required keywords for v5 artifacts -------------------------------------
+V5_REQUIRED_KEYWORDS = {
+    "SKILL.md": ["v5.0.0", "V5 Orchestrator", "状态路由", "MarketScoutContext",
+                 "Idea Observer", "Problem Scout", "Evidence Hunter",
+                 "Opportunity Scout", "Opportunity Score", "Validation Scout",
+                 "BUILD", "PARK", "KILL", "orchestrator/routing.md",
+                 "specialists/idea-observer.md", "templates/v5-context-card.md"],
+    "orchestrator/architecture.md": ["Orchestrator", "Full Mode", "Routing",
+                                     "MarketScoutContext", "BUILD", "VALIDATE",
+                                     "RESEARCH", "PARK", "KILL", "有停手权"],
+    "orchestrator/routing.md": ["State Detection", "Intent Detection", "Full Mode",
+                                "Focused Mode", "Mid-workflow", "中途进入",
+                                "Independent", "降级", "空输入", "模糊输入",
+                                "超长输入", "信息冲突", "搜索无结果", "上下文缺失",
+                                "Specialist 执行失败", "重复调用", "阶段已经完成",
+                                "Validation 无法进行", "路由优先级",
+                                "Explicit Focused", "Existing Context",
+                                "Full Workflow", "继续", "接着上次",
+                                "MISSING_INPUT", "Main Orchestrator 是唯一的流程调度者"],
+    "orchestrator/state.md": ["IDEA", "OBSERVATION", "PROBLEM", "EVIDENCE",
+                              "OPPORTUNITY", "SCORED", "VALIDATION", "DECISION",
+                              "ACTION", "State Recovery", "允许前进跳步",
+                              "禁止无依据回退"],
+    "orchestrator/context.md": ["context_version", "opportunity_id", "mode", "state",
+                                "history", "idea", "observation", "problem",
+                                "evidence", "opportunity", "criteria", "score",
+                                "validation", "decision", "action", "assumptions",
+                                "unknowns", "sources", "confidence", "Evidence Reuse",
+                                "orchestration_mode", "V4 Mode",
+                                "V5 Orchestration Mode"],
+    "orchestrator/routing.md": ["V4 Mode", "V5 Orchestration Mode",
+                                "怎么进入和调度", "工作方式"],
+    "templates/v5-context-card.md": ["state", "history", "verdict", "BUILD",
+                                     "PARK", "KILL", "today"],
+    "examples/v5-orchestrator-full-run.md": ["IDEA", "OBSERVATION", "PROBLEM",
+                                             "EVIDENCE", "OPPORTUNITY", "SCORED",
+                                             "VALIDATION", "DECISION", "ACTION",
+                                             "今天做什么"],
+    "examples/v5-focused-evidence-hunter.md": ["Evidence Hunter", "Problem Search",
+                                               "Solution Search", "Payment Search",
+                                               "未重跑"],
+    "examples/v5-mid-entry-scoring.md": ["MID-ENTRY", "未重跑", "Evidence Reuse",
+                                         "RECOMMENDED"],
+    "CHANGELOG.md": ["5.0.0", "Orchestrator", "Specialist", "MarketScoutContext"],
+    "tools/test_v5_orchestrator.py": ["case_a_full_pipeline", "case_b_mid_entry",
+                                      "case_c_focused_mode", "case_d_independent_specialists",
+                                      "case_e_stop_rights", "case_f_edge_cases",
+                                      "case_g_v4_preserved"],
+    "tools/test_v5_e2e.py": ["case_e2e01_full_new_idea", "case_e2e02_evidence_only",
+                             "case_e2e03_problem_exists", "case_e2e04_evidence_exists",
+                             "case_e2e05_score_only", "case_e2e06_validation_only",
+                             "case_e2e07_continue_last", "case_e2e08_low_quality",
+                             "case_r1_context_write_back"],
+}
+for _k, _v in V5_REQUIRED_KEYWORDS.items():
+    REQUIRED_KEYWORDS.setdefault(_k, []).extend(_v)
+
 
 
 # v2 templates that must follow UI rendering spec (verdict banner + pipeline bar + action)
@@ -199,12 +292,16 @@ LEGACY_MUST_KEEP = [
     "examples/real-world-problem.md",
 ]
 
-REF_PATTERN = re.compile(r"(?:references|templates|examples)/[A-Za-z0-9_\-]+\.md")
+REF_PATTERN = re.compile(r"(?:references|templates|examples|orchestrator|specialists)/[A-Za-z0-9_\-]+\.md")
 VERSION_TOP = {"SKILL.md": "v4.0.0", "USER_GUIDE.md": "v4.0.0", "README.md": "v4.0.0"}
+VERSION_TOP_V5 = {"SKILL.md": "v5.0.0", "CHANGELOG.md": "5.0.0"}
 
 
 def main() -> int:
-    root = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
+    release_mode = "--release" in sys.argv
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    root = Path(args[0]).resolve() if args else Path(__file__).resolve().parent.parent
+    mode_label = "release mode" if release_mode else "dev mode"
     errors, warnings, passed = [], [], 0
 
     def ok(msg):
@@ -218,6 +315,18 @@ def main() -> int:
             errors.append(f"[missing] {rel}")
         else:
             ok(f"exists: {rel}")
+    for rel in RELEASE_EXPECTED:
+        p = root / rel
+        if release_mode:
+            if p.exists():
+                ok(f"exists (release): {rel}")
+            else:
+                errors.append(f"[missing][release] {rel} (required in --release mode)")
+        else:
+            if p.exists():
+                ok(f"dev mode: release artifact present, checked: {rel}")
+            else:
+                ok("dev mode: release artifact check skipped (use --release at publish stage)")
     for rel in LEGACY_MUST_KEEP:
         if (root / rel).exists():
             ok(f"legacy kept: {rel}")
@@ -286,6 +395,14 @@ def main() -> int:
             head_text = p.read_text(encoding="utf-8")
             if ver in head_text:
                 ok(f"{rel} version {ver}")
+            else:
+                errors.append(f"[version] {rel} heading missing {ver}")
+    for rel, ver in VERSION_TOP_V5.items():
+        p = root / rel
+        if p.exists():
+            head_text = p.read_text(encoding="utf-8")
+            if ver in head_text:
+                ok(f"{rel} version {ver} (v5)")
             else:
                 errors.append(f"[version] {rel} heading missing {ver}")
 
@@ -404,9 +521,89 @@ def main() -> int:
         else:
             errors.append(f"[weights] v3 first-7 weights = {seven}, sum != 100%")
 
+    # 17. v5 specialists: frontmatter + contract sections
+    SPECIALIST_RELS = [
+        "specialists/idea-observer.md", "specialists/problem-scout.md",
+        "specialists/evidence-hunter.md", "specialists/opportunity-scout.md",
+        "specialists/opportunity-score.md", "specialists/validation-scout.md",
+    ]
+    SPECIALIST_SECTIONS = ["输入契约", "输出契约", "执行方法", "质量铁律", "独立调用", "被 Main 调度"]
+    for rel in SPECIALIST_RELS:
+        p = root / rel
+        if not p.exists():
+            continue
+        text = p.read_text(encoding="utf-8")
+        head = text[:400]
+        if "---" in head and "name:" in head and "description:" in head:
+            ok(f"v5 specialist frontmatter: {rel}")
+        else:
+            errors.append(f"[v5-specialist] {rel} missing frontmatter (name/description)")
+        for sec in SPECIALIST_SECTIONS:
+            if sec in text:
+                ok(f"{rel} section: {sec}")
+            else:
+                errors.append(f"[v5-specialist] {rel} missing section '{sec}'")
+
+    # 18. v5 state machine: 9 states present
+    sm = root / "orchestrator/state.md"
+    if sm.exists():
+        text = sm.read_text(encoding="utf-8")
+        states = ["IDEA", "OBSERVATION", "PROBLEM", "EVIDENCE", "OPPORTUNITY",
+                  "SCORED", "VALIDATION", "DECISION", "ACTION"]
+        missing = [s for s in states if s not in text]
+        if missing:
+            errors.append(f"[v5-state] missing states: {missing}")
+        else:
+            ok("v5 state machine 9 states present")
+        for tok in ("State Recovery", "允许前进跳步", "禁止无依据回退"):
+            if tok in text:
+                ok(f"v5 state rule: {tok}")
+            else:
+                errors.append(f"[v5-state] missing rule token: '{tok}'")
+
+    # 19. v5 context contract fields
+    ctx = root / "orchestrator/context.md"
+    if ctx.exists():
+        text = ctx.read_text(encoding="utf-8")
+        fields = ["context_version", "opportunity_id", "mode", "state", "history",
+                  "idea", "observation", "problem", "evidence", "opportunity",
+                  "criteria", "score", "validation", "decision", "action",
+                  "assumptions", "unknowns", "sources", "confidence"]
+        missing = [f for f in fields if f not in text]
+        if missing:
+            errors.append(f"[v5-context] missing fields: {missing}")
+        else:
+            ok("v5 MarketScoutContext fields present")
+        if "Evidence Reuse" in text and "State Reuse" in text:
+            ok("v5 context reuse rules present")
+        else:
+            errors.append("[v5-context] missing reuse rules (Evidence Reuse / State Reuse)")
+
+    # 20. v5 routing modes
+    rt = root / "orchestrator/routing.md"
+    if rt.exists():
+        text = rt.read_text(encoding="utf-8")
+        modes = ["Full Mode", "Focused Mode", "Mid-workflow", "中途进入", "Independent"]
+        missing = [m for m in modes if m not in text]
+        if missing:
+            errors.append(f"[v5-routing] missing modes: {missing}")
+        else:
+            ok("v5 routing 4 modes present")
+
+    # 21. v5 stop-rights verdicts
+    ar = root / "orchestrator/architecture.md"
+    if ar.exists():
+        text = ar.read_text(encoding="utf-8")
+        verdicts = ["BUILD", "VALIDATE", "RESEARCH", "PARK", "KILL"]
+        missing = [v for v in verdicts if v not in text]
+        if missing:
+            errors.append(f"[v5-verdict] missing verdicts: {missing}")
+        else:
+            ok("v5 action verdicts BUILD/VALIDATE/RESEARCH/PARK/KILL present")
+
     # ---- report ----
     print("=" * 64)
-    print(f"Market Scout skill self-check @ {root}")
+    print(f"Market Scout skill self-check ({mode_label}) @ {root}")
     print("=" * 64)
     print(f"passed checks : {passed}")
     print(f"warnings      : {len(warnings)}")
