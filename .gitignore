@@ -48,6 +48,7 @@ desktop.ini
 # release packages committed under releases/
 !releases/
 !releases/*.zip
+!releases/*.skill
 
 # Temporary / scratch
 tmp/

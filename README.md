@@ -4,19 +4,19 @@
 
 # 🔭 Market Scout
 
-**AI Market Opportunity Discovery + Decision + Validation Skill**
+**真实问题 → 证据 → 需求 → 验证 → 决策 → 行动**
 
-**一个帮助你发现市场机会、判断机会、并用最低成本验证机会的 AI Skill。**
+**一个帮助你从“一个想法”走向“真实验证”的 AI Agent Skill**
 
-**Discover. Decide. Validate.**
+**Discover. Validate. Decide. Act.**
 
-[![Version](https://img.shields.io/badge/version-v4.0.0-blue)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v5.0.0-blue)](./CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 ![Type](https://img.shields.io/badge/type-Agent%20Skill-orange)
 ![Platform](https://img.shields.io/badge/platform-Any%20Markdown%20Agent-lightgrey)
-![Status](https://img.shields.io/badge/status-Validation%20Engine-brightgreen)
+![Status](https://img.shields.io/badge/status-Orchestrated%20System-brightgreen)
 
-[⬇ 下载 V4.0.0](./releases/market-scout-v4.0.0.zip) · [安装](#-安装) · [快速开始](#-快速开始) · [V4 核心](#-v4-validation-engine-验证引擎) · [版本演进](#-版本演进) · [项目结构](#-项目结构)
+[⬇ 下载 V5.0.0](./releases/market-scout-v5.0.0.zip) · [安装](#-安装) · [快速开始](#-快速开始) · [V5 核心](#-v5--orchestrator--expert-specialists) · [路由](#-how-v5-works--routing) · [版本演进](#-版本演进) · [项目结构](#-project-structure)
 
 </div>
 
@@ -26,179 +26,232 @@
 
 **英文 / English**
 
-`BT`
-Discover opportunities
-→ Find evidence
+```
+Discover a real problem
+→ Find evidence (problem / solution / payment)
 → Score the opportunity
 → Make a decision
-→ Design the lowest-cost validation
+→ Validate key assumptions at the lowest cost
 → Feed real-world results back
-→ Re-evaluate
-`BT`
+→ Re-evaluate and act
+```
 
 **中文 / 中文**
 
-`BT`
-发现机会
-→ 找证据
-→ 评估
-→ 判断
-→ 设计最低成本验证
-→ 输入真实结果
-→ 重新判断
-`BT`
+```
+发现真实问题
+→ 找证据（问题 / 现有方案 / 付费行为）
+→ 评估机会
+→ 做出判断
+→ 用最低成本验证关键假设
+→ 把真实结果交回来
+→ 重新判断并行动
+```
 
-> 不要只分析机会，去验证它。**Don't just analyze opportunities. Validate them.**
+> 不要先 Build 再找用户。**Don't build first. Verify first.**
 
 ## What is Market Scout? / 它是什么？
 
-Market Scout is an AI Skill for discovering, evaluating, and validating market opportunities — it turns a vague idea into an evidence-backed decision and a lowest-cost validation plan.
+Market Scout is an AI Agent Skill for turning a vague idea into an evidence-backed decision and an actionable plan — from observation to validation.
 
-Market Scout 是一个用于**发现、判断和验证市场机会**的 AI Skill：把一个模糊想法，变成有证据支撑的判断，和可以直接执行的验证计划。
+Market Scout 是一个 AI Agent Skill：把一个模糊想法，变成有证据支撑的判断、最低成本的验证方案、和可执行的下一步行动。
 
-它不是「AI 创业点子生成器」，不会凭空给你编项目；它也不会停在"一份分析报告"——它带着你**用最低成本去证明这件事**，再根据真实结果重新判断。
+它**不是**「AI 赚钱点子生成器」。它不会凭空给你编项目，也不会停在“一份漂亮的市场分析报告”：
 
----
+```
+先观察问题
+→ 搜索证据
+→ 判断需求
+→ 评估机会
+→ 验证关键假设
+→ 再决定是否行动
+```
 
-## 🗺 版本演进 / Version Evolution
-
-Market Scout 是怎么成长起来的（**V4 是当前阶段最终版**）：
-
-### V1 — Opportunity Discovery
-发现市场机会。**发现机会。**
-
-### V1.1 — Structured Analysis
-让机会分析更加结构化。**结构化分析。**
-
-### V2 — Opportunity Workflow
-形成完整的机会分析流程（Validate / Evaluate / Blueprint / Monetize）。**机会分析流程。**
-
-### V3 — Evidence → Score → Decision
-开始真正基于证据进行评分和决策。**证据 → 评分 → 决策。**
-
-### V3.1 — Rubric + Confidence + Hard Gates
-解决评分可靠性、置信度、关键门槛和证据覆盖问题。**可靠性强化层。**
-
-### 🧪 V4.0 — Validation Engine（当前版本 ⭐）
-从"判断机会"进入"验证机会"。**验证引擎。**
-
-![Version Evolution](assets/02-evolution.png)
+核心思想：**先验证，再收费，再产品化**（Validate before Build）。
 
 ---
 
-## 🧪 V4 Validation Engine 验证引擎（当前版本）
+## 🚀 V5 — Orchestrator + Expert Specialists
 
-**V3.1 回答：这个机会怎么样？**
+**V5 最大的升级不是“多了几个功能”，而是 Market Scout 从一个整体 Skill，升级为由 Main Orchestrator 统一调度 Expert Specialists 的 Agent 工作系统。**
 
-**V4 回答：那我怎么用最低成本证明它？**
+### 从单体到编排 / From Monolith to Orchestration
 
-验证完成之后，继续？修改？暂停？放弃？—— 都由真实结果说了算。
+```
+V4: 单体工作流能力（一个 Skill 里跑完整流程）
+       ↓
+V5: Main Orchestrator（总控）
+       ↓
+    Routing（路由：判断从哪里进、调谁）
+       ↓
+    Expert Specialists（6 个专家子技能）
+       ↓
+    Shared Context / State（共享上下文与状态）
+       ↓
+    Decision / Action（决策与行动，保留在主控层）
+```
 
-### V4 的核心能力 / Core Capabilities
+![V5 Architecture](assets/market-scout-v5-architecture.png)
 
-#### Validation Plan 验证计划
+### Main Orchestrator 总控
 
-告诉你：
+负责：理解用户当前需求 → 判断从哪里进入 → 决定调用哪个 Specialist → 管理 Context / State → 决定下一步。
 
-- 验证什么（core hypothesis，来自最大的未知）
-- 找谁（target user）
-- 怎么验证（method + channel）
-- 需要多少样本（sample size）
-- 需要多久（duration）
-- 成功标准是什么（success criteria）
-- 失败标准是什么（failure criteria）
+### Expert Specialists 专家子技能（6 个）
 
-#### Lowest-Cost Validation 最低成本验证
+| Specialist | 职责 | 输入 → 输出 |
+|---|---|---|
+| **Idea Observer** | 把想法/现象拆成可观察信号 | Idea → Observation |
+| **Problem Scout** | 把观察定义成可研究的问题 | Observation → Problem |
+| **Evidence Hunter** | 三类搜索 + 证据链（唯一被授权搜索的专家） | Problem → Evidence |
+| **Opportunity Scout** | 需求验证 + 竞争切入空间 | Problem + Evidence → Opportunity |
+| **Opportunity Score** | 7 维评分 + Confidence + Hard Gates | Opportunity + Evidence → Score |
+| **Validation Scout** | 设计最低成本验证、读真实结果 | Opportunity + Score → Validation |
 
-不会默认让你先开发 MVP —— 根据最大的未知选择最低成本方法：
+> **Specialist 之间不互相调用。** 正确关系是 Main → Specialist → Main → 下一个 Specialist；缺输入时 Specialist 只返回 MISSING_INPUT，由 Main 负责补位。
 
-`BT`
-User Interview → Landing Page / Demo → Offer / Pre-sale → Manual + AI Delivery → Small Pilot → MVP
-`BT`
+---
 
-核心原则：**Validate Before Build（先验证，再构建）**
+## 🧠 How V5 Works — Routing 路由
 
-#### Validation Result 验证结果
+V5 不会机械地从第一步跑到最后一步。Main Orchestrator 先判断“用户在哪里、想要什么”，再决定怎么走。路由优先级：
 
-用户完成真实验证后，把结果重新交给 Skill：
+```
+1. Explicit Focused Intent（你明确说要做什么）
+2. Existing Context / State（你已经做到一半）
+3. Full Workflow（什么都没有，从头完整开始）
+```
 
-`BT`
-20 users
-8 interested
-3 trials
-1 paid
-¥99 revenue
-`BT`
+### ① 你明确说要做什么
 
-真实结果会被按 **Observed / Inference / Unknown** 分级，不会把"8 个人感兴趣"当成"市场已验证"。
+> “帮我找真实需求证据。”
 
-#### Re-evaluation 重新评估
+→ 直接进入 **Evidence Hunter**，不跑完整流程。
 
-Market Scout 根据真实结果重新计算：
+### ② 你已经做到一半
 
-`BT`
+比如你已经完成 Idea / Problem / Evidence / Score，然后说：
+
+> “继续。”
+
+V5 **不会从头开始**，而是从**下一缺失阶段**继续（SCORED → VALIDATION）。
+
+### ③ 什么都没有
+
+才从完整闭环开始：
+
+```
+Idea → Observation → Problem → Evidence → Opportunity → Score → Validation → Decision → Action
+```
+
+![V5 Core Workflow](assets/market-scout-v5-core-workflow.png)
+
+> **V5 不要求每一次分析都从 Idea 开始。** 你可以从全新想法开始，也可以直接找证据、重新评分、或继续上一次分析——这正是 Orchestrator 的意义。
+
+---
+
+## 🔀 Orchestration Modes 四种调度模式
+
+| Mode | 用途 | 例子 |
+|---|---|---|
+| **Full** | 从头完整运行 | “我有一个想法，帮我完整分析” |
+| **Focused** | 针对一个明确需求调用对应 Specialist | “帮我找真实需求证据” |
+| **Mid-entry** | 从已有上下文/状态继续 | “我已有问题定义和证据，继续评分” |
+| **Independent** | 单独使用某个专家能力 | 单独触发 Evidence Hunter / Validation Scout |
+
+### V4 Mode 与 V5 Orchestration Mode 是两个维度
+
+V5 同时保留 V4 的三种工作模式，但它们**不是同一个东西**：
+
+| 概念 | 值 | 回答的问题 |
+|---|---|---|
+| **V4 Mode**（工作方式） | Quick / Research / Execution | 采用哪种已有能力深度 |
+| **V5 Orchestration Mode**（调度方式） | Full / Focused / Mid-entry / Independent | 从哪里进入、如何调度 |
+
+两者可以组合，例如：**Research + Focused**（深挖某个能力）、**Quick + Full**（快速走完整链）、**Execution + Mid-entry**（已有结论直接执行）。
+
+> V5 Routing 决定“怎么进入和调度”；V4 Mode 决定“采用哪种工作方式”。二者正交，不互相竞争。
+
+---
+
+## 🧠 Context & State 上下文与状态
+
+V5 不是每次都重新开始。它维护一份统一的 **MarketScoutContext**（idea / observation / problem / evidence / opportunity / score / validation / decision / action + assumptions / unknowns / sources / confidence 等 19 个字段）与九态状态机（IDEA → OBSERVATION → PROBLEM → EVIDENCE → OPPORTUNITY → SCORED → VALIDATION → DECISION → ACTION），让工作流能够：
+
+```
+继续（继续上次分析）
+恢复（跨会话续跑；材料丢失时明确 Unknown，而不是猜测）
+补充（只补缺失字段，不重复询问）
+重新评分（按固定规则重算）
+进入下一阶段（State 正确推进）
+```
+
+> 数据契约与字段映射见安装包内 orchestrator/context.md；工作文件见 templates/v5-context-card.md。
+
+---
+
+## 🔄 Core Workflow 核心工作流
+
+这是 Market Scout 的完整能力链（不是每次都必须严格从第一步走到最后一步——V5 Orchestrator 会根据你的当前状态选择合适的进入点）：
+
+```
+Idea
+ ↓
+Observation
+ ↓
+Problem
+ ↓
+Evidence
+ ↓
+Opportunity
+ ↓
 Score
-Confidence
-Evidence Coverage
+ ↓
+Validation
+ ↓
 Decision
-`BT`
-
-并输出：**Continue（继续）/ Modify（修改）/ Stop（停止）/ Revisit（重查）**
-
-![V4 Validation Loop](assets/03-validation-loop.png)
-
-> **Market Scout does not stop at prediction. It closes the loop with real-world validation.**
-> **Market Scout 不停留在预测，而是通过真实验证把判断闭环。**
+ ↓
+Action
+```
 
 ---
 
-## 一个简单的使用流程 / How it works
+## 🔎 Core Principles 核心原则
 
-`BT`
-你有一个想法
-↓
-不知道有没有市场
-↓
-Market Scout 找证据
-↓
-判断这个机会
-↓
-找到最大的未知
-↓
-设计最低成本验证
-↓
-你去现实中验证
-↓
-把结果交回来
-↓
-Market Scout 重新判断
-`BT`
+### Search First 证据优先
 
-## 核心链路 / Core Loop
+先寻找三类证据，再判断机会：
 
-`BT`
-FIND → PROVE → SCORE → DECIDE → VALIDATE → RESULT → LEARN
-`BT`
+```
+Problem Evidence  —— 有人遇到这个问题吗？
+Solution Evidence —— 他们现在怎么解决？
+Payment Evidence  —— 有没有人为类似结果付钱？
+```
 
----
+### Don't Build First 不要先造产品
 
-## 核心能力总览 / Features
+```
+想法 → 写代码 → 做产品 → 寻找用户   ✗
 
-| 能力 | 一句话 |
-|---|---|
-| **Market Research 市场研究** | 三类搜索（问题 / 现有方案 / 付费行为），用真实证据代替直觉 |
-| **Opportunity Score 机会评分** | 7 维加权 0-100，计算式可手工复算 |
-| **Score Rubric 评分细则** | 26 个子信号五档可观察标准，每个 7 分都能回答"为什么不是 8" |
-| **Confidence 决策置信度** | 与评分分离的可复算可信度（Score 高 ≠ 一定推荐） |
-| **Hard Gates 硬门槛** | 核心短板不能被总分掩盖（门槛 / 天花板 / 红旗三层） |
-| **Evidence Coverage 证据覆盖度** | 六维覆盖度 + 关键缺口，回答"到底研究了多少" |
-| **Validation Engine 验证引擎** | 设计最低成本验证 → 读真实结果 → 重新判断（V4） |
+真实问题 → 证据 → 需求 → 验证 → 再决定是否 Build   ✓
+```
 
-## 判断机制 / How decisions are made
+### Evidence Before Confidence 证据先于自信
 
-Market Scout does not force every opportunity into a positive recommendation. Depending on the evidence, confidence, hard gates, and validation results, an opportunity can be `RECOMMENDED`, `POTENTIAL`, or `NOT_RECOMMENDED`.
+没有证据时，输出的是 Unknown / To Verify / Evidence Insufficient——**不能把假设写成事实**。
 
-Market Scout 不会默认把每个机会都判断为值得做，而是根据证据、置信度、关键门槛和验证结果，将机会判断为 `RECOMMENDED`、`POTENTIAL` 或 `NOT_RECOMMENDED`。
+### Stop When Evidence Is Weak 停在证据前
+
+Market Scout 拥有**停止权**。如果证据不足、支付意愿弱、需求不重复、竞争过强，它会允许：
+
+```
+RESEARCH（继续研究）
+VALIDATE（先验证再决定）
+PARK（暂缓，列出重启条件）
+KILL（明确否定）
+```
+
+而不是为了完成流程强行 BUILD。判断结果分三档：
 
 | 决策 | 含义 |
 |---|---|
@@ -206,51 +259,90 @@ Market Scout 不会默认把每个机会都判断为值得做，而是根据证�
 | 🟡 **POTENTIAL** | 证据不足，需要进一步验证（通常进入最低成本验证） |
 | 🔴 **NOT_RECOMMENDED** | 当前证据不支持继续投入（停止，并说明什么新证据可以重启） |
 
-> 重点是：**它不会为了哄你开心而硬给"值得做"。** 分数怎么算、为什么是这个结论，都会写清楚，你可以自己复核。
+---
 
-## 真实使用示例 / Real Example
+## 📈 Version Evolution 版本演进
 
-> 演示数据，方法见 `examples/`（V4 全链示例：`examples/v4-validation-plan.md` → `v4-lowest-cost-validation.md` → `v4-validation-result.md` → `v4-re-evaluation.md`）
+Market Scout 不是突然出现的 V5，而是一步步长成的工作系统：
 
-`BT`
-INPUT: "我发现很多小商家不会做短视频，能不能做一个 AI 工具帮他们自动生成内容？"
+### V1 — First Prototype 最初原型
 
-Evidence       本地商家"不会做内容/代运营贵"的重复求助（Evidence）
-Score          Opportunity Score（计算式可复算），Confidence 与 Coverage 分开展示
-Hard Gate      核心门槛检查，缺付费证据 → Score Ceiling（最高 POTENTIAL）
-Decision       🟡 POTENTIAL（付费未验证）
-Validation     20 家目标商家 → 免费样品 → 报价 99 元/次（最低成本验证，不开发产品）
-               成功标准：≥5 明确需求 且 ≥2 付款；失败标准：<2 付款
-Result         20 users / 8 interested / 3 trials / 1 paid → Partial → 修改 Offer
-Re-evaluation  根据真实结果重算 Score / Confidence / Coverage / Decision
-`BT`
+核心：**从想法出发 → 尝试寻找问题 → 尝试验证**。验证“AI 能不能帮我系统化寻找真实问题和机会”。
 
-> **Market Scout 不一定告诉你"去开发这个产品"。** 它可能告诉你：**先用人工 + AI 验证 5-10 个客户是否愿意付费。** 这正是 V4 的价值。
+### V1.1 — Structured Analysis 结构化分析
 
-## 输出包含什么 / Output
+让机会分析结构化：三类搜索、Problem Card、Evidence Chain、三种模式、状态机。
 
-最终给你的不是一篇"市场分析报告"，而是一个**有证据、有约束、有验证计划、可重新判断的机会判断**：
+### V2 — Evidence & Validation 证据与验证
 
-`BT`
-Opportunity Score      机会评分（可复算）
-Confidence             决策置信度
-Evidence Coverage      证据覆盖度 + 关键缺口
-Hard Gates             硬门槛检查
-Decision               三档结论 + Why
-Validation Plan        验证什么 / 找谁 / 怎么验证 / 样本 / 时长 / 成本 / 成功 / 失败
-Today Action           今天做什么
-Fallback               失败后改什么
-`BT`
+形成完整机会分析流程 **FIND → VALIDATE → EVALUATE → BLUEPRINT → MONETIZE**：只有“看起来不错”的想法是不够的，需要证据。加入需求验证、项目评估（GO / VALIDATE FIRST / NO-GO 三档）、机会转项目、商业化与获客。
+
+### V3 — Core Closed Loop 决策闭环
+
+**Evidence → Score → Decision → MVP → Action**：证据三态、7 维机会评分（0-100 可复算）、三档决策（RECOMMENDED / POTENTIAL / NOT_RECOMMENDED）、MVP Blueprint、动态 Action Plan。让分析最终产生“决策”。
+
+### V3.1 — Determinism Layer 确定性强化
+
+Score Rubric（26 个子信号五档）、Confidence（决策置信度，与评分分离）、Hard Gates（硬门槛 / Score Ceiling / 红旗三层）、Evidence Coverage（六维证据覆盖度）、Evidence-driven Action（证据驱动行动）。
+
+### V4 — Validation Engine 验证引擎（v4.0.0）
+
+**判断 → 最低成本验证 → 读真实结果 → 重新判断**：Validation Plan 11 问、Lowest-Cost Validation、Validate before Build、Success / Failure Criteria、Validation Result 分级（Observed / Inference / Unknown）、Re-evaluation 规则化重算、Learn Loop。
+
+### 🚀 V5 — Orchestrated Expert System 编排式专家系统（当前版本）
+
+**V4 能力保留 → 内部模块化 → Main Orchestrator → Routing → Expert Specialists → Context / State → Full / Focused / Mid-entry / Independent。**
+
+> **V5 不是重新发明 Market Scout，而是把已经形成的能力变成一个可以按需调度的 Agent 工作系统。**
 
 ---
 
-## 🚀 安装 / Installation
+## 💡 Usage Examples 使用示例
 
-> 以仓库真实安装方式为准（与 `USER_GUIDE.md` 完全一致）。纯 Markdown Skill：**不需要 npm / pip，不运行任何服务，无额外依赖。**
+**例 1 · 全新想法 → 完整流程（Full）**
+
+```
+用户：我有一个帮助大学生整理课程资料的想法。
+
+进入：Full Workflow
+Idea → Observation → Problem → Evidence → Opportunity → Score → Validation → Decision → Action
+```
+
+**例 2 · 只想找证据（Focused）**
+
+```
+用户：我已经找到很多用户抱怨了，帮我看看有没有真实需求。
+
+进入：Evidence Hunter（三类搜索 + 证据链，不跑完整流程）
+```
+
+**例 3 · 只想重新评分（Focused）**
+
+```
+用户：按照 Market Scout 的标准重新给这个机会评分。
+
+进入：Opportunity Score（7 维评分 + Confidence + Hard Gates，可复算）
+```
+
+**例 4 · 继续上次分析（Mid-entry）**
+
+```
+用户：继续上次的分析。
+
+Context 中已完成 Score → 从 SCORED 继续 → VALIDATION（不从头重跑）
+```
+
+---
+
+## 📥 安装 / Installation
+
+纯 Markdown AI Skill：**不需要 npm / pip，不运行任何服务，无额外依赖**（与 USER_GUIDE.md 完全一致）。
+
+> 用户只需要安装**一个** Market Scout V5。安装包内已包含：Main Skill + Orchestrator + 6 个 Specialist + Context / State + Tools + 全部资源。**不需要分别安装 6 个 Specialist。**
 
 **方式一：拖拽一键安装（推荐）**
 
-1. 下载并解压 [market-scout-v4.0.0.zip](./releases/market-scout-v4.0.0.zip)，取出其中的 `market-scout` 文件夹（部分客户端支持直接拖 zip）。
+1. 下载并解压 [market-scout-v5.0.0.zip](./releases/market-scout-v5.0.0.zip)，取出其中的 `market-scout` 文件夹（部分客户端支持直接拖 zip）。
 2. 拖入 AI 客户端的「技能 / 一键安装」入口；不支持时改用方式二。
 3. 按「验证安装」确认版本。
 
@@ -263,58 +355,73 @@ Fallback               失败后改什么
 
 **或 Clone 本仓库**：`git clone https://github.com/kio831/market-scout.git`
 
-> 装过旧版：V4 向下兼容、旧能力全部保留；部分平台同名目录不覆盖，建议先删除旧 `market-scout` 文件夹再安装。
+> 装过旧版：V5 向下兼容、V1-V4 能力全部保留；部分平台同名目录不覆盖，建议先删除旧 `market-scout` 文件夹再安装。
 
-**验证安装**：打开安装后的 `SKILL.md`，同时搜到 `Opportunity Score` 和 `值得继续做 RECOMMENDED` = V4.0.0；再搜到 `v4-validation.md` 与 `v4-validation-card.md` = V4 验证引擎就位。
+**验证安装**：打开安装后的 `SKILL.md`，同时搜到 `V5 Orchestrator`、`MarketScoutContext` 和 `specialists/` = V5.0.0；再运行 `tools/validate_skill.py --dev` = 开发完整性通过。
 
 ## ⚡ 快速开始 / Quick Start
 
-`BT`
-1. Install Market Scout
-2. Give it an idea / problem / observation
-3. Choose Quick / Research / Execution
-4. Let Market Scout analyze
-5. Read Decision + Validation Plan
-6. Go validate in the real world
-7. Feed results back → Market Scout re-evaluates
-`BT`
+```
+1. 安装 Market Scout V5
+2. 给它一个想法 / 问题 / 观察 / 已有资料
+3. 它判断：Focused？Mid-entry？还是 Full？
+4. 按需调用对应 Specialist
+5. 读 Decision + Validation Plan
+6. 去现实里验证
+7. 把结果交回来 → 重新判断
+```
 
-| 你想做什么 | 可以这样说 |
-|---|---|
-| 快速判断一个想法 | "学校打印店总有人让老板改 PDF，有没有机会？" |
-| 分析视频 / 评论区 | "分析这个评论区，看能不能做成生意" |
-| 打分与决策 | "这个想法值不值得做，打个分" / "帮我决策" |
-| MVP 与下一步 | "第一版做什么？" / "下一步做什么？" |
-| 设计与执行验证（V4） | "帮我验证一下这个想法" / "设计一个验证实验" / "我验证了 20 个人，3 个付费" / "把验证结果交回" / "重新评估" |
+| 你想做什么 | 可以这样说 | 进入 |
+|---|---|---|
+| 快速判断一个想法 | “学校打印店总有人让老板改 PDF，有没有机会？” | Quick / Full |
+| 只要证据 | “帮我找这个问题的真实需求证据” | Focused → Evidence Hunter |
+| 打分与决策 | “这个想法值不值得做，打个分” | Focused → Opportunity Score |
+| 设计与执行验证 | “帮我验证一下这个想法” / “我验证了 20 个人，3 个付费” | Focused → Validation Scout |
+| 继续上次分析 | “继续” | Mid-entry（从下一缺失阶段续跑） |
 
-**三种工作模式**：Quick Mode（随手判断，默认，保持轻量）· Research Mode（深挖完整报告）· Execution Mode（停止研究、直接给执行清单）。
+**三种工作方式（V4 Mode）**：Quick（随手判断，保持轻量）· Research（深挖完整报告）· Execution（停止研究、直接给执行清单）。
+
+**四种调度模式（V5 Orchestration Mode）**：Full · Focused · Mid-entry · Independent。
 
 ## 📚 Documentation & 项目结构 / Repository Structure
 
 - [USER_GUIDE.md](./USER_GUIDE.md) — 用户安装与使用说明
-- [CHANGELOG.md](./CHANGELOG.md) — 版本变更记录（v1.0 → v1.1 → v2.0.0 → v3.0.0 → v3.1.0 → v4.0.0）
+- [CHANGELOG.md](./CHANGELOG.md) — 版本变更记录（v1.0 → v1.1 → v2.0.0 → v3.0.0 → v3.1.0 → v4.0.0 → v5.0.0）
 - [CONTRIBUTING.md](./CONTRIBUTING.md) — 贡献指南
 
-`BT`
+```
 market-scout/
-├── SKILL.md                    # 核心入口：铁律、V2 流水线、V3 决策层、V3.1 强化层、V4 验证引擎
+├── SKILL.md                    # 主控入口：铁律、路由、状态检测、V2-V4 全部能力、V5 Orchestrator
 ├── README.md                   # 本文件（GitHub 项目主页）
 ├── USER_GUIDE.md               # 用户安装与使用说明
 ├── CHANGELOG.md                # 版本变更记录
 ├── CONTRIBUTING.md / LICENSE / .gitignore
-├── assets/                     # README 配图（hero / evolution / validation loop）
-├── references/  (23)           # 方法论文档（V1 基础 6 + V2 流水线 6 + V3 决策层 6 + V3.1 强化层 4 + V4 验证引擎 1）
-├── templates/   (17)           # 可直接填充的卡片/报告模板（含 v4-validation-card.md）
-├── examples/    (13)           # 流程示例（全部为演示数据，含 4 个 V4 验证示例）
+├── assets/                     # README 配图（hero + V5 architecture / core workflow）
+├── orchestrator/   (4)         # V5 总控层：architecture / routing / state / context
+├── specialists/    (6)         # V5 专家子技能（可独立调用）
+├── references/     (23)        # 方法论文档
+├── templates/      (18)        # 卡片/报告模板（含 v5-context-card.md）
+├── examples/       (16)        # 流程示例（全部为演示数据）
 ├── tools/
-│   ├── validate_skill.py       # 自检脚本（397 项检查）
+│   ├── validate_skill.py       # 自检脚本（--dev 开发模式 / --release 发布模式）
 │   ├── test_v31_cases.py       # V3.1 规则用例测试（A-F + 矩阵）
-│   └── test_v4_validation.py   # V4 验证引擎用例测试（A-G）
+│   ├── test_v4_validation.py   # V4 验证引擎用例测试（A-G）
+│   ├── test_v5_orchestrator.py # V5 架构测试（A-G）
+│   └── test_v5_e2e.py          # V5 端到端行为测试（E2E-01..08 + R1-R4）
 ├── releases/
-│   └── market-scout-v4.0.0.zip # ✅ V4.0.0 正式安装包
+│   ├── market-scout-v5.0.0.zip    # ✅ V5.0.0 正式安装包
+│   └── market-scout-v5.0.0.skill  # ✅ 同内容 .skill 格式
 └── website/
     └── index.html              # 项目落地页（可挂 GitHub Pages）
-`BT`
+```
+
+## 📥 V5 Package 安装包
+
+| 文件 | 说明 |
+|---|---|
+| [market-scout-v5.0.0.zip](./releases/market-scout-v5.0.0.zip) | 正式安装包（zip） |
+| [market-scout-v5.0.0.skill](./releases/market-scout-v5.0.0.skill) | 同上内容（.skill 格式，与 zip 字节一致） |
+| [market-scout-v4.0.0.zip](./releases/market-scout-v4.0.0.zip) | 历史版本：V4.0.0（Validation Engine） |
 
 ## 🗺 Roadmap
 
@@ -325,7 +432,8 @@ market-scout/
 | v2.0.0 | ✅ 已发布 | Opportunity Workflow：Validate / Evaluate / Blueprint / Monetize |
 | v3.0.0 | ✅ 已发布 | Evidence → Score → Decision：证据三态、三档决策、MVP、行动计划 |
 | v3.1.0 | ✅ 已发布 | Rubric / Confidence / Hard Gates / Coverage / Evidence-driven Action |
-| **v4.0.0** | **🚀 当前版本** | **Validation Engine：判断 → 最低成本验证 → 真实结果 → 重新判断** |
+| v4.0.0 | ✅ 已发布 | Validation Engine：判断 → 最低成本验证 → 真实结果 → 重新判断 |
+| **v5.0.0** | **🚀 当前版本** | **Orchestrator + Expert Specialists：路由、状态机、统一 Context、四种调度模式** |
 | 后续迭代 | 📋 规划中 | 仅针对 Bug / 稳定性 / 真实用户反馈 / 规则优化，不再新增大型功能 |
 
 ## 🤝 Contributing & License
@@ -338,13 +446,12 @@ market-scout/
 
 <div align="center">
 
-> **我有一个想法 → Market Scout 帮我找证据 → 评估这个机会 → 告诉我判断有多可靠 → 防止关键短板被总分掩盖 → 设计最低成本验证 → 我去现实里验证 → 把结果交回来 → 重新判断。**
+> **我有一个想法 → Market Scout 判断我需要什么 → 调度对应专家 → 找证据 → 评估机会 → 判断有多可靠 → 设计最低成本验证 → 我去现实里验证 → 把结果交回来 → 重新判断并行动。**
 
 #### From vague ideas to validated decisions.
 
-**FIND → PROVE → SCORE → DECIDE → VALIDATE → RESULT → LEARN**
+**Discover. Validate. Decide. Act.**
 
 [⬆ 回到顶部](#-market-scout)
 
 </div>
-
