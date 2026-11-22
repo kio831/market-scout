@@ -16,9 +16,7 @@
 ![Platform](https://img.shields.io/badge/platform-Any%20Markdown%20Agent-lightgrey)
 ![Status](https://img.shields.io/badge/status-Orchestrated%20System-brightgreen)
 
-[⬇ 下载 V5.0.0](./releases/market-scout-v5.0.0.zip) · [安装](#-安装--installation) · [快速开始](#-快速开始--quick-start) · [V5 核心](#-v5--orchestrator--expert-specialists) · [路由](#-how-v5-works--routing) · [两种用法](#-两种用法--free-or-done-for-you) · [版本演进](#-version-evolution-版本演进) · [项目结构](#-documentation--项目结构--repository-structure)
-
-**不想自己跑？[¥499 我帮你跑一遍](https://github.com/kio831/market-scout/issues/new?labels=order&title=%5B%E8%AE%A2%E5%8D%95%5D%20%E5%B8%AE%E6%88%91%E8%B7%91%E4%B8%80%E9%81%8D)** · 软件 MIT 免费，付费买的是一次九态跑完 + 交付报告 · [落地页](website/index.html)
+[⬇ 下载 V5.0.0](./releases/market-scout-v5.0.0.zip) · [安装](#-安装) · [快速开始](#-快速开始) · [V5 核心](#-v5--orchestrator--expert-specialists) · [路由](#-how-v5-works--routing) · [版本演进](#-版本演进) · [项目结构](#-project-structure)
 
 </div>
 
@@ -333,24 +331,6 @@ Idea → Observation → Problem → Evidence → Opportunity → Score → Vali
 
 Context 中已完成 Score → 从 SCORED 继续 → VALIDATION（不从头重跑）
 ```
-
----
-
-## 💰 两种用法 / Free or Done-For-You
-
-Market Scout 是 **MIT 开源**的 Agent Skill，软件本身免费，任何人都可以下载、修改、分发。付费买的不是软件，是**有人带着你的真实业务走完全程**。
-
-| | 自己用 / DIY | 我帮你跑 / Done-for-you |
-|---|---|---|
-| 价格 | **免费**（MIT） | **¥499 / 一次** |
-| 你得到 | zip / .skill 安装包 + 全部 6 个 Specialist + 18 张模板 | 同上 + 一次完整九态跑完的报告 |
-| 谁干活 | 你自己跑 | 我跑，问你答，证据我去找 |
-| 交付物 | — | 证据链 + 需求强度 6 信号评分 + 机会评分 + 停手裁决（BUILD / VALIDATE / RESEARCH / PARK / KILL）+ 第一笔钱的 GTM 路径 |
-| 适合 | 会自己读 SKILL.md、能自己填卡片的人 | 有真实业务在手、不想花两天学流程的人 |
-
-**下单只有一条路**：开一个带 [`order`](https://github.com/kio831/market-scout/labels/order) 标签的 Issue（[直接开](https://github.com/kio831/market-scout/issues/new?labels=order&title=%5B%E8%AE%A2%E5%8D%95%5D%20%E5%B8%AE%E6%88%91%E8%B7%91%E4%B8%80%E9%81%8D)），写清「你的业务 / 现在卡在哪 / 愿意为什么付钱」。
-
-我会**先判断这个问题值不值得做**，不值得会直接告诉你别买——这套东西第一条原则就是别先造产品。
 
 ---
 
